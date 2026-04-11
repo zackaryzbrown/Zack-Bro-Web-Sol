@@ -1,11 +1,6 @@
-export function TrustStrip() {
-  const items = [
-    "Direct communication, no middlemen",
-    "Clear pricing from $500+",
-    "Based in Colorado",
-    "Ongoing website care after launch",
-  ];
+import { trustStripItems } from "@/content/site";
 
+export function TrustStrip() {
   return (
     <div
       style={{
@@ -16,8 +11,8 @@ export function TrustStrip() {
       }}
     >
       <div className="container trust-strip-grid">
-        {items.map((item) => (
-          <div key={item} className="trust-strip-item">
+        {trustStripItems.map((item) => (
+          <div key={item.text} className="trust-strip-item">
             <span
               style={{
                 width: "6px",
@@ -28,7 +23,7 @@ export function TrustStrip() {
                 opacity: 0.7,
               }}
             />
-            {item}
+            {item.text}
           </div>
         ))}
       </div>

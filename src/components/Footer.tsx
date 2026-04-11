@@ -1,6 +1,12 @@
-"use client";
-
 import Link from "next/link";
+import { brand, navLinks } from "@/content/site";
+
+const serviceLinks = [
+  "Custom Websites",
+  "Website Redesigns",
+  "Lead Capture Setup",
+  "Ongoing Support",
+];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,7 +38,7 @@ export function Footer() {
                 marginBottom: "0.75rem",
               }}
             >
-              Zackary Brown
+              {brand.shortName}
             </p>
             <p
               style={{
@@ -42,8 +48,7 @@ export function Footer() {
                 color: "rgba(255,255,255,0.5)",
               }}
             >
-              Founder-led web business building modern websites for local
-              service businesses. Based in Colorado.
+              {brand.description.split(".").slice(0, 2).join(".")}.
             </p>
           </div>
 
@@ -68,14 +73,7 @@ export function Footer() {
                 gap: "0.625rem",
               }}
             >
-              {[
-                { href: "/", label: "Home" },
-                { href: "/services", label: "Services" },
-                { href: "/work", label: "Work" },
-                { href: "/pricing", label: "Pricing" },
-                { href: "/about", label: "About" },
-                { href: "/contact", label: "Contact" },
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="footer-link">
                   {link.label}
                 </Link>
@@ -104,12 +102,7 @@ export function Footer() {
                 gap: "0.625rem",
               }}
             >
-              {[
-                "Custom Websites",
-                "Website Redesigns",
-                "Lead Capture Setup",
-                "Ongoing Support",
-              ].map((item) => (
+              {serviceLinks.map((item) => (
                 <Link key={item} href="/services" className="footer-link">
                   {item}
                 </Link>
@@ -139,13 +132,13 @@ export function Footer() {
                 fontSize: "0.875rem",
               }}
             >
-              <a href="mailto:zackary@zbweb.solutions" className="footer-link">
-                zackary@zbweb.solutions
+              <a href={`mailto:${brand.email}`} className="footer-link">
+                {brand.email}
               </a>
               <p
                 style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}
               >
-                Based in Colorado
+                Based in {brand.location}
               </p>
               <p
                 style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}
@@ -169,8 +162,7 @@ export function Footer() {
           }}
         >
           <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.4)" }}>
-            &copy; {currentYear} Zackary Brown Web Solutions. All rights
-            reserved.
+            &copy; {currentYear} {brand.name}. All rights reserved.
           </p>
           <Link href="/contact" className="footer-link-muted">
             Request a Quote &rarr;

@@ -1,32 +1,36 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useRef, FormEvent } from "react";
+import {
+  trackFormStarted,
+  trackFormSubmitted,
+  trackFormSuccess,
+  trackFormFailure,
+} from "@/lib/analytics";
 
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 const SUBMISSION_COOLDOWN_MS = 60_000;
 const MIN_FILL_TIME_MS = 3_000;
 const LAST_SUBMISSION_KEY = "zbws-contact-last-submission-at";
-const WEB3FORMS_ACCESS_KEY =
-  process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY?.trim() ?? "";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [startedAt] = useState(() => Date.now());
+  const formStartedRef = useRef(false);
+
+  const handleFocus = () => {
+    if (!formStartedRef.current) {
+      formStartedRef.current = true;
+      trackFormStarted();
+    }
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setErrorMessage(null);
-
-    if (!WEB3FORMS_ACCESS_KEY) {
-      setSubmitting(false);
-      setErrorMessage(
-        "The contact form is not configured yet. Please email me directly at zackary@zbweb.solutions."
-      );
-      return;
-    }
+    trackFormSubmitted();
 
     const now = Date.now();
     const lastSubmission =
@@ -37,25 +41,34 @@ export function ContactForm() {
     if (lastSubmission && now - lastSubmission < SUBMISSION_COOLDOWN_MS) {
       setSubmitting(false);
       setErrorMessage(
-        "Please wait about a minute before sending another inquiry."
+        "Please wait about a minute before sending another inquiry.",
       );
+      trackFormFailure("cooldown");
       return;
     }
 
     if (now - startedAt < MIN_FILL_TIME_MS) {
       setSubmitting(false);
-      setErrorMessage("Please take a moment to review your details and try again.");
+      setErrorMessage(
+        "Please take a moment to review your details and try again.",
+      );
+      trackFormFailure("too_fast");
       return;
     }
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+
+    const body: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      if (typeof value === "string") body[key] = value;
+    });
 
     try {
-      const res = await fetch(WEB3FORMS_ENDPOINT, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
       });
 
       const data = (await res.json()) as {
@@ -68,17 +81,20 @@ export function ContactForm() {
         form.reset();
         window.localStorage.setItem(LAST_SUBMISSION_KEY, String(now));
         setSubmitted(true);
+        trackFormSuccess();
       } else {
-        setErrorMessage(
+        const msg =
           data.message ??
-            data.error ??
-            "Something went wrong. Please try again or email me directly."
-        );
+          data.error ??
+          "Something went wrong. Please try again or email me directly.";
+        setErrorMessage(msg);
+        trackFormFailure(msg);
       }
     } catch {
       setErrorMessage(
-        "Something went wrong. Please try again or email me directly."
+        "Something went wrong. Please try again or email me directly.",
       );
+      trackFormFailure("network_error");
     } finally {
       setSubmitting(false);
     }
@@ -118,6 +134,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      onFocus={handleFocus}
       style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
     >
       <input
@@ -125,7 +142,15 @@ export function ContactForm() {
         name="subject"
         value="New inquiry from ZB Web Solutions"
       />
-      <input type="checkbox" name="botcheck" style={{ display: "none" }} />
+      {/* Honeypot */}
+      <input
+        type="text"
+        name="company"
+        style={{ display: "none" }}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+      />
       <div
         style={{
           display: "grid",

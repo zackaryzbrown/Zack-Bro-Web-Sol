@@ -3,6 +3,8 @@ import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { createMetadata } from "@/lib/metadata";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -17,18 +19,11 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
 });
 
-export const metadata: Metadata = {
-  title: "Zackary Brown Web Solutions | Modern Websites for Local Service Businesses",
+export const metadata: Metadata = createMetadata({
+  title: "Modern Websites for Local Service Businesses",
   description:
     "Founder-led web business building modern, conversion-focused websites for local service businesses. Custom sites, redesigns, and ongoing support. Based in Colorado.",
-  keywords: [
-    "small business website",
-    "local service business website",
-    "website design",
-    "web designer Colorado",
-    "small business web design",
-  ],
-};
+});
 
 export default function RootLayout({
   children,
@@ -41,6 +36,7 @@ export default function RootLayout({
       className={`${dmSans.variable} ${instrumentSerif.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
+        <JsonLd />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
