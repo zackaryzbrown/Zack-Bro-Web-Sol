@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About | Zackary Brown Web Solutions",
-  description: "Founder-led web business helping local service businesses build professional, conversion-focused websites. Based in Colorado.",
+  description:
+    "Founder-led web business helping local service businesses build professional, conversion-focused websites. Based in Colorado.",
 };
 
 export default function AboutPage() {
@@ -19,9 +21,9 @@ export default function AboutPage() {
               A web business built to help other businesses grow online.
             </h1>
             <p className="section-subtext">
-              Zackary Brown Web Solutions is a founder-led web business
-              focused on building professional, modern websites for local
-              service businesses.
+              Zackary Brown Web Solutions is a founder-led web business focused
+              on building professional, modern websites for local service
+              businesses.
             </p>
           </FadeIn>
         </div>
@@ -41,78 +43,24 @@ export default function AboutPage() {
             <FadeIn>
               <div
                 style={{
-                  background: "linear-gradient(145deg, var(--bg) 0%, var(--accent-light) 60%, var(--accent-muted) 100%)",
                   borderRadius: "var(--radius-lg)",
-                  height: "360px",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "1.25rem",
-                  border: "1px solid var(--border-light)",
-                  position: "relative",
                   overflow: "hidden",
+                  border: "1px solid var(--border-light)",
+                  maxWidth: "320px",
+                  margin: "0 auto",
                 }}
               >
-                {/* Monogram */}
-                <div
+                <Image
+                  src="/zackary-brown.jpg"
+                  alt="Zackary Brown — Founder & Developer"
+                  width={600}
+                  height={750}
                   style={{
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    background: "var(--accent)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
                   }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-instrument-serif), Georgia, serif",
-                      fontSize: "2rem",
-                      color: "#fff",
-                      fontWeight: 400,
-                      lineHeight: 1,
-                    }}
-                  >
-                    ZB
-                  </span>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-instrument-serif), Georgia, serif",
-                      fontSize: "1.125rem",
-                      color: "var(--text-primary)",
-                      marginBottom: "0.25rem",
-                    }}
-                  >
-                    Zackary Brown
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "0.75rem",
-                      fontWeight: 500,
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "var(--accent)",
-                    }}
-                  >
-                    Founder & Developer
-                  </p>
-                </div>
-                {/* Accent corner detail */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "-20px",
-                    right: "-20px",
-                    width: "120px",
-                    height: "120px",
-                    borderRadius: "50%",
-                    background: "var(--accent)",
-                    opacity: 0.05,
-                  }}
+                  priority
                 />
               </div>
             </FadeIn>
@@ -121,25 +69,33 @@ export default function AboutPage() {
                 <h2 style={{ marginBottom: "1.25rem" }}>
                   Hi, I&apos;m Zackary Brown.
                 </h2>
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                  }}
+                >
                   <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                    I run Zackary Brown Web Solutions, an independent web business
-                    where I work directly with local service businesses to build
-                    websites that look professional and actually help generate leads.
+                    I run Zackary Brown Web Solutions, an independent web
+                    business where I work directly with local service businesses
+                    to build websites that look professional and actually help
+                    generate leads.
                   </p>
                   <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                    When you work with me, you&apos;re not handed off to a team of
-                    people you&apos;ve never met. I handle the design, the development,
-                    and the communication. One person who knows your project from
-                    start to finish.
+                    When you work with me, you&apos;re not handed off to a team
+                    of people you&apos;ve never met. I handle the design, the
+                    development, and the communication. One person who knows
+                    your project from start to finish.
                   </p>
                   <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                    I started this business because I saw too many local businesses
-                    either stuck with outdated websites that don&apos;t convert, or
-                    paying agency prices for results they could get from a focused,
-                    independent professional. My goal is to be the web partner that
-                    small business owners actually want to work with. Responsive,
-                    transparent, and easy to communicate with.
+                    I started this business because I saw too many local
+                    businesses either stuck with outdated websites that
+                    don&apos;t convert, or paying agency prices for results they
+                    could get from a focused, independent professional. My goal
+                    is to be the web partner that small business owners actually
+                    want to work with. Responsive, transparent, and easy to
+                    communicate with.
                   </p>
                 </div>
               </div>
@@ -185,7 +141,9 @@ export default function AboutPage() {
             ].map((item, i) => (
               <FadeIn key={item.title} delay={i * 80}>
                 <div>
-                  <h3 style={{ fontSize: "1.0625rem", marginBottom: "0.625rem" }}>
+                  <h3
+                    style={{ fontSize: "1.0625rem", marginBottom: "0.625rem" }}
+                  >
                     {item.title}
                   </h3>
                   <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
@@ -204,20 +162,24 @@ export default function AboutPage() {
           <FadeIn>
             <p className="section-label">Who I Work With</p>
             <h2 className="section-heading" style={{ marginBottom: "1.25rem" }}>
-              Businesses that depend on their online presence to attract customers.
+              Businesses that depend on their online presence to attract
+              customers.
             </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                I specialize in working with local service businesses, the kind of
-                businesses where a potential customer's first impression often starts
-                with a Google search. Detailing shops, dental offices, fitness studios,
-                contractors, salons, med spas, and similar service-based businesses.
+                I specialize in working with local service businesses, the kind
+                of businesses where a potential customer's first impression
+                often starts with a Google search. Detailing shops, dental
+                offices, fitness studios, contractors, salons, med spas, and
+                similar service-based businesses.
               </p>
               <p style={{ fontSize: "0.9375rem", lineHeight: 1.7 }}>
-                The common thread is simple: these businesses need a website that
-                looks professional, communicates clearly, and makes it easy to take
-                the next step, whether that&apos;s requesting a quote, booking an
-                appointment, or making a call.
+                The common thread is simple: these businesses need a website
+                that looks professional, communicates clearly, and makes it easy
+                to take the next step, whether that&apos;s requesting a quote,
+                booking an appointment, or making a call.
               </p>
             </div>
           </FadeIn>
@@ -275,7 +237,10 @@ export default function AboutPage() {
 
       {/* CTA */}
       <section className="section-alt">
-        <div className="container" style={{ textAlign: "center", maxWidth: "600px" }}>
+        <div
+          className="container"
+          style={{ textAlign: "center", maxWidth: "600px" }}
+        >
           <FadeIn>
             <h2 style={{ marginBottom: "1rem" }}>
               Let&apos;s talk about your project.
