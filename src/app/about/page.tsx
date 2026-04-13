@@ -7,7 +7,7 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { createMetadata } from "@/lib/metadata";
 import { founderBio, approach, commitments } from "@/content/about";
-import { brand, industries } from "@/content/site";
+import { brand } from "@/content/site";
 
 export const metadata = createMetadata({
   title: "About",

@@ -7,6 +7,7 @@ import {
   trackFormSuccess,
   trackFormFailure,
 } from "@/lib/analytics";
+import { CONTACT_FORM_SUBJECT, CONTACT_HONEYPOT_FIELD } from "@/lib/contact";
 
 const SUBMISSION_COOLDOWN_MS = 60_000;
 const MIN_FILL_TIME_MS = 3_000;
@@ -140,12 +141,12 @@ export function ContactForm() {
       <input
         type="hidden"
         name="subject"
-        value="New inquiry from ZB Web Solutions"
+        value={CONTACT_FORM_SUBJECT}
       />
       {/* Honeypot */}
       <input
         type="text"
-        name="company"
+        name={CONTACT_HONEYPOT_FIELD}
         style={{ display: "none" }}
         tabIndex={-1}
         autoComplete="off"

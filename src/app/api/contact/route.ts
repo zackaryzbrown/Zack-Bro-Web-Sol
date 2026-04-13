@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import {
+  CONTACT_FORM_SUBJECT,
+  hasTriggeredContactHoneypot,
+} from "@/lib/contact";
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 const ACCESS_KEY = process.env.WEB3FORMS_ACCESS_KEY?.trim() ?? "";
@@ -80,7 +84,7 @@ export async function POST(req: NextRequest) {
   }
 
   /* Honeypot check */
-  if (body.botcheck) {
+  if (hasTriggeredContactHoneypot(body)) {
     console.warn(`[contact] Honeypot triggered: ${ip}`);
     // Return success to not tip off bots
     return NextResponse.json({ success: true });
@@ -112,7 +116,7 @@ export async function POST(req: NextRequest) {
   try {
     const payload = {
       access_key: ACCESS_KEY,
-      subject: "New inquiry from ZB Web Solutions",
+      subject: CONTACT_FORM_SUBJECT,
       name: body.name?.trim(),
       email: body.email?.trim(),
       phone: body.phone?.trim() || "Not provided",

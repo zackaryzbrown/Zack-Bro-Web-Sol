@@ -31,13 +31,13 @@ Open `http://localhost:3000`.
 
 ## Contact Form Configuration
 
-The contact form submits through Web3Forms from the browser.
+The contact form submits to the local `/api/contact` route, which then forwards the payload to Web3Forms from the server.
 
 1. Copy `.env.example` to `.env.local`
 2. Add your Web3Forms key:
 
 ```bash
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_key_here
+WEB3FORMS_ACCESS_KEY=your_key_here
 ```
 
 Without that env var, the form will stay visible but show a configuration error instead of sending.
