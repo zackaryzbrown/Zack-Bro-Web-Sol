@@ -221,6 +221,259 @@ p {
   transform: translateY(-2px);
 }
 
+/* ---- Pricing entry-tier grid ---- */
+.pricing-entry-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pricing-entry-card {
+  grid-template-columns: 1fr auto;
+}
+
+/* ---- Project Grid ---- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 1.5rem;
+}
+
+.project-grid-card {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  animation: fadeInUp 0.4s ease both;
+}
+
+.project-grid-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.project-grid-card:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.project-grid-image {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.project-grid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-grid-card:hover .project-grid-image img {
+  transform: scale(1.03);
+}
+
+.project-grid-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.project-grid-type {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-grid-name {
+  font-size: 1.125rem;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.project-grid-caps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.project-grid-cap {
+  padding: 0.2rem 0.625rem;
+  font-size: 0.6875rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-tertiary);
+}
+
+/* ---- Project Modal ---- */
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: fadeIn 0.2s ease;
+}
+
+.project-modal {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 860px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.25s ease;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.project-modal-close:hover {
+  background: var(--bg-alt);
+  color: var(--text-primary);
+}
+
+.project-modal-image {
+  padding: 1.5rem;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.project-modal-body {
+  padding: 2rem;
+}
+
+.project-modal-type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.project-modal-name {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-modal-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-modal-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}
+
+.project-modal-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.project-modal-improvements {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+}
+
+.project-modal-improvement {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.project-modal-caps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-modal-cap {
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ---- Form inputs ---- */
 .form-input {
   width: 100%;
@@ -724,6 +977,22 @@ p {
   .pricing-factor {
     grid-template-columns: 1fr !important;
     gap: 0.25rem !important;
+  }
+
+  .pricing-entry-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .project-modal-backdrop {
+    padding: 1rem 0.5rem;
+  }
+
+  .project-modal-body {
+    padding: 1.5rem;
+  }
+
+  .project-modal-image {
+    padding: 1rem;
   }
 
   .care-plans-cta {
