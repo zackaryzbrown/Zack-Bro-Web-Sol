@@ -7,7 +7,12 @@ import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
 import { CardGrid } from "@/components/CardGrid";
 import { createMetadata } from "@/lib/metadata";
-import { tiers, carePlans, pricingFactors } from "@/content/pricing";
+import {
+  entryTiers,
+  buildTiers,
+  carePlans,
+  pricingFactors,
+} from "@/content/pricing";
 import { brand } from "@/content/site";
 import { pricingFaqItems } from "@/content/faq";
 
@@ -27,11 +32,74 @@ export default function PricingPage() {
         subtitle="Every project is scoped individually, but here's where things typically start. No hidden fees, no surprise invoices."
       />
 
-      {/* Project Tiers */}
+      {/* Quick Start Tiers */}
       <SectionShell variant="alt">
-        <SectionIntro label="Project Pricing" heading="Website packages" />
-        <CardGrid>
-          {tiers.map((tier, i) => (
+        <SectionIntro
+          label="Quick Start"
+          heading="Get online fast"
+          subtext="Affordable options to get your business online quickly. Perfect if you need a professional site without a full custom build."
+        />
+        <div className="pricing-entry-grid">
+          {entryTiers.map((tier, i) => (
+            <FadeIn key={tier.name} delay={i * 80}>
+              <div
+                className="card pricing-entry-card"
+                style={{
+                  height: "100%",
+                  display: "grid",
+                  gridTemplateColumns: "1fr auto",
+                  gap: "1.5rem",
+                  alignItems: "start",
+                }}
+              >
+                <div>
+                  <h3
+                    style={{ fontSize: "1.0625rem", marginBottom: "0.25rem" }}
+                  >
+                    {tier.name}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily:
+                        "var(--font-instrument-serif), Georgia, serif",
+                      fontSize: "1.75rem",
+                      color: "var(--accent)",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    from {tier.price}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.6,
+                      maxWidth: "420px",
+                    }}
+                  >
+                    {tier.description}
+                  </p>
+                </div>
+                <CheckList
+                  items={tier.includes}
+                  itemStyle={{ fontSize: "0.8125rem" }}
+                  checkStyle={{ marginTop: "1px" }}
+                />
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </SectionShell>
+
+      {/* Custom Build Tiers */}
+      <SectionShell>
+        <SectionIntro
+          label="Custom Builds"
+          heading="Websites built around your business"
+          subtext="Purpose-built sites with custom design, stronger conversion structure, and hands-on development."
+        />
+        <CardGrid minWidth="280px">
+          {buildTiers.map((tier, i) => (
             <FadeIn key={tier.name} delay={i * 80}>
               <div
                 className="card"
@@ -114,8 +182,28 @@ export default function PricingPage() {
                   display: "flex",
                   flexDirection: "column",
                   border: plan.featured ? "2px solid var(--accent)" : undefined,
+                  position: "relative",
                 }}
               >
+                {plan.featured && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-12px",
+                      left: "1.5rem",
+                      background: "var(--accent)",
+                      color: "#fff",
+                      fontSize: "0.6875rem",
+                      fontWeight: 600,
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      padding: "0.25rem 0.75rem",
+                      borderRadius: "100px",
+                    }}
+                  >
+                    Recommended
+                  </span>
+                )}
                 <h3 style={{ fontSize: "1.0625rem", marginBottom: "0.5rem" }}>
                   {plan.name}
                 </h3>
@@ -210,7 +298,7 @@ export default function PricingPage() {
 
       <PageCta
         title="Ready to get a quote for your project?"
-        description="Tell me about your business and what you're looking for. I'll follow up with a clear proposal within 1–2 business days."
+        description="Tell me about your business and what you're looking for. I'll follow up with a clear proposal within 1 to 2 business days."
         secondaryHref={brand.bookingUrl}
         secondaryLabel="Book a Free Call"
       />
