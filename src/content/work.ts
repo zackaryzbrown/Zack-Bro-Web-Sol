@@ -2,6 +2,73 @@ import type { Project } from "./types";
 
 export const projects: Project[] = [
   {
+    name: "Northline Studio",
+    type: "Design Studio",
+    image: "/projects/northline-studio.png",
+    url: "northlinestudio27.wordpress.com",
+    challenge:
+      "Northline Studio needed a website that reflected the quality of their own design work. It had to communicate credibility, showcase their branding and web design services, and attract small businesses looking for professional creative direction.",
+    solution:
+      "Built a clean, modern WordPress site with clear service breakdowns, portfolio presentation, and a straightforward contact flow. The design itself serves as proof of what the studio can deliver.",
+    result:
+      "A polished online presence that positions Northline Studio as a credible, strategic creative partner for small businesses and growing brands.",
+    capabilities: [
+      "WordPress",
+      "Brand identity",
+      "Service pages",
+      "Portfolio layout",
+    ],
+    improvements: [
+      "Clean visual system reinforcing the studio's design credibility",
+      "Service pages outlining branding, web design, and creative direction",
+      "Portfolio presentation showcasing real client work",
+      "Simple contact flow for new business inquiries",
+    ],
+  },
+  {
+    name: "Cable Goblin",
+    type: "E-Commerce",
+    image: "/projects/cable-goblin.png",
+    url: "zackbrown94.wpcomstaging.com",
+    challenge:
+      "Cable Goblin needed an online store that could showcase a wide range of electronics, from smartphones and laptops to headphones and accessories, while making it easy for customers to browse, search, and buy.",
+    solution:
+      "Built a full-featured WordPress e-commerce site with product catalogs, category filtering, search functionality, promotional banners, and a clean shopping experience designed to drive conversions.",
+    result:
+      "A professional online storefront that organizes a large product catalog into clear categories and gives customers a smooth path from browsing to checkout.",
+    capabilities: [
+      "WordPress + WooCommerce",
+      "Product catalog",
+      "Category filtering",
+      "Mobile-responsive",
+    ],
+    improvements: [
+      "Organized product catalog with clear category navigation",
+      "Promotional banner system for seasonal deals",
+      "Search functionality for quick product discovery",
+      "Mobile-friendly layout for on-the-go shoppers",
+    ],
+  },
+  {
+    name: "Trailhead Cycles",
+    type: "Bike Shop",
+    image: "/projects/trailhead-cycles.png",
+    url: "zackaryzbrown-yeswj.wordpress.com",
+    challenge:
+      "A neighborhood bike shop needed a website that reflected their premium, community-focused brand while making it easy for customers to explore bikes, book service appointments, and reserve rentals.",
+    solution:
+      "Built a clean WordPress site with dedicated pages for bikes, service and repairs, rentals, and contact. Hero imagery and clear navigation guide visitors to the right service, while a contact form simplifies appointment scheduling.",
+    result:
+      "A polished, inviting online presence that positions Trailhead Cycles as the go-to local bike shop, with clear paths from browsing to booking a service or rental.",
+    capabilities: ["WordPress", "Service pages", "Rental info", "Contact form"],
+    improvements: [
+      "Service pages breaking down tune-ups, repairs, and custom builds",
+      "Rental section with clear gear options for visitors",
+      "Customer reviews building trust with real testimonials",
+      "Mobile-friendly layout for riders on the go",
+    ],
+  },
+  {
     name: "MHK Training",
     type: "Fitness & Training",
     image: "/projects/mhk-training.png",
