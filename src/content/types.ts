@@ -45,6 +45,7 @@ export interface Project {
   result: string;
   capabilities: string[];
   improvements?: string[];
+  tech?: string[];
 }
 
 export interface FAQItem {

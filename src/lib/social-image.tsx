@@ -28,7 +28,7 @@ export function createSocialImage() {
           height: "100%",
           padding: "52px",
           background:
-            "linear-gradient(135deg, #fafaf7 0%, #f2f0ec 50%, #e8f0f2 100%)",
+            "linear-gradient(135deg, #fafaf7 0%, #f2f0ec 50%, #EAF4EF 100%)",
           color: "#1A1A1A",
         }}
       >
@@ -62,7 +62,7 @@ export function createSocialImage() {
                   width: "18px",
                   height: "18px",
                   borderRadius: "4px",
-                  background: "#2B5F6B",
+                  background: "#2D6A4F",
                 }}
               />
               <div style={{ display: "flex", flexDirection: "column" }}>
@@ -93,7 +93,7 @@ export function createSocialImage() {
                 background: "rgba(255, 255, 255, 0.7)",
                 fontSize: "18px",
                 fontWeight: 600,
-                color: "#2B5F6B",
+                color: "#2D6A4F",
               }}
             >
               Colorado-based
@@ -123,7 +123,7 @@ export function createSocialImage() {
                       display: "flex",
                       width: "54px",
                       height: "2px",
-                      background: "#2B5F6B",
+                      background: "#2D6A4F",
                     }}
                   />
                   <div
@@ -131,7 +131,7 @@ export function createSocialImage() {
                       display: "flex",
                       fontSize: "18px",
                       fontWeight: 700,
-                      color: "#2B5F6B",
+                      color: "#2D6A4F",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                     }}
@@ -183,7 +183,7 @@ export function createSocialImage() {
                     width: "12px",
                     height: "12px",
                     borderRadius: "999px",
-                    background: "#2B5F6B",
+                    background: "#2D6A4F",
                   }}
                 />
                 Based in Colorado, working locally and remotely.
@@ -208,7 +208,7 @@ export function createSocialImage() {
                     display: "flex",
                     fontSize: "16px",
                     fontWeight: 700,
-                    color: "#2B5F6B",
+                    color: "#2D6A4F",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
                     marginBottom: "18px",
@@ -234,7 +234,7 @@ export function createSocialImage() {
                         width: "10px",
                         height: "10px",
                         borderRadius: "999px",
-                        background: "#2B5F6B",
+                        background: "#2D6A4F",
                         flexShrink: 0,
                       }}
                     />
@@ -257,7 +257,7 @@ export function createSocialImage() {
                     display: "flex",
                     fontSize: "16px",
                     fontWeight: 700,
-                    color: "#2B5F6B",
+                    color: "#2D6A4F",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
                   }}

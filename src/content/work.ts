@@ -18,6 +18,7 @@ export const projects: Project[] = [
       "Service pages",
       "Portfolio layout",
     ],
+    tech: ["WordPress", "PHP", "CSS"],
     improvements: [
       "Clean visual system reinforcing the studio's design credibility",
       "Service pages outlining branding, web design, and creative direction",
@@ -42,6 +43,7 @@ export const projects: Project[] = [
       "Category filtering",
       "Mobile-responsive",
     ],
+    tech: ["WordPress", "WooCommerce", "PHP", "CSS"],
     improvements: [
       "Organized product catalog with clear category navigation",
       "Promotional banner system for seasonal deals",
@@ -61,6 +63,7 @@ export const projects: Project[] = [
     result:
       "A polished, inviting online presence that positions Trailhead Cycles as the go-to local bike shop, with clear paths from browsing to booking a service or rental.",
     capabilities: ["WordPress", "Service pages", "Rental info", "Contact form"],
+    tech: ["WordPress", "PHP", "CSS"],
     improvements: [
       "Service pages breaking down tune-ups, repairs, and custom builds",
       "Rental section with clear gear options for visitors",
@@ -84,6 +87,15 @@ export const projects: Project[] = [
       "Service pages",
       "Booking integration",
       "Mobile-responsive",
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "CSS Modules",
+      "Web3Forms",
+      "AWS Amplify",
+      "Docker",
+      "Node.js",
     ],
     improvements: [
       "Clear service hierarchy for multiple program types",
@@ -109,6 +121,16 @@ export const projects: Project[] = [
       "Service & pricing pages",
       "Mobile-first",
     ],
+    tech: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "shadcn/ui",
+      "Framer Motion",
+      "React Hook Form",
+    ],
     improvements: [
       "Service tier structure clarifying offerings and pricing",
       "Quote request forms placed at key decision points",
@@ -132,6 +154,16 @@ export const projects: Project[] = [
       "Before/after gallery",
       "SMS quote integration",
       "Service area map",
+    ],
+    tech: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "MUI",
+      "shadcn/ui",
+      "Framer Motion",
     ],
     improvements: [
       "Before/after comparisons building instant credibility",
@@ -157,6 +189,7 @@ export const projects: Project[] = [
       "Project gallery",
       "Quote request flow",
     ],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     improvements: [
       "Service tier structure covering residential and commercial needs",
       "Project gallery showcasing real transformation results",
@@ -181,6 +214,7 @@ export const projects: Project[] = [
       "Feature showcase",
       "Testimonials",
     ],
+    tech: ["HTML5", "CSS3", "JavaScript"],
     improvements: [
       "Clear plan comparison helping customers choose confidently",
       "Feature grid communicating technical advantages simply",
@@ -205,6 +239,7 @@ export const projects: Project[] = [
       "Patient onboarding",
       "Appointment booking",
     ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Google Fonts"],
     improvements: [
       "New patient flow reducing friction to first appointment",
       "Service breakdowns building confidence before visiting",
@@ -228,6 +263,16 @@ export const projects: Project[] = [
       "Audio integration",
       "Licensing pages",
       "Brand design",
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "Express",
+      "MongoDB",
+      "Stripe",
+      "JWT",
+      "AWS Amplify",
+      "CSS Modules",
     ],
     improvements: [
       "Audio showcase letting clients preview before purchasing",
@@ -253,6 +298,7 @@ export const projects: Project[] = [
       "Contact setup",
       "Responsive layout",
     ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Cloudinary", "Web3Forms"],
     improvements: [
       "Booking-friendly contact flow for event organizers",
       "Media integration showcasing music and performances",

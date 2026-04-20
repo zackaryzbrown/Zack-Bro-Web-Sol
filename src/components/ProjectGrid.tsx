@@ -150,12 +150,28 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                 </div>
               )}
 
-              <div className="project-modal-caps">
-                {active.capabilities.map((cap) => (
-                  <span key={cap} className="project-modal-cap">
-                    {cap}
-                  </span>
-                ))}
+              <div className="project-modal-footer">
+                <div className="project-modal-footer-col">
+                  <h4 className="project-modal-label">Capabilities</h4>
+                  <ul className="project-modal-cap-list">
+                    {active.capabilities.map((cap) => (
+                      <li key={cap}>{cap}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {active.tech && active.tech.length > 0 && (
+                  <div className="project-modal-footer-col">
+                    <h4 className="project-modal-label">Tools &amp; Tech</h4>
+                    <div className="project-modal-tech">
+                      {active.tech.map((t) => (
+                        <span key={t} className="project-modal-tech-tag">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <TrackedLink
