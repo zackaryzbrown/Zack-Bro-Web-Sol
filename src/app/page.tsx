@@ -99,7 +99,7 @@ export default function HomePage() {
                   className="hero-badge"
                   style={{ bottom: "-12px", left: "-12px" }}
                 >
-                  From $500+
+                  From $200+
                 </div>
                 <div
                   className="hero-badge"
@@ -108,7 +108,7 @@ export default function HomePage() {
                   Ongoing care available
                 </div>
                 <div className="hero-badges-mobile">
-                  <span className="hero-badge">From $500+</span>
+                  <span className="hero-badge">From $200+</span>
                   <span className="hero-badge">Ongoing care available</span>
                 </div>
               </div>

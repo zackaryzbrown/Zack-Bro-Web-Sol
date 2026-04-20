@@ -27,7 +27,7 @@ export const navLinks: NavItem[] = [
 /* ── Trust strip ── */
 export const trustStripItems: TrustStripItem[] = [
   { text: "Direct communication, no middlemen" },
-  { text: "Clear pricing from $500+" },
+  { text: "Clear pricing from $200+" },
   { text: "Based in Colorado" },
   { text: "Ongoing website care after launch" },
 ];
