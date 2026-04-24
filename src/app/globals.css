@@ -801,6 +801,30 @@ p {
   line-height: 1.5;
 }
 
+/* ---- Services card action ---- */
+.service-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card-action::after {
+  content: "\2192";
+  font-size: 0.95em;
+}
+
+.service-card-action:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -33,16 +33,16 @@ export const servicesDetailed: ServiceItem[] = [
       "Businesses with an existing site that is outdated or not generating leads.",
   },
   {
-    title: "Lead Capture Setup",
+    title: "Quote & Booking Setup",
     description:
-      "Set up forms and booking flows so visitors can quickly request a quote, call, or book.",
+      "Set up quote forms and booking flows so customers can quickly request service.",
     icon: "▣",
     includes: [
-      "Contact and quote request forms",
+      "Quote request and contact forms",
       "Booking or scheduling integration",
-      "Call-to-action placement strategy",
+      "Call-to-action placement",
       "Form notification setup",
-      "Conversion-minded page structure",
+      "Conversion-focused page structure",
       "Mobile-optimized forms",
     ],
     bestFor:
