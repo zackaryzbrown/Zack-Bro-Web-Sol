@@ -37,16 +37,15 @@ export function CarePlanCard({ plan }: CarePlanCardProps) {
       </ul>
 
       {plan.exclusions && plan.exclusions.length > 0 && (
-        <>
-          <p className="care-plan-list-label care-plan-list-label-muted">
-            Not included in hosting
+        <details className="care-plan-exclusions">
+          <summary className="care-plan-exclusions-summary">
+            What&apos;s not included
+          </summary>
+          <p className="care-plan-exclusions-copy">
+            {plan.exclusions.join(", ")}. These can be added through Website
+            Care or one-time scoped updates.
           </p>
-          <ul className="care-plan-list care-plan-list-muted">
-            {plan.exclusions.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </>
+        </details>
       )}
     </article>
   );

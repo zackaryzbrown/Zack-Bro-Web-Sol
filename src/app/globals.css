@@ -538,6 +538,10 @@ p {
   margin: 0 auto;
 }
 
+.care-plan-grid-wrap .card-grid {
+  align-items: start;
+}
+
 .care-plan-featured {
   border: 1px solid var(--accent-muted);
   background: #F7FBF9;
@@ -639,6 +643,45 @@ p {
 
 .care-plan-list-muted li::before {
   background: var(--border);
+}
+
+.care-plan-exclusions {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  padding-top: 0.8rem;
+}
+
+.care-plan-exclusions-summary {
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.care-plan-exclusions-summary::-webkit-details-marker {
+  display: none;
+}
+
+.care-plan-exclusions-summary::after {
+  content: "+";
+  margin-left: 0.4rem;
+  font-size: 0.95em;
+  color: var(--accent);
+}
+
+.care-plan-exclusions[open] .care-plan-exclusions-summary::after {
+  content: "-";
+}
+
+.care-plan-exclusions-copy {
+  margin: 0.55rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+  max-width: none;
 }
 
 /* ---- Project Grid ---- */
