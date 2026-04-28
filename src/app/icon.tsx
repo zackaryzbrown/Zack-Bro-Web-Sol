@@ -25,7 +25,7 @@ export default function Icon() {
         fontWeight: 600,
         lineHeight: 1,
         letterSpacing: "0.02em",
-        // Optical centering — pull the Z up a hair so it sits true
+        // Optical centering - pull the Z up a hair so it sits true
         paddingBottom: 2,
       }}
     >

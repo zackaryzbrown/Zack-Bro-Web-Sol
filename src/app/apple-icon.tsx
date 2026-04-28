@@ -6,7 +6,7 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// iOS home-screen icon — larger surface, slightly more presence.
+// iOS home-screen icon - larger surface, slightly more presence.
 export default function AppleIcon() {
   return new ImageResponse(
     <div

@@ -4,11 +4,14 @@ import { FAQ } from "@/components/FAQ";
 import { BrowserMockup } from "@/components/BrowserMockup";
 import { PageCta } from "@/components/PageCta";
 import { TrustStrip } from "@/components/TrustStrip";
+import { BuiltWithStrip } from "@/components/BuiltWithStrip";
 import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
 import { CardGrid } from "@/components/CardGrid";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { TrackedLink } from "@/components/TrackedLink";
+import { Testimonials } from "@/components/Testimonials";
+import { LocalServiceAreas } from "@/components/LocalServiceAreas";
 import {
   services,
   pricingPreview,
@@ -17,6 +20,7 @@ import {
   homeFaqItems,
 } from "@/content/home";
 import { featuredProjects } from "@/content/work";
+import { hasPublishedTestimonials } from "@/content/testimonials";
 import { brand } from "@/content/site";
 
 export default function HomePage() {
@@ -40,13 +44,14 @@ export default function HomePage() {
               </FadeIn>
               <FadeIn delay={80}>
                 <h1 className="hero-heading">
-                  Websites that build trust and bring in local leads.
+                  Local-business websites that turn visitors into booked work.
                 </h1>
               </FadeIn>
               <FadeIn delay={160}>
                 <p className="hero-subtext">
-                  I build clean, professional websites for service businesses
-                  that need clearer messaging and an easier path to inquiries.
+                  Founder-led web design for Colorado service businesses.
+                  Clearer messaging, mobile-first builds, and a frictionless
+                  path from first visit to inquiry.
                 </p>
                 <p className="hero-founder-line">
                   You work directly with me from scope to launch.
@@ -68,14 +73,18 @@ export default function HomePage() {
                   >
                     Book a Free Call
                   </TrackedLink>
+                </div>
+                <p className="hero-promise">
+                  <span className="hero-promise__dot" aria-hidden="true" />
+                  {brand.responsePromise} ·{" "}
                   <TrackedLink
                     href="/work"
-                    className="btn-secondary"
+                    className="hero-promise__link"
                     label="home_hero_view_work"
                   >
-                    View Work
+                    or browse recent work &rarr;
                   </TrackedLink>
-                </div>
+                </p>
               </FadeIn>
             </div>
 
@@ -117,6 +126,47 @@ export default function HomePage() {
       <FadeIn delay={100}>
         <TrustStrip />
       </FadeIn>
+
+      {/* ===== BUILT WITH (tech credibility strip) ===== */}
+      <BuiltWithStrip />
+
+      {/* ===== VALUE LOOP (4 quick pillars for skimmers) ===== */}
+      <section className="value-loop-section">
+        <div className="container">
+          <div className="value-loop">
+            {[
+              {
+                num: "01",
+                title: "Custom Design",
+                text: "Built around your business, not a recycled template.",
+              },
+              {
+                num: "02",
+                title: "Mobile-First",
+                text: "Most local-business traffic is mobile. Sites are designed for it.",
+              },
+              {
+                num: "03",
+                title: "Local SEO Ready",
+                text: "Structured for visibility in Colorado local search.",
+              },
+              {
+                num: "04",
+                title: "Built to Convert",
+                text: "Clear paths from first visit to a real inquiry.",
+              },
+            ].map((item, i) => (
+              <FadeIn key={item.num} delay={i * 80}>
+                <div className="value-loop__item">
+                  <span className="value-loop__num">{item.num}</span>
+                  <h3 className="value-loop__title">{item.title}</h3>
+                  <p className="value-loop__text">{item.text}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ===== SERVICES OVERVIEW ===== */}
       <SectionShell variant="alt">
@@ -220,6 +270,25 @@ export default function HomePage() {
               View All Work
             </TrackedLink>
           </div>
+        </FadeIn>
+      </SectionShell>
+
+      {/* ===== TESTIMONIALS (auto-hides until quotes are filled in) ===== */}
+      {hasPublishedTestimonials && (
+        <SectionShell variant="alt">
+          <SectionIntro
+            label="What Clients Say"
+            heading="Honest words from real projects."
+            subtext="A short list of clients I've worked with directly. Quotes used with permission."
+          />
+          <Testimonials />
+        </SectionShell>
+      )}
+
+      {/* ===== LOCAL SERVICE AREAS (local SEO + buyer reassurance) ===== */}
+      <SectionShell>
+        <FadeIn>
+          <LocalServiceAreas />
         </FadeIn>
       </SectionShell>
 
@@ -343,7 +412,7 @@ export default function HomePage() {
                 }}
               >
                 Managed Hosting starts at $20/month. Website Care starts at
-                $59/month for clients who want ongoing support.
+                $49/month for clients who want ongoing support.
               </p>
             </div>
             <div>

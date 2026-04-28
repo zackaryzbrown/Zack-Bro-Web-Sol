@@ -21,9 +21,9 @@ const instrumentSerif = Lora({
 });
 
 export const metadata: Metadata = createMetadata({
-  title: "Modern Websites for Local Service Businesses",
+  title: "Colorado Web Designer for Local Service Businesses",
   description:
-    "Founder-led web business building modern, conversion-focused websites for local service businesses. Custom sites, redesigns, and ongoing support. Based in Colorado.",
+    "Founder-led web design for local service businesses in Denver, Boulder, Colorado Springs, and across Colorado. Clear pricing from $349, conversion-focused builds, and ongoing care after launch.",
 });
 
 export default function RootLayout({
@@ -37,10 +37,15 @@ export default function RootLayout({
       className={`${dmSans.variable} ${instrumentSerif.variable} h-full`}
     >
       <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Analytics />
         <JsonLd />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
