@@ -6,7 +6,13 @@ import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { createMetadata } from "@/lib/metadata";
-import { founderBio, approach, commitments } from "@/content/about";
+import {
+  founderBio,
+  approach,
+  commitments,
+  process,
+  proofStats,
+} from "@/content/about";
 import { brand } from "@/content/site";
 
 export const metadata = createMetadata({
@@ -95,8 +101,22 @@ export default function AboutPage() {
         </div>
       </SectionShell>
 
-      {/* Approach */}
+      {/* Proof stats strip */}
       <SectionShell>
+        <FadeIn>
+          <div className="about-stats">
+            {proofStats.map((stat) => (
+              <div key={stat.label} className="about-stat">
+                <span className="about-stat__value">{stat.value}</span>
+                <span className="about-stat__label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      </SectionShell>
+
+      {/* Approach */}
+      <SectionShell variant="alt">
         <div className="about-section-intro">
           <SectionIntro
             label="MY APPROACH"
@@ -108,19 +128,47 @@ export default function AboutPage() {
         </div>
       </SectionShell>
 
-      {/* Who I Work With */}
-      <SectionShell variant="alt" narrow>
+      {/* Who I Work With - pull-quote */}
+      <SectionShell narrow>
         <FadeIn>
-          <p className="section-label">WHO I WORK WITH</p>
-          <h2 className="section-heading about-who-heading">
-            Best fit for local service businesses.
-          </h2>
-          <p className="about-copy">
-            I mostly work with businesses where a customer checks the website
-            before making contact. If your site helps shape trust, explain your
-            services, and guide someone toward calling or requesting a quote,
-            you are the kind of business I build for.
-          </p>
+          <figure className="about-quote">
+            <span className="about-quote__mark" aria-hidden>
+              &ldquo;
+            </span>
+            <blockquote className="about-quote__body">
+              I build for the businesses where a customer almost always checks
+              the website before they pick up the phone. If your site needs to
+              shape trust, explain services, and guide visitors toward a call or
+              quote - that&apos;s exactly what I&apos;m here for.
+            </blockquote>
+            <figcaption className="about-quote__cite">
+              - {brand.founder}, Founder
+            </figcaption>
+          </figure>
+        </FadeIn>
+      </SectionShell>
+
+      {/* Process timeline */}
+      <SectionShell variant="alt">
+        <div className="about-section-intro">
+          <SectionIntro
+            label="HOW IT WORKS"
+            heading="From first message to launch day."
+            subtext="A simple, transparent process - no jargon, no surprise invoices."
+          />
+        </div>
+        <FadeIn>
+          <ol className="about-process">
+            {process.map((item) => (
+              <li key={item.step} className="about-process__step">
+                <div className="about-process__num">{item.step}</div>
+                <div className="about-process__body">
+                  <h3 className="about-process__title">{item.title}</h3>
+                  <p className="about-process__text">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </FadeIn>
       </SectionShell>
 

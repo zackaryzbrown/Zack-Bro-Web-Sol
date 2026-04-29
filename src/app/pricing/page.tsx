@@ -2,18 +2,17 @@ import { FadeIn } from "@/components/FadeIn";
 import { FAQ } from "@/components/FAQ";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
+import { PricingTierCard } from "@/components/PricingTierCard";
 import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
-import { CardGrid } from "@/components/CardGrid";
-import { PricingLane } from "@/components/PricingLane";
 import { CarePlanCard } from "@/components/CarePlanCard";
 import { createMetadata } from "@/lib/metadata";
 import {
-  pricingLanes,
-  quickStartTiers,
-  customBuildTiers,
+  tiers,
   carePlans,
   pricingFactors,
+  pricingAnchor,
+  wordpressPricingNote,
 } from "@/content/pricing";
 import { brand } from "@/content/site";
 import { pricingFaqItems } from "@/content/faq";
@@ -21,7 +20,7 @@ import { pricingFaqItems } from "@/content/faq";
 export const metadata = createMetadata({
   title: "Pricing",
   description:
-    "Clear starting prices for WordPress quick-start websites, custom builds, and optional monthly care plans.",
+    "Transparent custom website pricing from $349 to $1,299+. Three clear tiers, no surprise estimates, optional monthly care plan after launch.",
   path: "/pricing",
 });
 
@@ -30,50 +29,93 @@ export default function PricingPage() {
     <>
       <PageHero
         label="Pricing"
-        title="Choose the right build path for your business."
-        subtitle="Most projects fit one of two paths: a faster WordPress quick start or a more tailored custom build. Every package is from pricing and scoped to your goals."
+        title="Custom websites, priced honestly."
+        subtitle="Three tiers built around what local service businesses actually need. Every project is from pricing, scoped to your goals, and quoted before any work begins."
       />
 
-      <SectionShell className="pricing-path-overview">
-        <div className="pricing-path-grid">
-          {pricingLanes.map((lane, i) => (
-            <FadeIn key={lane.label} delay={i * 90}>
-              <article
-                className={`pricing-path-card pricing-path-card-${lane.tone}`}
-              >
-                <p className="pricing-path-label">{lane.label}</p>
-                <h2 className="pricing-path-title">{lane.heading}</h2>
-                <p className="pricing-path-summary">{lane.subtext}</p>
-                <ul className="pricing-path-points">
-                  {lane.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-                <p className="pricing-path-start">
-                  Starts at{" "}
-                  {lane.tone === "quick"
-                    ? quickStartTiers[0].price
-                    : customBuildTiers[0].price}
-                </p>
-              </article>
-            </FadeIn>
-          ))}
+      {/* Value anchor bar */}
+      <SectionShell>
+        <FadeIn>
+          <div className="pricing-anchor">
+            <div className="pricing-anchor__rows">
+              {pricingAnchor.comparison.map((row) => (
+                <div
+                  key={row.label}
+                  className={`pricing-anchor__row${row.highlight ? " is-highlight" : ""}`}
+                >
+                  <span className="pricing-anchor__label">{row.label}</span>
+                  <span className="pricing-anchor__value">{row.value}</span>
+                </div>
+              ))}
+            </div>
+            <p className="pricing-anchor__note">{pricingAnchor.note}</p>
+          </div>
+        </FadeIn>
+      </SectionShell>
+
+      {/* Tier cards */}
+      <SectionShell variant="alt">
+        <SectionIntro
+          label="Build packages"
+          heading="Pick the scope that fits."
+          subtext="All three are custom builds - same craft, scaled to your needs and budget. Not sure where you fit? Book a call and I'll point you to the right tier."
+        />
+        <div className="pricing-tier-v2-grid">
+          {tiers.map((tier, i) => {
+            const budgetSlug = tier.name.toLowerCase().split(" ")[0];
+            return (
+              <FadeIn key={tier.name} delay={i * 90}>
+                <PricingTierCard
+                  tier={tier}
+                  ctaHref={`/contact?service=custom-website&budget=${budgetSlug}`}
+                />
+              </FadeIn>
+            );
+          })}
         </div>
       </SectionShell>
 
-      <SectionShell variant="alt" className="pricing-lane-section">
-        <PricingLane lane={pricingLanes[0]} tiers={quickStartTiers} />
+      {/* WordPress soft note */}
+      <SectionShell>
+        <FadeIn>
+          <aside className="wordpress-note">
+            <div className="wordpress-note__rule" aria-hidden />
+            <div>
+              <h3 className="wordpress-note__heading">
+                {wordpressPricingNote.heading}
+              </h3>
+              <p className="wordpress-note__body">
+                {wordpressPricingNote.body}
+              </p>
+            </div>
+          </aside>
+        </FadeIn>
       </SectionShell>
 
-      <SectionShell className="pricing-lane-section">
-        <PricingLane lane={pricingLanes[1]} tiers={customBuildTiers} />
+      {/* Care plan */}
+      <SectionShell variant="alt">
+        <div id="care">
+          <SectionIntro
+            label="After launch"
+            heading="Hosting only or active care - your call."
+            subtext="Managed Hosting keeps your site online. Website Care adds real post-launch help. Both are optional, month-to-month, cancel anytime."
+          />
+          <div className="care-plan-grid">
+            {carePlans.map((plan, i) => (
+              <FadeIn key={plan.name} delay={i * 80}>
+                <CarePlanCard plan={plan} />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
       </SectionShell>
 
-      <SectionShell variant="alt" className="pricing-factors-section">
+      {/* What affects pricing */}
+      <SectionShell>
         <SectionIntro
-          label="What Affects Pricing"
-          heading="Final pricing depends on more than page count"
-          subtext="Each quote is scoped to your business goals. These are the biggest variables that affect total investment."
+          label="What affects pricing"
+          heading="Final quotes depend on more than page count."
+          subtext="Each project is scoped to your goals. These are the biggest variables that affect total investment."
         />
         <div className="pricing-factors-list">
           {pricingFactors.map((factor, i) => (
@@ -87,24 +129,8 @@ export default function PricingPage() {
         </div>
       </SectionShell>
 
-      <SectionShell>
-        <SectionIntro
-          label="After Launch"
-          heading="Choose hosting-only or ongoing care"
-          subtext="Managed Hosting keeps your site online and monitored. Website Care includes actual post-launch help. Both options are optional and month to month."
-        />
-        <div className="care-plan-grid-wrap">
-          <CardGrid minWidth="320px">
-            {carePlans.map((plan, i) => (
-              <FadeIn key={plan.name} delay={i * 80}>
-                <CarePlanCard plan={plan} />
-              </FadeIn>
-            ))}
-          </CardGrid>
-        </div>
-      </SectionShell>
-
-      <SectionShell narrow>
+      {/* FAQ */}
+      <SectionShell variant="alt" narrow>
         <div id="faq">
           <SectionIntro
             label="Questions"
@@ -118,8 +144,8 @@ export default function PricingPage() {
       </SectionShell>
 
       <PageCta
-        title="Not sure which path fits your business?"
-        description="Tell me what your business needs and I will recommend the right starting point with a clear scoped quote."
+        title="Ready to scope your project?"
+        description="Tell me what your business needs and I'll send a clear, scoped quote within one business day."
         secondaryHref={brand.bookingUrl}
         secondaryLabel="Book a Free Call"
       />

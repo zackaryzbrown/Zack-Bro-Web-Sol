@@ -2,6 +2,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { SectionShell } from "@/components/SectionShell";
+import { TrackedLink } from "@/components/TrackedLink";
 import { createMetadata } from "@/lib/metadata";
 import { contactSteps } from "@/content/contact";
 import { brand } from "@/content/site";
@@ -9,7 +10,7 @@ import { brand } from "@/content/site";
 export const metadata = createMetadata({
   title: "Contact",
   description:
-    "Request a quote for your website project. Based in Colorado, working with businesses locally and remotely.",
+    "Request a quote for your custom website project. Colorado-based, replies within 1 business day. No pressure, no spam.",
   path: "/contact",
 });
 
@@ -18,166 +19,90 @@ export default function ContactPage() {
     <>
       <PageHero
         label="Contact"
-        title="Let's discuss your project"
-        subtitle="Share a few details and I will reply within 1 to 2 business days."
+        title="Tell me about your project."
+        subtitle="Share a few details and I'll reply within 1 business day with next steps or a scoped quote."
       />
 
-      {/* Form + Info */}
       <SectionShell variant="alt">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit, minmax(min(100%, 320px), 1fr))",
-            gap: "3rem",
-            alignItems: "start",
-          }}
-        >
-          {/* Form */}
+        <div className="contact-layout">
+          {/* Form panel */}
           <FadeIn>
-            <div className="card" style={{ padding: "2.5rem" }}>
-              <h2 style={{ fontSize: "1.5rem", marginBottom: "1.5rem" }}>
-                Request a Quote
-              </h2>
+            <div className="contact-form-panel">
+              <header className="contact-form-panel__header">
+                <h2 className="contact-form-panel__title">Request a quote</h2>
+                <p className="contact-form-panel__subtitle">
+                  Five minutes here saves us both a long discovery call.
+                </p>
+              </header>
               <ContactForm />
             </div>
           </FadeIn>
 
-          {/* Contact Info & Context */}
+          {/* Sidebar */}
           <FadeIn delay={100}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "2.5rem",
-              }}
-            >
-              {/* Direct Contact */}
-              <div>
-                <h3 style={{ fontSize: "1.125rem", marginBottom: "1rem" }}>
-                  Direct Contact
-                </h3>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                  }}
-                >
-                  <a
-                    href={`mailto:${brand.email}`}
-                    style={{
-                      color: "var(--accent)",
-                      textDecoration: "none",
-                      fontSize: "0.9375rem",
-                      fontWeight: 500,
-                    }}
-                  >
-                    {brand.email}
-                  </a>
-                  <p
-                    style={{
-                      fontSize: "0.9375rem",
-                      color: "var(--text-secondary)",
-                    }}
-                  >
-                    Based in {brand.location}, working with businesses locally
-                    and remotely.
-                  </p>
+            <aside className="contact-sidebar">
+              {/* Response promise */}
+              <div className="contact-sidebar__card contact-sidebar__card--promise">
+                <div className="contact-sidebar__promise-row">
+                  <span className="contact-sidebar__promise-dot" aria-hidden />
+                  <span className="contact-sidebar__promise-label">
+                    {brand.responsePromise}
+                  </span>
                 </div>
-              </div>
-
-              {/* Book a Call */}
-              <div>
-                <h3 style={{ fontSize: "1.125rem", marginBottom: "1rem" }}>
-                  Prefer to Talk?
-                </h3>
-                <p
-                  style={{
-                    fontSize: "0.9375rem",
-                    color: "var(--text-secondary)",
-                    marginBottom: "1rem",
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Book a free 30-minute call if you prefer to talk through your
-                  project.
+                <p className="contact-sidebar__promise-text">
+                  You&apos;ll hear back from a real human (me), not a scheduling
+                  bot. Most replies go out same-day.
                 </p>
-                <a
-                  href={brand.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                  style={{ display: "inline-block", fontSize: "0.9375rem" }}
-                >
-                  Book a Free Call
-                </a>
               </div>
 
-              {/* What Happens Next */}
-              <div>
-                <h3 style={{ fontSize: "1.125rem", marginBottom: "1rem" }}>
-                  What Happens Next
-                </h3>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1rem",
-                  }}
+              {/* Direct contact */}
+              <div className="contact-sidebar__card">
+                <p className="contact-sidebar__heading">Prefer email?</p>
+                <a
+                  href={`mailto:${brand.email}`}
+                  className="contact-sidebar__email"
                 >
-                  {contactSteps.map((item) => (
-                    <div
-                      key={item.step}
-                      style={{
-                        display: "flex",
-                        gap: "0.875rem",
-                        alignItems: "flex-start",
-                      }}
-                    >
-                      <span
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: "28px",
-                          height: "28px",
-                          borderRadius: "50%",
-                          background: "var(--accent-light)",
-                          color: "var(--accent)",
-                          fontSize: "0.75rem",
-                          fontWeight: 700,
-                          flexShrink: 0,
-                        }}
-                      >
-                        {item.step}
-                      </span>
-                      <div>
-                        <p
-                          style={{
-                            fontSize: "0.9375rem",
-                            fontWeight: 600,
-                            color: "var(--text-primary)",
-                            marginBottom: "0.25rem",
-                          }}
-                        >
-                          {item.title}
-                        </p>
-                        <p
-                          style={{
-                            fontSize: "0.875rem",
-                            color: "var(--text-secondary)",
-                            lineHeight: 1.5,
-                          }}
-                        >
-                          {item.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  {brand.email}
+                </a>
+                <p className="contact-sidebar__note">
+                  Based in {brand.location}. Available locally and remotely
+                  across the Front Range.
+                </p>
               </div>
-            </div>
+
+              {/* Calendar */}
+              <div className="contact-sidebar__card contact-sidebar__card--cta">
+                <p className="contact-sidebar__heading">Prefer to talk?</p>
+                <p className="contact-sidebar__note">
+                  Book a free 30-minute call. We&apos;ll talk through your goals
+                  and figure out the right next step - no commitment.
+                </p>
+                <TrackedLink
+                  href={brand.bookingUrl}
+                  label="contact_sidebar_book_call"
+                  className="btn-secondary contact-sidebar__cta-btn"
+                >
+                  Book a free 30-min call
+                  <span aria-hidden> ↗</span>
+                </TrackedLink>
+              </div>
+
+              {/* What happens next */}
+              <div className="contact-sidebar__card">
+                <p className="contact-sidebar__heading">What happens next</p>
+                <ol className="contact-steps">
+                  {contactSteps.map((item) => (
+                    <li key={item.step} className="contact-step">
+                      <span className="contact-step__num">{item.step}</span>
+                      <div>
+                        <p className="contact-step__title">{item.title}</p>
+                        <p className="contact-step__text">{item.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </aside>
           </FadeIn>
         </div>
       </SectionShell>
