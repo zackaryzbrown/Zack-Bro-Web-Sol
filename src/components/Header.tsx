@@ -147,7 +147,7 @@ export function Header() {
           <span className="brand-tag">Web Solutions</span>
         </Link>
 
-        {/* Desktop nav — visible 1100+ */}
+        {/* Desktop nav - visible 1100+ */}
         <nav className="desktop-nav">
           {navLinks.map((link) => (
             <Link
@@ -173,7 +173,7 @@ export function Header() {
           </TrackedLink>
         </nav>
 
-        {/* Right side — below 1100: hamburger (+ optional CTA on tablet) */}
+        {/* Right side - below 1100: hamburger (+ optional CTA on tablet) */}
         <div className="mobile-nav-controls">
           <TrackedLink
             href="/contact"

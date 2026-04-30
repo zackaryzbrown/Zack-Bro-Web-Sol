@@ -1,17 +1,33 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import { BrowserMockup } from "./BrowserMockup";
+import Link from "next/link";
 import { TrackedLink } from "./TrackedLink";
 import type { Project } from "@/content/types";
+import { projectSlug } from "@/content/work";
 
 interface ProjectGridProps {
   projects: Project[];
+  industries?: string[];
+  showFilter?: boolean;
 }
 
-export function ProjectGrid({ projects }: ProjectGridProps) {
+const ALL = "All work";
+
+export function ProjectGrid({
+  projects,
+  industries = [],
+  showFilter = false,
+}: ProjectGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [filter, setFilter] = useState<string>(ALL);
+
+  const filtered = useMemo(() => {
+    if (filter === ALL) return projects;
+    return projects.filter((p) => p.industry === filter);
+  }, [projects, filter]);
 
   const close = useCallback(() => setActiveIndex(null), []);
 
@@ -28,9 +44,10 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
     };
   }, [activeIndex, close]);
 
-  const active = activeIndex !== null ? projects[activeIndex] : null;
+  const active = activeIndex !== null ? filtered[activeIndex] : null;
 
   const getCardSummary = (project: Project): string => {
+    if (project.outcomeMetric) return project.outcomeMetric;
     if (project.cardSummary) return project.cardSummary;
     const firstSentence = project.result.split(". ")[0]?.trim();
     return firstSentence?.endsWith(".") ? firstSentence : `${firstSentence}.`;
@@ -57,6 +74,7 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
       "Martial Arts / Fitness": "Fitness",
       "Bike Shop": "Bike Shop",
       "Music Production": "Music Production",
+      "Music Production SaaS": "Music SaaS",
       "Music / Band": "Music / Band",
       "Design Studio": "Design Studio",
       "Hosting / SaaS Concept": "Hosting Concept",
@@ -68,20 +86,72 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
 
   return (
     <>
+      {/* Industry filter */}
+      {showFilter && industries.length > 0 && (
+        <div
+          className="work-filter"
+          role="tablist"
+          aria-label="Filter by industry"
+        >
+          <button
+            type="button"
+            role="tab"
+            aria-selected={filter === ALL}
+            className={`work-filter__chip${filter === ALL ? " is-active" : ""}`}
+            onClick={() => {
+              setFilter(ALL);
+              setActiveIndex(null);
+            }}
+          >
+            {ALL}
+            <span className="work-filter__count">{projects.length}</span>
+          </button>
+          {industries.map((ind) => {
+            const count = projects.filter((p) => p.industry === ind).length;
+            const isActive = filter === ind;
+            return (
+              <button
+                key={ind}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`work-filter__chip${isActive ? " is-active" : ""}`}
+                onClick={() => {
+                  setFilter(ind);
+                  setActiveIndex(null);
+                }}
+              >
+                {ind}
+                <span className="work-filter__count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* Thumbnail Grid */}
       <div className="project-grid">
-        {projects.map((project, i) => (
+        {filtered.map((project, i) => (
           <button
             key={project.name}
             className="project-grid-card"
             onClick={() => setActiveIndex(i)}
             type="button"
+            aria-label={`View details for ${project.name}`}
             style={{ animationDelay: `${i * 60}ms` }}
           >
             <div className="project-grid-image">
               <span className="project-grid-badge">
                 {getBadgeLabel(project)}
               </span>
+              {project.isSpec && (
+                <span
+                  className="project-grid-spec-badge"
+                  title="A concept project built to demonstrate capability. Not a paid client engagement."
+                >
+                  Portfolio concept
+                </span>
+              )}
               <Image
                 src={project.image}
                 alt={`${project.name} website screenshot`}
@@ -147,8 +217,28 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
             </div>
 
             <div className="project-modal-body">
-              <p className="project-modal-type">{active.type}</p>
+              <div className="project-modal-eyebrow">
+                <span className="project-modal-type">{active.type}</span>
+                {active.isSpec ? (
+                  <span className="project-modal-status project-modal-status--spec">
+                    Portfolio concept
+                  </span>
+                ) : (
+                  <span className="project-modal-status project-modal-status--live">
+                    Live client site
+                  </span>
+                )}
+              </div>
               <h2 className="project-modal-name">{active.name}</h2>
+
+              {active.outcomeMetric && (
+                <p className="project-modal-outcome">
+                  <span className="project-modal-outcome-mark" aria-hidden>
+                    →
+                  </span>
+                  {active.outcomeMetric}
+                </p>
+              )}
 
               <div className="project-modal-details">
                 <div>
@@ -213,22 +303,38 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
                 )}
               </div>
 
-              <TrackedLink
-                href={`https://${active.url.replace(/^https?:\/\//, "")}`}
-                className="btn-primary"
-                label={`work_visit_site_${active.name.toLowerCase().replaceAll(" ", "_")}`}
+              <div
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.75rem",
                   marginTop: "1rem",
+                  alignItems: "center",
                 }}
               >
-                Visit Live Site
-                <span aria-hidden="true" style={{ fontSize: "1.1em" }}>
-                  ↗
-                </span>
-              </TrackedLink>
+                <TrackedLink
+                  href={`https://${active.url.replace(/^https?:\/\//, "")}`}
+                  className="btn-primary"
+                  label={`work_visit_site_${active.name.toLowerCase().replaceAll(" ", "_")}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  {active.isSpec ? "View Concept" : "Visit Live Site"}
+                  <span aria-hidden="true" style={{ fontSize: "1.1em" }}>
+                    ↗
+                  </span>
+                </TrackedLink>
+                <Link
+                  href={`/work/${projectSlug(active.name)}`}
+                  className="btn-secondary"
+                  onClick={close}
+                >
+                  View full case study →
+                </Link>
+              </div>
             </div>
           </div>
         </div>

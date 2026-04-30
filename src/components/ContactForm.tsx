@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   trackFormStarted,
   trackFormSubmitted,
@@ -19,16 +20,56 @@ const DEFAULT_ERROR_MESSAGE =
 type ErrorSource = "client" | "server";
 type FormError = { message: string; source: ErrorSource };
 
+const SERVICE_OPTIONS: { value: string; label: string }[] = [
+  { value: "custom-website", label: "Custom Website (new build)" },
+  { value: "redesign", label: "Website Redesign" },
+  { value: "conversion", label: "Conversion-Focused Pages" },
+  { value: "care", label: "Care & Support" },
+  { value: "wordpress", label: "WordPress build" },
+  { value: "not-sure", label: "Not sure yet" },
+];
+
+const BUDGET_OPTIONS: { value: string; label: string }[] = [
+  { value: "starter", label: "Starter Site - around $349" },
+  { value: "business", label: "Business Site - around $799" },
+  { value: "growth", label: "Growth Site - $1,299+" },
+  { value: "care-only", label: "Just care / maintenance" },
+  { value: "discuss", label: "Let's discuss" },
+];
+
 function shouldShowFallbackEmail(message: string): boolean {
   return !message.toLowerCase().includes(CONTACT_EMAIL);
 }
 
-export function ContactForm() {
+function ContactFormInner() {
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get("service") ?? "";
+  const budgetParam = searchParams.get("budget") ?? "";
+
+  // Map external query values to internal option values
+  const resolvedService = SERVICE_OPTIONS.find(
+    (o) => o.value === serviceParam,
+  )?.value;
+  const resolvedBudget = BUDGET_OPTIONS.find(
+    (o) => o.value === budgetParam,
+  )?.value;
+
   const [submitted, setSubmitted] = useState(false);
   const [formError, setFormError] = useState<FormError | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [startedAt] = useState(() => Date.now());
+  const [service, setService] = useState<string>(resolvedService ?? "");
+  const [budget, setBudget] = useState<string>(resolvedBudget ?? "");
   const formStartedRef = useRef(false);
+
+  // Keep state in sync if user navigates with new query params
+  useEffect(() => {
+    if (resolvedService) setService(resolvedService);
+  }, [resolvedService]);
+
+  useEffect(() => {
+    if (resolvedBudget) setBudget(resolvedBudget);
+  }, [resolvedBudget]);
 
   const handleFocus = () => {
     if (!formStartedRef.current) {
@@ -71,7 +112,6 @@ export function ContactForm() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-
     const body: Record<string, string> = {};
     formData.forEach((value, key) => {
       if (typeof value === "string") body[key] = value;
@@ -116,43 +156,29 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div
-        style={{
-          background: "var(--accent-light)",
-          border: "1px solid var(--accent-muted)",
-          borderRadius: "var(--radius-lg)",
-          padding: "2.5rem",
-          textAlign: "center",
-        }}
-        role="status"
-        aria-live="polite"
-      >
-        <p
-          style={{
-            fontSize: "1.25rem",
-            fontFamily: "var(--font-instrument-serif), Georgia, serif",
-            color: "var(--text-primary)",
-            marginBottom: "0.5rem",
-          }}
-        >
-          Thank you for reaching out.
-        </p>
-        <p style={{ color: "var(--text-secondary)", fontSize: "0.9375rem" }}>
-          I&apos;ll review your inquiry and get back to you within 1–2 business
-          days.
+      <div className="contact-success" role="status" aria-live="polite">
+        <div className="contact-success__mark" aria-hidden>
+          ✓
+        </div>
+        <p className="contact-success__title">Thanks - your inquiry is in.</p>
+        <p className="contact-success__body">
+          I&apos;ll review the details and reply within{" "}
+          <strong>1 business day</strong>. Keep an eye on your inbox (and your
+          spam folder, just in case).
         </p>
       </div>
     );
   }
 
+  const hasPrefill = !!resolvedService || !!resolvedBudget;
+
   return (
     <form
       onSubmit={handleSubmit}
       onFocus={handleFocus}
-      style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+      className="contact-form"
     >
       <input type="hidden" name="subject" value={CONTACT_FORM_SUBJECT} />
-      {/* Honeypot */}
       <input
         type="text"
         name={CONTACT_HONEYPOT_FIELD}
@@ -161,14 +187,18 @@ export function ContactForm() {
         autoComplete="off"
         aria-hidden="true"
       />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "1.25rem",
-        }}
-        className="form-grid"
-      >
+
+      {hasPrefill && (
+        <div className="contact-prefill" role="status">
+          <span className="contact-prefill__mark" aria-hidden>
+            ◆
+          </span>
+          We&apos;ve pre-filled this form based on what you were viewing. Edit
+          anything that doesn&apos;t fit.
+        </div>
+      )}
+
+      <div className="form-grid">
         <div>
           <label htmlFor="name" className="form-label">
             Name
@@ -198,42 +228,41 @@ export function ContactForm() {
           />
         </div>
       </div>
-      <div>
-        <label htmlFor="phone" className="form-label">
-          Phone{" "}
-          <span style={{ color: "var(--text-tertiary)", fontWeight: 400 }}>
-            (optional)
-          </span>
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          autoComplete="tel"
-          className="form-input"
-          placeholder="(555) 123-4567"
-        />
+
+      <div className="form-grid">
+        <div>
+          <label htmlFor="business" className="form-label">
+            Business name
+          </label>
+          <input
+            id="business"
+            name="business"
+            type="text"
+            required
+            autoComplete="organization"
+            className="form-input"
+            placeholder="Your business"
+          />
+        </div>
+        <div>
+          <label htmlFor="phone" className="form-label">
+            Phone <span className="form-label__hint">(optional)</span>
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            className="form-input"
+            placeholder="(555) 123-4567"
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="business" className="form-label">
-          Business Name
-        </label>
-        <input
-          id="business"
-          name="business"
-          type="text"
-          required
-          autoComplete="organization"
-          className="form-input"
-          placeholder="Your business name"
-        />
-      </div>
+
       <div>
         <label htmlFor="website" className="form-label">
-          Current Website or Social Link{" "}
-          <span style={{ color: "var(--text-tertiary)", fontWeight: 400 }}>
-            (optional)
-          </span>
+          Current website or social link{" "}
+          <span className="form-label__hint">(optional)</span>
         </label>
         <input
           id="website"
@@ -241,61 +270,77 @@ export function ContactForm() {
           type="url"
           autoComplete="url"
           className="form-input"
-          placeholder="https://yourbusiness.com or social media link"
+          placeholder="https://yourbusiness.com - or a social link"
         />
       </div>
-      <div>
-        <label htmlFor="service" className="form-label">
-          What do you need help with?
-        </label>
-        <select
-          id="service"
-          name="service"
-          className="form-input"
-          defaultValue=""
-          required
-        >
-          <option value="" disabled>
-            Select an option
-          </option>
-          <option value="new-website">New Website</option>
-          <option value="redesign">Website Redesign</option>
-          <option value="lead-capture">Quote / Booking Setup</option>
-          <option value="ongoing-support">Ongoing Support</option>
-          <option value="not-sure">Not Sure Yet</option>
-        </select>
-      </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr",
-          gap: "1.25rem",
-        }}
-        className="form-grid"
-      >
+
+      <div className="form-grid">
         <div>
-          <label htmlFor="timeline" className="form-label">
-            Timeline{" "}
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 400 }}>
-              (optional)
-            </span>
+          <label htmlFor="service" className="form-label">
+            What do you need?
           </label>
           <select
-            id="timeline"
-            name="timeline"
+            id="service"
+            name="service"
             className="form-input"
-            defaultValue=""
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+            required
           >
             <option value="" disabled>
-              Select a timeline
+              Select a service
             </option>
-            <option value="asap">As soon as possible</option>
-            <option value="2-4-weeks">2–4 weeks</option>
-            <option value="1-2-months">1–2 months</option>
-            <option value="flexible">Flexible</option>
+            {SERVICE_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="budget" className="form-label">
+            Budget range
+          </label>
+          <select
+            id="budget"
+            name="budget"
+            className="form-input"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            required
+          >
+            <option value="" disabled>
+              Pick a starting point
+            </option>
+            {BUDGET_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>
+
+      <div>
+        <label htmlFor="timeline" className="form-label">
+          Timeline <span className="form-label__hint">(optional)</span>
+        </label>
+        <select
+          id="timeline"
+          name="timeline"
+          className="form-input"
+          defaultValue=""
+        >
+          <option value="" disabled>
+            When would you like to launch?
+          </option>
+          <option value="asap">As soon as possible</option>
+          <option value="2-4-weeks">2 – 4 weeks</option>
+          <option value="1-2-months">1 – 2 months</option>
+          <option value="flexible">Flexible</option>
+        </select>
+      </div>
+
       <div>
         <label htmlFor="message" className="form-label">
           Tell me about your project
@@ -308,28 +353,13 @@ export function ContactForm() {
           minLength={20}
           className="form-input"
           placeholder="What does your business do? What are you hoping to achieve with a new or improved website?"
-          style={{ resize: "vertical", minHeight: "120px" }}
+          style={{ resize: "vertical", minHeight: "140px" }}
         />
       </div>
+
       {formError && (
-        <p
-          role="alert"
-          style={{
-            color: formError.source === "server" ? "#c53030" : "#975a16",
-            fontSize: "0.9375rem",
-            fontWeight: 500,
-          }}
-        >
-          <span
-            style={{
-              display: "block",
-              fontSize: "0.75rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.04em",
-              marginBottom: "0.25rem",
-              color: "var(--text-tertiary)",
-            }}
-          >
+        <p role="alert" className="contact-error">
+          <span className="contact-error__label">
             {formError.source === "server" ? "Server Response" : "Form Check"}
           </span>
           {formError.message}
@@ -338,7 +368,7 @@ export function ContactForm() {
               {" "}
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                style={{ color: "inherit", textDecoration: "underline" }}
+                className="contact-error__link"
               >
                 {CONTACT_EMAIL}
               </a>
@@ -346,22 +376,30 @@ export function ContactForm() {
           )}
         </p>
       )}
-      <button
-        type="submit"
-        className="btn-primary"
-        style={{
-          alignSelf: "flex-start",
-          marginTop: "0.5rem",
-          opacity: submitting ? 0.6 : 1,
-        }}
-        disabled={submitting}
-        aria-busy={submitting}
-      >
-        {submitting ? "Sending…" : "Send Inquiry"}
-      </button>
-      <p style={{ fontSize: "0.8125rem", color: "var(--text-tertiary)" }}>
-        I&apos;ll respond within 1–2 business days. No pressure, no spam.
-      </p>
+
+      <div className="contact-form__footer">
+        <button
+          type="submit"
+          className="btn-primary contact-form__submit"
+          disabled={submitting}
+          aria-busy={submitting}
+        >
+          {submitting ? "Sending…" : "Send Inquiry"}
+        </button>
+        <p className="contact-form__fineprint">
+          I&apos;ll reply within <strong>1 business day</strong>. No pressure,
+          no spam.
+        </p>
+      </div>
     </form>
+  );
+}
+
+/* Wrapper required for Next.js 16: useSearchParams must be inside Suspense */
+export function ContactForm() {
+  return (
+    <Suspense fallback={<div className="contact-form__skeleton" aria-hidden />}>
+      <ContactFormInner />
+    </Suspense>
   );
 }

@@ -1,81 +1,86 @@
 import Link from "next/link";
 import { TrackedLink } from "@/components/TrackedLink";
-import { brand, navLinks } from "@/content/site";
+import { brand, navLinks, serviceCities } from "@/content/site";
 
 const serviceLinks = [
-  "Custom Websites",
-  "Website Redesigns",
-  "Lead Capture Setup",
-  "Ongoing Support",
+  { label: "Custom Websites", href: "/services#custom-websites" },
+  { label: "Website Redesigns", href: "/services#website-redesigns" },
+  {
+    label: "Conversion-Focused Pages",
+    href: "/services#conversion-focused-pages",
+  },
+  { label: "Care & Support", href: "/services#website-care-and-support" },
+];
+
+const resourceLinks = [
+  { label: "Pricing", href: "/pricing" },
+  { label: "FAQ", href: "/pricing#faq" },
+  { label: "Care plans", href: "/pricing#care" },
+  { label: "Book a free call", href: brand.bookingUrl, external: true },
 ];
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      style={{
-        background: "var(--text-primary)",
-        color: "rgba(255,255,255,0.7)",
-        padding: "4rem 1.5rem 2rem",
-      }}
-    >
-      <div className="container">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "3rem",
-            marginBottom: "3rem",
-          }}
-        >
+    <footer className="site-footer">
+      <div className="container site-footer__inner">
+        {/* Top - promise band */}
+        <div className="site-footer__promise">
+          <div className="site-footer__promise-mark">
+            <span className="site-footer__promise-dot" aria-hidden />
+            <span className="site-footer__promise-text">
+              {brand.responsePromise} · {brand.location}-based, working with
+              local service businesses across the Front Range
+            </span>
+          </div>
+          <TrackedLink
+            href="/contact"
+            label="footer_promise_cta"
+            className="site-footer__promise-cta"
+          >
+            Start a project
+            <span aria-hidden> →</span>
+          </TrackedLink>
+        </div>
+
+        {/* Columns */}
+        <div className="site-footer__grid">
           {/* Brand */}
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-instrument-serif), Georgia, serif",
-                fontSize: "1.25rem",
-                color: "#FFFFFF",
-                marginBottom: "0.75rem",
-              }}
-            >
-              {brand.shortName}
+          <div className="site-footer__col site-footer__col--brand">
+            <Link href="/" className="site-footer__brand">
+              <span className="site-footer__brand-mark" aria-hidden>
+                Z
+              </span>
+              <span className="site-footer__brand-name">
+                {brand.shortName}
+                <span className="site-footer__brand-tagline">
+                  {brand.tagline}
+                </span>
+              </span>
+            </Link>
+            <p className="site-footer__desc">
+              Founder-led web design for Colorado service businesses. Custom
+              builds, transparent pricing, and ongoing care after launch.
             </p>
-            <p
-              style={{
-                fontSize: "0.875rem",
-                lineHeight: 1.6,
-                maxWidth: "280px",
-                color: "rgba(255,255,255,0.5)",
-              }}
-            >
-              {brand.description.split(".").slice(0, 2).join(".")}.
-            </p>
+            <a href={`mailto:${brand.email}`} className="site-footer__email">
+              {brand.email}
+            </a>
           </div>
 
           {/* Pages */}
-          <div>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
-                marginBottom: "1rem",
-              }}
-            >
-              Pages
-            </p>
+          <div className="site-footer__col">
+            <p className="site-footer__heading">Site</p>
             <nav
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.625rem",
-              }}
+              className="site-footer__nav"
+              aria-label="Footer site navigation"
             >
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="footer-link">
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="site-footer__link"
+                >
                   {link.label}
                 </Link>
               ))}
@@ -83,103 +88,97 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
-                marginBottom: "1rem",
-              }}
-            >
-              Services
-            </p>
+          <div className="site-footer__col">
+            <p className="site-footer__heading">Services</p>
             <nav
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.625rem",
-              }}
+              className="site-footer__nav"
+              aria-label="Footer services navigation"
             >
               {serviceLinks.map((item) => (
-                <Link key={item} href="/services" className="footer-link">
-                  {item}
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="site-footer__link"
+                >
+                  {item.label}
                 </Link>
               ))}
             </nav>
           </div>
 
-          {/* Contact */}
-          <div>
-            <p
-              style={{
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
-                marginBottom: "1rem",
-              }}
+          {/* Resources */}
+          <div className="site-footer__col">
+            <p className="site-footer__heading">Resources</p>
+            <nav
+              className="site-footer__nav"
+              aria-label="Footer resources navigation"
             >
-              Get In Touch
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.625rem",
-                fontSize: "0.875rem",
-              }}
-            >
-              <a href={`mailto:${brand.email}`} className="footer-link">
-                {brand.email}
-              </a>
-              <a
-                href={brand.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="footer-link"
-              >
-                Book a Free Call
-              </a>
-              <p
-                style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}
-              >
-                Based in {brand.location}
-              </p>
-              <p
-                style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem" }}
-              >
-                Working locally &amp; remotely
-              </p>
-            </div>
+              {resourceLinks.map((item) =>
+                item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="site-footer__link"
+                  >
+                    {item.label}
+                    <span aria-hidden> ↗</span>
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="site-footer__link"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </nav>
           </div>
         </div>
 
+        {/* Service areas band - local SEO */}
+        <div className="site-footer__areas">
+          <p className="site-footer__heading">
+            <span aria-hidden className="site-footer__pin">
+              ⌖
+            </span>{" "}
+            Colorado service areas
+          </p>
+          <ul className="site-footer__cities">
+            {serviceCities.map((city) => (
+              <li key={city}>{city}</li>
+            ))}
+            <li className="site-footer__cities-more">
+              &amp; surrounding areas
+            </li>
+          </ul>
+        </div>
+
         {/* Bottom bar */}
-        <div
-          style={{
-            borderTop: "1px solid rgba(255,255,255,0.1)",
-            paddingTop: "1.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: "1rem",
-          }}
-        >
-          <p style={{ fontSize: "0.8125rem", color: "rgba(255,255,255,0.4)" }}>
+        <div className="site-footer__bottom">
+          <p className="site-footer__copy">
             &copy; {currentYear} {brand.name}. All rights reserved.
           </p>
-          <TrackedLink
-            href="/contact"
-            className="footer-link-muted"
-            label="footer_request_quote"
-          >
-            Request a Quote &rarr;
-          </TrackedLink>
+          <div className="site-footer__bottom-links">
+            <Link href="/sitemap.xml" className="site-footer__link-muted">
+              Sitemap
+            </Link>
+            <span className="site-footer__bottom-sep" aria-hidden>
+              ·
+            </span>
+            <Link href="/contact" className="site-footer__link-muted">
+              Contact
+            </Link>
+            <span className="site-footer__bottom-sep" aria-hidden>
+              ·
+            </span>
+            <span className="site-footer__built">
+              Built in {brand.location} with care
+            </span>
+          </div>
         </div>
       </div>
     </footer>
