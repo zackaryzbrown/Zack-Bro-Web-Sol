@@ -4,16 +4,16 @@ export const contactSteps: ContactStep[] = [
   {
     step: "1",
     title: "You send your inquiry",
-    text: "Share what your business needs help with.",
+    text: "Share a bit about your business and what you need. The more context, the better the quote.",
   },
   {
     step: "2",
-    title: "I review and respond",
-    text: "I respond within 1 to 2 business days.",
+    title: "I reply within 1 business day",
+    text: "If it sounds like a fit, I'll suggest a quick call or send a scoped quote straight to your inbox.",
   },
   {
     step: "3",
-    title: "You receive a proposal",
-    text: "If it is a fit, I send a clear scope, timeline, and quote.",
+    title: "We confirm scope and start",
+    text: "Once the scope and timeline are agreed, a 50% deposit kicks off the work - the rest is due at launch.",
   },
 ];
