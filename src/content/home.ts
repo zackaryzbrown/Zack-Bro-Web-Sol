@@ -28,36 +28,24 @@ export const services: ServiceItem[] = [
   },
 ];
 
-/* ── Pricing preview (homepage) ── */
+/* ── Pricing preview (homepage) - mirrors /pricing 3-tier structure ── */
 export const pricingPreview = [
   {
-    name: "WordPress Site",
+    name: "Starter Site",
     startingAt: "$349",
-    note: "Quick launch for a clear online presence.",
+    note: "One-page custom build for a clear online presence.",
     featured: false,
   },
   {
-    name: "Landing Page",
-    startingAt: "$399",
-    note: "Focused page for one offer or campaign.",
-    featured: false,
-  },
-  {
-    name: "Starter Website",
-    startingAt: "$999",
-    note: "Best fit for most local service businesses.",
+    name: "Business Site",
+    startingAt: "$799",
+    note: "Custom 3 – 5 page site. Most popular for local businesses.",
     featured: true,
   },
   {
-    name: "Growth Website",
-    startingAt: "$1,499",
-    note: "More pages and stronger sales messaging.",
-    featured: false,
-  },
-  {
-    name: "Advanced + Custom Features",
-    startingAt: "$1,800",
-    note: "Custom functionality for complex needs.",
+    name: "Growth Site",
+    startingAt: "$1,299",
+    note: "Expanded build with advanced conversion flows.",
     featured: false,
   },
 ] as const;
@@ -122,7 +110,7 @@ export const homeFaqItems: FAQItem[] = [
   {
     question: "How much does a website cost?",
     answer:
-      "Projects start at $349 for a WordPress site and go up from there depending on scope. Most small business websites fall in the $999 to $1,800+ range. I provide a clear quote after learning about your needs.",
+      "Custom websites start at $349 for a one-page Starter Site. Most local service businesses land in the $799 Business Site range, with the Growth Site at $1,299 for businesses that need expanded structure and advanced conversion flows. Every project is scoped and quoted before any work begins.",
   },
   {
     question: "How long does a project take?",
@@ -142,7 +130,7 @@ export const homeFaqItems: FAQItem[] = [
   {
     question: "Do you offer ongoing support after launch?",
     answer:
-      "Yes. Managed Hosting starts at $20/month and Website Care starts at $59/month.",
+      "Yes. Managed Hosting starts at $20/month and Website Care starts at $49/month.",
   },
   {
     question: "What makes a professional website better than a DIY site?",
