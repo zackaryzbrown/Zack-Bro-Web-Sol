@@ -4,64 +4,114 @@ export const servicesDetailed: ServiceItem[] = [
   {
     title: "Custom Websites",
     description:
-      "A website built around your business goals, audience, and services, not a recycled template.",
+      "A site built from scratch around your services, your customers, and the way people actually find and hire you. No template wrestling, no bloated page builders - just a clean, fast site that looks the way your business deserves.",
     icon: "◆",
+    outcome:
+      "A credible online home that turns first-time visitors into booked work.",
     includes: [
-      "Custom design and layout",
-      "Mobile-responsive build",
-      "Clear service and contact pages",
-      "Basic SEO structure",
-      "Analytics setup",
-      "Launch support",
+      "Custom design tailored to your brand",
+      "Mobile-first responsive build",
+      "Clear services and contact pages",
+      "Local SEO foundation (titles, schema, sitemap)",
+      "Contact form with email delivery",
+      "Analytics setup and launch support",
     ],
-    bestFor: "New businesses or businesses without a strong professional site.",
+    bestFor:
+      "New or established service businesses that want a professional site without WordPress overhead.",
+    notFor:
+      "If you need a large e-commerce catalog or a complex booking platform, I'll point you to a better fit.",
+    timeline: "2 – 4 weeks",
+    startingPrice: "from $349",
+    process: [
+      { label: "Discovery", detail: "Goals, audience, and content audit." },
+      { label: "Design + build", detail: "Custom layout, reviewed in stages." },
+      { label: "Launch", detail: "Go-live, analytics, and 30-day support." },
+    ],
   },
   {
     title: "Website Redesigns",
     description:
-      "If your current site feels outdated or underperforming, I rebuild it with clearer structure, stronger messaging, and better usability.",
+      "If your current site is dated, hard to update, or quietly losing leads, I rebuild it with clearer messaging, a stronger visual identity, and a structure that guides visitors toward contacting you.",
     icon: "◇",
+    outcome:
+      "A site that finally matches the quality of the work you do offline.",
     includes: [
       "Full visual and structural redesign",
+      "Rewritten or refined messaging",
       "Improved mobile experience",
-      "Clearer messaging and content hierarchy",
-      "Performance improvements",
-      "Updated call-to-action structure",
-      "Content and image organization",
+      "Performance and speed improvements",
+      "Updated call-to-action placement",
+      "Migration of existing content and images",
     ],
     bestFor:
-      "Businesses with an existing site that is outdated or not generating leads.",
+      "Established businesses with a site that no longer reflects their work or generates inquiries.",
+    notFor:
+      "If you're happy with your current site but need ongoing updates, the care plan is a better fit.",
+    timeline: "2 – 5 weeks",
+    startingPrice: "from $799",
+    process: [
+      { label: "Audit", detail: "What's working, what's costing you leads." },
+      { label: "Rebuild", detail: "New design, copy refinements, dev work." },
+      { label: "Relaunch", detail: "Migration, redirects, and monitoring." },
+    ],
   },
   {
-    title: "Quote & Booking Setup",
+    title: "Conversion-Focused Pages",
     description:
-      "Set up quote forms and booking flows so customers can quickly request service.",
+      "High-intent landing pages, quote request flows, and booking integrations built to do one job well: turn the people already visiting your site into inquiries you can actually follow up on.",
     icon: "▣",
+    outcome:
+      "Fewer drop-offs, more qualified leads landing in your inbox.",
     includes: [
       "Quote request and contact forms",
       "Booking or scheduling integration",
-      "Call-to-action placement",
-      "Form notification setup",
-      "Conversion-focused page structure",
-      "Mobile-optimized forms",
+      "Service-specific landing pages",
+      "Form notifications and lead routing",
+      "Mobile-optimized conversion paths",
+      "Goal tracking in analytics",
     ],
     bestFor:
-      "Businesses that need more inquiries and a cleaner path from visit to lead.",
+      "Businesses already getting traffic but not enough inquiries from it.",
+    notFor:
+      "If you don't have a site yet, start with a Custom Website - the page work folds in.",
+    timeline: "1 – 2 weeks",
+    startingPrice: "from $349",
+    process: [
+      { label: "Map", detail: "Trace the path from visit to inquiry." },
+      { label: "Build", detail: "Design + wire up forms and integrations." },
+      { label: "Measure", detail: "Track conversions and refine." },
+    ],
   },
   {
     title: "Website Care & Support",
     description:
-      "After launch, keep your website maintained, monitored, and current with lightweight monthly support.",
+      "After launch, keep your site healthy, current, and quietly working in the background. Small content updates, uptime monitoring, and a single point of contact when something needs attention.",
     icon: "○",
+    outcome:
+      "A site that stays sharp without you ever having to think about it.",
     includes: [
-      "Regular monitoring and uptime checks",
+      "Monthly uptime and security checks",
       "Small content and image updates",
-      "Security and performance checks",
       "Contact form monitoring",
-      "Small design and text edits",
+      "Performance reviews each quarter",
+      "Small design and copy edits",
       "Dedicated support contact",
     ],
     bestFor:
-      "Businesses that want ongoing support without handling website maintenance internally.",
+      "Owners who want their site maintained without learning a CMS or managing a developer.",
+    notFor:
+      "If you need weekly marketing pages or campaign builds, we'll scope that separately.",
+    timeline: "Ongoing, month-to-month",
+    startingPrice: "from $49 / mo",
+    process: [
+      { label: "Onboard", detail: "Access, baseline checks, comm channel." },
+      { label: "Maintain", detail: "Monthly updates and monitoring." },
+      { label: "Report", detail: "Quarterly health and performance review." },
+    ],
   },
 ];
+
+export const wordpressNote = {
+  heading: "Need WordPress specifically?",
+  body: "I can build on WordPress when it's genuinely the right fit - usually for clients who already have a team trained on it, or who need a specific plugin ecosystem. For most local service businesses, a custom build is faster, cheaper to maintain, and easier to evolve. Happy to talk through which makes sense for you.",
+};
