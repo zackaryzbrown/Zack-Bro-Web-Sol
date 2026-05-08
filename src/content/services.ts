@@ -60,8 +60,7 @@ export const servicesDetailed: ServiceItem[] = [
     description:
       "High-intent landing pages, quote request flows, and booking integrations built to do one job well: turn the people already visiting your site into inquiries you can actually follow up on.",
     icon: "▣",
-    outcome:
-      "Fewer drop-offs, more qualified leads landing in your inbox.",
+    outcome: "Fewer drop-offs, more qualified leads landing in your inbox.",
     includes: [
       "Quote request and contact forms",
       "Booking or scheduling integration",
