@@ -10,9 +10,22 @@ export const brand = {
   location: "Colorado",
   url: "https://zbweb.solutions",
   bookingUrl: "https://calendly.com/zackary-zbweb/30min",
+  responsePromise: "Reply within 1 business day",
   description:
-    "Founder-led web business building modern, conversion-focused websites for local service businesses. Custom sites, redesigns, and ongoing support. Based in Colorado.",
+    "Founder-led web business building modern, conversion-focused websites for local service businesses across Colorado. Custom sites, redesigns, and ongoing support.",
 } as const;
+
+/* ── Cities served (used for SEO + schema) ── */
+export const serviceCities: string[] = [
+  "Denver",
+  "Boulder",
+  "Colorado Springs",
+  "Fort Collins",
+  "Aurora",
+  "Lakewood",
+  "Loveland",
+  "Longmont",
+];
 
 /* ── Navigation ── */
 export const navLinks: NavItem[] = [
@@ -26,10 +39,10 @@ export const navLinks: NavItem[] = [
 
 /* ── Trust strip ── */
 export const trustStripItems: TrustStripItem[] = [
-  { text: "Direct communication, no middlemen" },
-  { text: "Clear pricing from $349+" },
-  { text: "Based in Colorado" },
-  { text: "Ongoing website care after launch" },
+  { text: "Reply within 1 business day" },
+  { text: "Colorado-based, work remotely" },
+  { text: "Transparent pricing from $349+" },
+  { text: "Ongoing care after launch" },
 ];
 
 /* ── Industries ── */
