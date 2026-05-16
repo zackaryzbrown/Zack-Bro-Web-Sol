@@ -9,8 +9,13 @@ export interface ServiceItem {
   title: string;
   description: string;
   icon: string;
+  outcome?: string;
   includes?: string[];
   bestFor?: string;
+  notFor?: string;
+  timeline?: string;
+  startingPrice?: string;
+  process?: { label: string; detail: string }[];
 }
 
 export interface PricingTier {
@@ -42,6 +47,12 @@ export interface PricingLane {
   points: string[];
 }
 
+export interface PricingAnchorRow {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}
+
 export interface ProcessStep {
   step: string;
   title: string;
@@ -51,9 +62,12 @@ export interface ProcessStep {
 export interface Project {
   name: string;
   type: string;
+  industry?: string;
   cardSummary?: string;
+  outcomeMetric?: string;
   image: string;
   url: string;
+  isSpec?: boolean;
   challenge: string;
   solution: string;
   result: string;
@@ -92,4 +106,13 @@ export interface CtaBlock {
   description: string;
   href?: string;
   linkLabel?: string;
+}
+
+export interface Testimonial {
+  id: string;
+  quote: string;
+  name: string;
+  business: string;
+  role?: string;
+  location?: string;
 }
