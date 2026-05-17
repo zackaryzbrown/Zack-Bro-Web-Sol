@@ -53,13 +53,16 @@ export function createMetadata({
       images: ogImage ? [ogImage] : undefined,
     },
     keywords: [
-      "small business website",
+      "Colorado web designer",
+      "Denver web design",
+      "Boulder web designer",
+      "Colorado Springs website design",
+      "small business website Colorado",
       "local service business website",
-      "website design",
-      "web designer Colorado",
-      "small business web design",
-      "website redesign",
       "lead generation website",
+      "website redesign Colorado",
+      "WordPress designer Colorado",
+      "freelance web developer Colorado",
     ],
   };
 }
