@@ -1,26 +1,45 @@
 # Zackary Brown Web Solutions
 
-Marketing site for Zackary Brown Web Solutions, built with Next.js App Router.
+Marketing site for Zackary Brown Web Solutions, a Colorado-based web shop focused on local service businesses. Built with the Next.js App Router and content-as-code.
 
 ## Stack
 
-- Next.js 16
+- Next.js 16 (App Router, Turbopack)
 - React 19
-- TypeScript
-- Tailwind CSS 4 for global styling primitives
-- `next/font` for `DM Sans` and `Instrument Serif`
+- TypeScript (strict)
+- Tailwind CSS 4 (no config file, uses `@import "tailwindcss"`)
+- `next/font` for `DM Sans` (body) and `Instrument Serif` / Lora (headings)
+- Web3Forms for contact submissions, Upstash Redis for rate limiting
+- Optional Google Analytics 4
+
+> Heads up: this is Next.js 16. APIs like dynamic route `params` are `Promise`-based and must be `await`ed. See [AGENTS.md](AGENTS.md) for agent rules.
 
 ## Project Structure
 
 ```text
-src/app/            Routes and page-level metadata
-src/components/     Shared UI building blocks
-public/             Static images and project screenshots
+src/app/                Routes, page-level metadata, sitemap, robots
+  work/[slug]/          Dynamic case-study pages (SSG)
+  api/contact/          Server route that forwards to Web3Forms
+src/components/         Shared UI building blocks (server-first)
+src/content/            Typed content modules (copy, projects, FAQ, pricing)
+src/lib/                Metadata helper, rate limiter, social image, contact utils
+public/projects/        Project screenshots
 ```
 
-## Local Development
+Content lives in `src/content/*.ts` as typed objects (types in `src/content/types.ts`). Edit copy there rather than in JSX.
 
-Install dependencies and start the dev server:
+## Pages
+
+- `/` home (hero, trust strip, built-with strip, services, pricing preview, work, testimonials, FAQ, CTA)
+- `/services` four focused service offers
+- `/work` filterable grid; opens an in-page modal
+- `/work/[slug]` full case-study page per project (SSG, one per entry in `src/content/work.ts`)
+- `/pricing` three custom-build tiers plus two care plans
+- `/about`, `/contact` about and contact form
+
+Slugs are derived from project name via `projectSlug()` in `src/content/work.ts`. The sitemap (`src/app/sitemap.ts`) automatically includes every project URL.
+
+## Local Development
 
 ```bash
 npm install
@@ -29,39 +48,34 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-## Contact Form Configuration
+## Environment Variables
 
-The contact form submits to the local `/api/contact` route, which then forwards the payload to Web3Forms from the server.
+Copy `.env.example` to `.env.local` and fill in what you need.
 
-1. Copy `.env.example` to `.env.local`
-2. Add your Web3Forms key:
+### Contact form (required for submissions)
 
 ```bash
 WEB3FORMS_ACCESS_KEY=your_key_here
 ```
 
-3. Add Upstash Redis credentials for shared cross-instance rate limiting:
+The form posts to `/api/contact`; the server route forwards to Web3Forms. Without this key, the form shows a configuration error instead of sending.
+
+### Rate limiting (recommended for production)
 
 ```bash
 UPSTASH_REDIS_REST_URL=your_upstash_url
 UPSTASH_REDIS_REST_TOKEN=your_upstash_token
 ```
 
-If Upstash env vars are omitted, the API falls back to an in-memory limiter (acceptable for local development, not ideal for multi-instance production).
+If omitted, the API falls back to an in-memory limiter (fine for local dev, not safe across multiple instances).
 
-Without that env var, the form will stay visible but show a configuration error instead of sending.
-
-If deploying to AWS Amplify with SSR/API routes, make sure your build writes server env vars into `.env.production` before `next build` (see `amplify.yml` in this repo). Otherwise route handlers may not receive values like `WEB3FORMS_ACCESS_KEY` at runtime.
-
-## Analytics Configuration
-
-Google Analytics 4 is optional. If you want the built-in CTA and form events to send to GA, add your measurement ID:
+### Analytics (optional)
 
 ```bash
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-Without that env var, analytics stays disabled.
+CTA clicks and form events are wired through `TrackedLink` and `lib/analytics.ts` and stay no-op when this is unset.
 
 ## Quality Checks
 
@@ -71,11 +85,25 @@ npm run typecheck
 npm run build
 ```
 
+The production build prerenders all static pages plus one HTML file per `/work/[slug]`.
+
+## Deployment (AWS Amplify)
+
+`amplify.yml` is configured for SSR/API routes. Make sure your Amplify build writes server env vars into `.env.production` before `next build` so the `/api/contact` route handler can read `WEB3FORMS_ACCESS_KEY` and the Upstash credentials at runtime.
+
 ## CI
 
 GitHub Actions runs `lint`, `typecheck`, and `build` on pushes and pull requests to `main`.
 
+## Conventions
+
+- Server Components by default. `"use client"` is reserved for interactive UI (forms, modal, header menu, fade-in observer).
+- Colors and spacing use CSS custom properties defined in `src/app/globals.css` (`--accent`, `--bg`, `--bg-alt`, `--text-primary`, etc.). Prefer those over raw hex values.
+- Copy style: no em dashes (use hyphens or commas). Sentence case for UI labels.
+- New SEO-visible routes should be added to `src/app/sitemap.ts`.
+- Metadata is built through `createMetadata()` in `src/lib/metadata.ts` for consistent canonical URLs and OG tags.
+
 ## Notes
 
-- This repo intentionally keeps most pages as Server Components and limits `"use client"` to interactive UI.
-- The workspace includes AI-agent helper files like `AGENTS.md` and `CLAUDE.md`; they are repo tooling, not app runtime code.
+- `AGENTS.md` and `CLAUDE.md` are AI-agent helper files (repo tooling, not runtime code). `.agents/skills/` holds skill definitions for the same.
+- Testimonials in `src/content/testimonials.ts` render conditionally; the section is hidden when the array is empty.
