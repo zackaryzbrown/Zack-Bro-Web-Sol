@@ -2,30 +2,14 @@ import type { Project } from "./types";
 
 const projectCatalog: Project[] = [
   {
-    name: "Trailhead Cycles",
-    type: "Bike Shop",
-    image: "/projects/trailhead-cycles.png",
-    url: "zackaryzbrown-yeswj.wordpress.com",
-    challenge:
-      "A neighborhood bike shop needed a website that reflected their premium, community-focused brand while making it easy for customers to explore bikes, book service appointments, and reserve rentals.",
-    solution:
-      "Built a clean WordPress site with dedicated pages for bikes, service and repairs, rentals, and contact. Hero imagery and clear navigation guide visitors to the right service, while a contact form simplifies appointment scheduling.",
-    result:
-      "A polished, inviting online presence that positions Trailhead Cycles as the go-to local bike shop, with clear paths from browsing to booking a service or rental.",
-    capabilities: ["WordPress", "Service pages", "Rental info", "Contact form"],
-    tech: ["WordPress", "PHP", "CSS"],
-    improvements: [
-      "Service pages breaking down tune-ups, repairs, and custom builds",
-      "Rental section with clear gear options for visitors",
-      "Customer reviews building trust with real testimonials",
-      "Mobile-friendly layout for riders on the go",
-    ],
-  },
-  {
     name: "MHK Training",
     type: "Martial Arts / Fitness",
+    industry: "Fitness",
     image: "/projects/mhk-training.png",
     url: "www.mhktraining.com",
+    isSpec: false,
+    outcomeMetric:
+      "Live client site - clearer service hierarchy and frictionless booking flow.",
     challenge:
       "MHK Training had strong programs but their online presence didn't reflect it. Potential clients couldn't easily understand what was offered or take the next step toward booking.",
     solution:
@@ -55,14 +39,114 @@ const projectCatalog: Project[] = [
     ],
   },
   {
+    name: "JustMalikBeats",
+    type: "Music Production SaaS",
+    industry: "SaaS",
+    image: "/projects/justmalikbeats.png",
+    url: "malikbeats.com",
+    isSpec: false,
+    outcomeMetric:
+      "Live client platform - full SaaS-style site with catalog, licensing tiers, and Stripe checkout.",
+    challenge:
+      "A music producer SaaS needs a professional platform to showcase a catalog, handle licensing tiers, and present a cohesive brand to potential clients in the music industry.",
+    solution:
+      "Built a custom platform with audio playback, licensing breakdowns, and a polished brand presentation. The site balances creative expression with clear business functionality.",
+    result:
+      "A professional music platform that showcases the catalog effectively and provides a clear path to licensing - a credible, established producer presence online.",
+    capabilities: [
+      "Custom build",
+      "Audio integration",
+      "Licensing pages",
+      "Brand design",
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "Express",
+      "MongoDB",
+      "Stripe",
+      "JWT",
+      "AWS Amplify",
+      "CSS Modules",
+    ],
+    improvements: [
+      "Audio showcase letting clients preview before purchasing",
+      "Clear licensing structure reducing back-and-forth inquiries",
+      "Professional brand presentation across all touchpoints",
+      "Streamlined catalog navigation for browsing beats",
+    ],
+  },
+  {
+    name: "The Futons",
+    type: "Music / Band",
+    industry: "Creative",
+    image: "/projects/the-futons.png",
+    url: "thefutons.band",
+    isSpec: false,
+    outcomeMetric:
+      "Live band site - booking-ready contact flow for event organizers.",
+    challenge:
+      "The Futons needed a web presence that captured their identity as a band while making it easy for fans and event organizers to find information and book them for shows.",
+    solution:
+      "Created a site that balances personality with practicality, featuring music samples, show information, and clear contact options for booking inquiries.",
+    result:
+      "An authentic online presence that represents the band professionally and makes booking inquiries frictionless for event organizers.",
+    capabilities: [
+      "Custom design",
+      "Media integration",
+      "Contact setup",
+      "Responsive layout",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Cloudinary", "Web3Forms"],
+    improvements: [
+      "Booking-friendly contact flow for event organizers",
+      "Media integration showcasing music and performances",
+      "Brand-authentic design reflecting the band's identity",
+      "Mobile-ready layout for fans discovering them at events",
+    ],
+  },
+  {
+    name: "North Peak Dental",
+    type: "Dental Practice",
+    industry: "Healthcare",
+    image: "/projects/NorthPeakDental.png",
+    url: "northpeakdental.netlify.app",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept demonstrating a new-patient onboarding flow and appointment booking.",
+    challenge:
+      "A modern dental practice needs a website that reflects a calm, patient-first approach - making it easy for new patients to understand services, build trust, and book a first appointment without friction.",
+    solution:
+      "Designed a clean, welcoming site with clear service breakdowns, an easy onboarding flow for new patients, and prominent appointment CTAs. The design balances professionalism with warmth.",
+    result:
+      "A polished, trust-building web presence designed to position a dental practice as modern and approachable, with a streamlined path from first visit to booked appointment.",
+    capabilities: [
+      "Custom design",
+      "Service pages",
+      "Patient onboarding",
+      "Appointment booking",
+    ],
+    tech: ["HTML5", "CSS3", "JavaScript", "Google Fonts"],
+    improvements: [
+      "New patient flow reducing friction to first appointment",
+      "Service breakdowns building confidence before visiting",
+      "Calm, modern design reflecting a patient-first atmosphere",
+      "Clear CTAs guiding visitors to book or call",
+    ],
+  },
+  {
     name: "Mobile Auto Detailing",
     type: "Automotive Detailing",
+    industry: "Home Services",
     image: "/projects/Auto-detailing.png",
     url: "zekie-demo.zackarybrown.net",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept - conversion-focused service tiers and quote-request flow.",
     challenge:
-      "The business needed a website that could serve as their primary lead generation tool. It had to showcase services, build trust, and make it simple for vehicle owners to request a quote.",
+      "A mobile detailing business needs a website that serves as their primary lead generation tool - showcasing services, building trust, and making it simple for vehicle owners to request a quote.",
     solution:
-      "Designed a conversion-focused site with clear service tiers, upfront pricing transparency, and prominent quote request forms. Optimized for mobile since the majority of detailing customers search from their phones.",
+      "Designed a conversion-focused site with clear service tiers, upfront pricing transparency, and prominent quote request forms. Optimized for mobile since most detailing customers search from their phones.",
     result:
       "A polished, professional site that builds instant trust and gives customers a clear, frictionless path from browsing services to requesting a quote.",
     capabilities: [
@@ -91,14 +175,18 @@ const projectCatalog: Project[] = [
   {
     name: "Mobile Detailing",
     type: "Automotive Detailing",
+    industry: "Home Services",
     image: "/projects/MobileDetailing.png",
     url: "mobile-details-demo.zackarybrown.net",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept - before/after gallery and text-to-quote SMS flow.",
     challenge:
-      "A Denver-based mobile detailing business needed a site that could generate leads, showcase real results, and make it dead simple for customers to request a quote via text or call.",
+      "A Denver-based mobile detailing business needs a site that can generate leads, showcase real results, and make it simple for customers to request a quote via text or call.",
     solution:
-      "Built a conversion-driven single-page site with before/after galleries, service breakdowns, a step-by-step booking flow, and prominent text-to-quote CTAs. Everything was optimized for the phone-first behavior of detailing customers.",
+      "Built a conversion-driven single-page site with before/after galleries, service breakdowns, a step-by-step booking flow, and prominent text-to-quote CTAs. Everything was optimized for phone-first customer behavior.",
     result:
-      "A high-trust, mobile-optimized site that turns visitors into quote requests through social proof, visual results, and a frictionless text-based booking experience.",
+      "A high-trust, mobile-optimized site designed to turn visitors into quote requests through social proof, visual results, and a frictionless text-based booking experience.",
     capabilities: [
       "Custom design",
       "Before/after gallery",
@@ -125,14 +213,18 @@ const projectCatalog: Project[] = [
   {
     name: "GreenScape Pro",
     type: "Lawn Care & Landscaping",
+    industry: "Home Services",
     image: "/projects/greenscape.png",
     url: "demo-greenscape.netlify.app",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept - service area mapping and tiered quote flow for residential + commercial.",
     challenge:
-      "A Boulder County lawn care and landscaping company needed a professional site that communicated reliability, showcased their range of services, and made it easy for homeowners and businesses to request a quote.",
+      "A Boulder County landscaping company needs a professional site that communicates reliability, showcases their range of services, and makes it easy for homeowners and businesses to request a quote.",
     solution:
-      "Designed a structured, trust-forward site with clear service categories, a project gallery, service area mapping, and a streamlined quote request flow. All built to convert property owners browsing for dependable outdoor maintenance.",
+      "Designed a structured, trust-forward site with clear service categories, a project gallery, service area mapping, and a streamlined quote request flow.",
     result:
-      "A polished web presence that positions GreenScape Pro as the reliable, professional choice in a crowded local market, with clear paths from discovery to quote request.",
+      "A polished web presence designed to position a landscaping business as the reliable, professional choice in a crowded local market.",
     capabilities: [
       "Custom design",
       "Service pages",
@@ -148,16 +240,44 @@ const projectCatalog: Project[] = [
     ],
   },
   {
+    name: "Trailhead Cycles",
+    type: "Bike Shop",
+    industry: "Retail",
+    image: "/projects/trailhead-cycles.png",
+    url: "zackaryzbrown-yeswj.wordpress.com",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept - WordPress build showing service, rental, and booking pages for a local shop.",
+    challenge:
+      "A neighborhood bike shop needs a website that reflects a premium, community-focused brand while making it easy for customers to explore bikes, book service appointments, and reserve rentals.",
+    solution:
+      "Built a clean WordPress site with dedicated pages for bikes, service and repairs, rentals, and contact. Hero imagery and clear navigation guide visitors to the right service.",
+    result:
+      "A polished, inviting online presence that positions a local bike shop as the community go-to, with clear paths from browsing to booking a service or rental.",
+    capabilities: ["WordPress", "Service pages", "Rental info", "Contact form"],
+    tech: ["WordPress", "PHP", "CSS"],
+    improvements: [
+      "Service pages breaking down tune-ups, repairs, and custom builds",
+      "Rental section with clear gear options for visitors",
+      "Customer reviews building trust with real testimonials",
+      "Mobile-friendly layout for riders on the go",
+    ],
+  },
+  {
     name: "Floor Hosting",
     type: "Hosting / SaaS Concept",
+    industry: "SaaS",
     image: "/projects/FloorHosting.png",
     url: "stupendous-otter-759661.netlify.app",
+    isSpec: true,
+    outcomeMetric:
+      "Portfolio concept - plan comparison and feature presentation for a hosting startup.",
     challenge:
-      "A web hosting startup needed a credible, modern site that could compete with established providers. It had to communicate speed, reliability, and real human support without feeling generic or templated.",
+      "A web hosting startup needs a credible, modern site that can compete with established providers - communicating speed, reliability, and real human support without feeling generic.",
     solution:
-      "Built a clean, developer-friendly site with clear plan breakdowns, feature highlights, and social proof from real customers. The design balances technical credibility with approachable messaging that appeals to both developers and small business owners.",
+      "Built a clean, developer-friendly site with clear plan breakdowns, feature highlights, and social proof. The design balances technical credibility with approachable messaging.",
     result:
-      "A professional hosting site that builds confidence through clear pricing, strong feature presentation, and authentic testimonials. It positions Floor Hosting as a serious alternative to commodity providers.",
+      "A professional hosting site that builds confidence through clear pricing, strong feature presentation, and authentic testimonials.",
     capabilities: [
       "Custom design",
       "Pricing pages",
@@ -172,109 +292,44 @@ const projectCatalog: Project[] = [
       "Clean, modern design competing with established brands",
     ],
   },
-  {
-    name: "North Peak Dental",
-    type: "Dental Practice",
-    image: "/projects/NorthPeakDental.png",
-    url: "northpeakdental.netlify.app",
-    challenge:
-      "A dental practice needed a modern website that reflected their calm, patient-first approach. It had to make it easy for new patients to understand services, build trust, and book their first appointment without friction.",
-    solution:
-      "Designed a clean, welcoming site with clear service breakdowns, an easy onboarding flow for new patients, and prominent appointment CTAs. The design balances professionalism with warmth to match the practice's no-pressure philosophy.",
-    result:
-      "A polished, trust-building web presence that positions North Peak Dental as a modern, approachable practice, with a streamlined path from first visit to booked appointment.",
-    capabilities: [
-      "Custom design",
-      "Service pages",
-      "Patient onboarding",
-      "Appointment booking",
-    ],
-    tech: ["HTML5", "CSS3", "JavaScript", "Google Fonts"],
-    improvements: [
-      "New patient flow reducing friction to first appointment",
-      "Service breakdowns building confidence before visiting",
-      "Calm, modern design reflecting the practice's atmosphere",
-      "Clear CTAs guiding visitors to book or call",
-    ],
-  },
-  {
-    name: "JustMalikBeats",
-    type: "Music Production",
-    image: "/projects/justmalikbeats.png",
-    url: "malikbeats.com",
-    challenge:
-      "JustMalikBeats needed a professional platform to showcase their catalog, handle licensing, and present a cohesive brand to potential clients in the music industry.",
-    solution:
-      "Built a custom platform with audio playback, licensing breakdowns, and a polished brand presentation. The site balances creative expression with clear business functionality.",
-    result:
-      "A professional music platform that showcases the catalog effectively and provides a clear path to licensing, positioning JustMalikBeats as a credible, established producer.",
-    capabilities: [
-      "Custom build",
-      "Audio integration",
-      "Licensing pages",
-      "Brand design",
-    ],
-    tech: [
-      "React",
-      "Vite",
-      "Express",
-      "MongoDB",
-      "Stripe",
-      "JWT",
-      "AWS Amplify",
-      "CSS Modules",
-    ],
-    improvements: [
-      "Audio showcase letting clients preview before purchasing",
-      "Clear licensing structure reducing back-and-forth inquiries",
-      "Professional brand presentation across all touchpoints",
-      "Streamlined catalog navigation for browsing beats",
-    ],
-  },
-  {
-    name: "The Futons",
-    type: "Music / Band",
-    image: "/projects/the-futons.png",
-    url: "thefutons.band",
-    challenge:
-      "The Futons needed a web presence that captured their identity as a band while making it easy for fans and event organizers to find information and book them for shows.",
-    solution:
-      "Created a site that balances personality with practicality, featuring music samples, show information, and clear contact options for booking inquiries.",
-    result:
-      "An authentic online presence that represents the band professionally and makes booking inquiries frictionless for event organizers.",
-    capabilities: [
-      "Custom design",
-      "Media integration",
-      "Contact setup",
-      "Responsive layout",
-    ],
-    tech: ["HTML5", "CSS3", "JavaScript", "Cloudinary", "Web3Forms"],
-    improvements: [
-      "Booking-friendly contact flow for event organizers",
-      "Media integration showcasing music and performances",
-      "Brand-authentic design reflecting the band's identity",
-      "Mobile-ready layout for fans discovering them at events",
-    ],
-  },
 ];
 
-const projectTypePriority: Record<string, number> = {
-  "Dental Practice": 1,
-  "Automotive Detailing": 2,
-  "Lawn Care & Landscaping": 3,
-  "Martial Arts / Fitness": 4,
-  "Bike Shop": 5,
-  "Design Studio": 6,
-  Contractors: 7,
+/* Sort: real client work first, then spec by industry */
+const industryPriority: Record<string, number> = {
+  "Home Services": 1,
+  Healthcare: 2,
+  Fitness: 3,
+  Retail: 4,
+  Creative: 5,
+  SaaS: 6,
 };
 
 export const projects: Project[] = [...projectCatalog].sort((a, b) => {
-  const aPriority = projectTypePriority[a.type] ?? 99;
-  const bPriority = projectTypePriority[b.type] ?? 99;
+  // Real clients first
+  if (!!a.isSpec !== !!b.isSpec) return a.isSpec ? 1 : -1;
 
-  if (aPriority !== bPriority) return aPriority - bPriority;
+  const aIndustry = industryPriority[a.industry ?? ""] ?? 99;
+  const bIndustry = industryPriority[b.industry ?? ""] ?? 99;
+  if (aIndustry !== bIndustry) return aIndustry - bIndustry;
+
   return a.name.localeCompare(b.name);
 });
 
-/* Homepage featured subset */
 export const featuredProjects = projects.slice(0, 3);
+
+export const industries: string[] = Array.from(
+  new Set(projects.map((p) => p.industry).filter(Boolean) as string[]),
+).sort((a, b) => (industryPriority[a] ?? 99) - (industryPriority[b] ?? 99));
+
+/** Slugify a project name for /work/[slug] routing. */
+export function projectSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => projectSlug(p.name) === slug);
+}
