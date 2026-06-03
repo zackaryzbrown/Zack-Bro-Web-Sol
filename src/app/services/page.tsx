@@ -161,7 +161,7 @@ export default function ServicesPage() {
                       {service.includes && (
                         <>
                           <h3 className="service-deliverables__heading">
-                            What's included
+                            What&apos;s included
                           </h3>
                           <ul className="service-deliverables__list">
                             {service.includes.map((item) => (
