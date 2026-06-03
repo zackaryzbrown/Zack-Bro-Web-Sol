@@ -29,27 +29,48 @@ export default function AboutPage() {
       <SectionShell variant="alt">
         <div className="about-founder-grid">
           <FadeIn>
-            <div
-              style={{
-                background: "var(--bg-card)",
-                padding: "0.75rem",
-                borderRadius: "var(--radius-lg)",
-                overflow: "hidden",
-                border: "1px solid var(--border)",
-                boxShadow: "var(--shadow-sm)",
-                maxWidth: "300px",
-                margin: "0 auto",
-              }}
-            >
-              <Image
-                src="/zackary-brown.jpg"
-                alt={`${brand.founder}, Founder and Developer`}
-                width={600}
-                height={750}
-                style={{ width: "100%", height: "auto", display: "block" }}
-                priority
-              />
-            </div>
+            <figure className="about-founder-portrait">
+              <div className="about-founder-portrait__media">
+                <span
+                  className="about-founder-portrait__outline"
+                  aria-hidden="true"
+                />
+                <div className="about-founder-portrait__frame">
+                  <div className="about-founder-portrait__inner">
+                    <Image
+                      src="/zackary-brown-profile.jpg"
+                      alt={`${brand.founder}, Founder and Developer`}
+                      width={600}
+                      height={750}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                      }}
+                      priority
+                    />
+                  </div>
+                </div>
+                <span
+                  className="about-founder-portrait__monogram"
+                  aria-hidden="true"
+                >
+                  ZB
+                </span>
+              </div>
+              <figcaption className="about-founder-portrait__caption">
+                <span
+                  className="about-founder-portrait__rule"
+                  aria-hidden="true"
+                />
+                <span className="about-founder-portrait__caption-name">
+                  {brand.founder}
+                </span>
+                <span className="about-founder-portrait__caption-role">
+                  Founder &amp; Developer
+                </span>
+              </figcaption>
+            </figure>
           </FadeIn>
           <FadeIn delay={100}>
             <div className="about-founder-copy-col">
