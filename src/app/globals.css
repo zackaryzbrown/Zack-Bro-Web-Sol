@@ -1828,8 +1828,9 @@ p {
   color: var(--text-secondary);
 }
 
-/* WordPress soft note */
-.wordpress-note {
+/* WordPress soft note (also reused for the AI add-on aside) */
+.wordpress-note,
+.ai-note {
   display: flex;
   gap: 1.25rem;
   padding: 1.5rem 1.75rem;
@@ -1839,14 +1840,16 @@ p {
   margin: 0 auto;
 }
 
-.wordpress-note__rule {
+.wordpress-note__rule,
+.ai-note__rule {
   width: 3px;
   background: var(--accent-muted);
   border-radius: 2px;
   flex-shrink: 0;
 }
 
-.wordpress-note__heading {
+.wordpress-note__heading,
+.ai-note__heading {
   font-family: var(--font-instrument-serif), Georgia, serif;
   font-size: 1.15rem;
   font-weight: 500;
@@ -1854,11 +1857,87 @@ p {
   color: var(--text-primary);
 }
 
-.wordpress-note__body {
+.wordpress-note__body,
+.ai-note__body {
   font-size: 0.92rem;
   line-height: 1.65;
   color: var(--text-secondary);
   margin: 0;
+}
+
+/* Ways-to-save offers grid (pricing page) */
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem 1.6rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.offer-card:hover {
+  border-color: var(--accent-muted);
+}
+
+.offer-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.offer-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.offer-card__amount {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.01em;
+}
+
+.offer-card__heading {
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.offer-card__body {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0.15rem 0 0;
+}
+
+.offer-card__terms {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted, var(--text-secondary));
+  opacity: 0.75;
+  margin: 0.5rem 0 0;
+  font-style: italic;
 }
 
 /* ============================================================
