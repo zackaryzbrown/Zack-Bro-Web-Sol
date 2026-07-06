@@ -109,6 +109,42 @@ export const servicesDetailed: ServiceItem[] = [
       { label: "Report", detail: "Quarterly health and performance review." },
     ],
   },
+  {
+    title: "AI Assistant & Automation",
+    description:
+      "Add a lightweight AI chat assistant that answers common customer questions using your own site content, or wire up small automations that route leads, send follow-ups, or draft replies. Kept small on purpose - built to actually help, not just sit on the page.",
+    icon: "✦",
+    outcome:
+      "Fewer repetitive questions in your inbox and faster responses to new leads - without hiring anyone.",
+    includes: [
+      "AI chat widget trained on your site content",
+      "Custom prompt tuned to your services and tone",
+      "Lead-routing or auto-reply automations",
+      "Contact form + email or CRM integration",
+      "Guardrails so it stays on-topic",
+      "Handoff-to-human path when the AI can't help",
+    ],
+    bestFor:
+      "Businesses fielding the same questions repeatedly or losing leads because replies take too long.",
+    notFor:
+      "If you need a fully custom AI product or complex multi-agent system, that's a separate scope conversation.",
+    timeline: "1 – 2 weeks",
+    startingPrice: "from $199",
+    process: [
+      {
+        label: "Scope",
+        detail: "Identify the questions and workflows worth automating.",
+      },
+      {
+        label: "Build",
+        detail: "Configure the assistant, prompts, and integrations.",
+      },
+      {
+        label: "Tune",
+        detail: "Test with real questions and refine responses.",
+      },
+    ],
+  },
 ];
 
 export const wordpressNote = {
