@@ -105,6 +105,38 @@ export const wordpressPricingNote = {
   body: "I can build on WordPress when it's genuinely the right fit - usually for teams already trained on it or sites that need a specific plugin ecosystem. For most local service businesses, a custom build is faster, cheaper to maintain, and easier to evolve over time. Happy to talk through which makes sense for your business.",
 };
 
+/* AI add-ons - small, focused packages that bolt onto any site */
+export const aiAddOns: PricingTier[] = [
+  {
+    name: "AI Chat Assistant",
+    price: "$199",
+    description:
+      "A lightweight chat widget on your site, trained on your own content to answer common customer questions and hand off to email when it can't.",
+    bestFor: "Businesses answering the same questions over and over.",
+    includes: [
+      "Embedded chat widget",
+      "Trained on your site content",
+      "Custom prompt + tone matching",
+      "Guardrails to stay on-topic",
+      "Handoff-to-email fallback",
+    ],
+  },
+  {
+    name: "AI Automation Setup",
+    price: "$299",
+    description:
+      "Small automations that quietly speed up your business - lead routing, auto-replies, draft responses, or simple workflow hooks tied into your site.",
+    bestFor: "Owners losing leads because manual replies take too long.",
+    includes: [
+      "Contact-form to email / CRM routing",
+      "Auto-reply or draft-response setup",
+      "Simple workflow triggers",
+      "Integration with existing tools",
+      "Documentation you can hand off",
+    ],
+  },
+];
+
 /* ────────────────────────────────────────────────────────────────
  * Derived price helpers - single source of truth for money strings
  * used across the marketing site. Import from these instead of
@@ -137,6 +169,35 @@ export const pricingAnchor = {
   ],
   note: "Lower than an agency because there's no overhead. Higher than a template because it's actually built around your business.",
 };
+
+/* Small, published incentives - honest ways to save without
+   discounting list prices. Referenced on the pricing page. */
+export interface Offer {
+  icon: string;
+  heading: string;
+  amount: string;
+  body: string;
+  terms?: string;
+}
+
+export const offers: Offer[] = [
+  {
+    icon: "→",
+    heading: "Referral discount",
+    amount: "$75 off + $20 gift",
+    body: "Introduce me to another local business that ends up booking a project. You get $75 off your next invoice, they get $50 off theirs — plus a $20 gift card (or cash, your call) from me as a personal thank-you.",
+    terms:
+      "Discount and thank-you gift both sent once the referred project is signed. Stackable with the business-card discount.",
+  },
+  {
+    icon: "◆",
+    heading: "Business-card discount",
+    amount: "$50 off",
+    body: "Met me in person or received one of my cards? Mention it during your first call and I'll take $50 off your first project.",
+    terms:
+      "First project only. Applies to any Starter, Business, or Growth build.",
+  },
+];
 
 export const pricingFactors: PricingFactor[] = [
   {
