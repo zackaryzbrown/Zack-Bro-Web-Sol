@@ -49,6 +49,12 @@ export const pricingPreview = pricingTiers.map((t) => ({
   featured: t.featured ?? false,
 }));
 
+/* ── AI add-on note (homepage aside) ── */
+export const aiNote = {
+  heading: "Want AI on your site?",
+  body: "I can also add lightweight AI to your site — like a chat assistant that answers common customer questions, or a small automation that routes leads, sends follow-ups, or drafts replies. Kept simple, wired directly into your site, and scoped so it actually helps instead of just sitting there.",
+};
+
 /* ── Process steps ── */
 export const processSteps: ProcessStep[] = [
   {
