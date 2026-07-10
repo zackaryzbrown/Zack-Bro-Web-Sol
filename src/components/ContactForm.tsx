@@ -25,6 +25,7 @@ const SERVICE_OPTIONS: { value: string; label: string }[] = [
   { value: "custom-website", label: "Custom Website (new build)" },
   { value: "redesign", label: "Website Redesign" },
   { value: "conversion", label: "Conversion-Focused Pages" },
+  { value: "ai", label: "AI Assistant / Automation" },
   { value: "care", label: "Care & Support" },
   { value: "wordpress", label: "WordPress build" },
   { value: "not-sure", label: "Not sure yet" },
