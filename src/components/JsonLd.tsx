@@ -1,5 +1,6 @@
 import { brand, serviceCities } from "@/content/site";
 import { services } from "@/content/home";
+import { starterPrice, growthPrice } from "@/content/pricing";
 
 /**
  * JSON-LD graph for the site root. Uses @graph to express multiple linked
@@ -22,7 +23,7 @@ export function JsonLd() {
       description: brand.description,
       image: `${brand.url}/opengraph-image`,
       logo: `${brand.url}/icon`,
-      priceRange: "$349 - $1,299+",
+      priceRange: `${starterPrice} - ${growthPrice}+`,
       founder: { "@id": personId },
       address: {
         "@type": "PostalAddress",

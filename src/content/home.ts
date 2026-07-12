@@ -1,4 +1,10 @@
 import type { ServiceItem, ProcessStep, FeatureItem, FAQItem } from "./types";
+import {
+  tiers as pricingTiers,
+  starterPrice,
+  businessPrice,
+  growthPrice,
+} from "./pricing";
 
 /* ── Services (overview cards) ── */
 export const services: ServiceItem[] = [
@@ -29,26 +35,19 @@ export const services: ServiceItem[] = [
 ];
 
 /* ── Pricing preview (homepage) - mirrors /pricing 3-tier structure ── */
-export const pricingPreview = [
-  {
-    name: "Starter Site",
-    startingAt: "$349",
-    note: "One-page custom build for a clear online presence.",
-    featured: false,
-  },
-  {
-    name: "Business Site",
-    startingAt: "$799",
-    note: "Custom 3 – 5 page site. Most popular for local businesses.",
-    featured: true,
-  },
-  {
-    name: "Growth Site",
-    startingAt: "$1,299",
-    note: "Expanded build with advanced conversion flows.",
-    featured: false,
-  },
-] as const;
+// Tier names + prices come from pricing.ts (imported at top) so they never drift.
+const PREVIEW_NOTES: Record<string, string> = {
+  "Starter Site": "One-page custom build for a clear online presence.",
+  "Business Site": "Custom 3 – 5 page site. Most popular for local businesses.",
+  "Growth Site": "Expanded build with advanced conversion flows.",
+};
+
+export const pricingPreview = pricingTiers.map((t) => ({
+  name: t.name,
+  startingAt: t.price,
+  note: PREVIEW_NOTES[t.name] ?? t.description,
+  featured: t.featured ?? false,
+}));
 
 /* ── Process steps ── */
 export const processSteps: ProcessStep[] = [
@@ -109,8 +108,7 @@ export const whyWorkWithMe: FeatureItem[] = [
 export const homeFaqItems: FAQItem[] = [
   {
     question: "How much does a website cost?",
-    answer:
-      "Custom websites start at $349 for a one-page Starter Site. Most local service businesses land in the $799 Business Site range, with the Growth Site at $1,299 for businesses that need expanded structure and advanced conversion flows. Every project is scoped and quoted before any work begins.",
+    answer: `Custom websites start at ${starterPrice} for a one-page Starter Site. Most local service businesses land in the ${businessPrice} Business Site range, with the Growth Site at ${growthPrice} for businesses that need expanded structure and advanced conversion flows. Every project is scoped and quoted before any work begins.`,
   },
   {
     question: "How long does a project take?",

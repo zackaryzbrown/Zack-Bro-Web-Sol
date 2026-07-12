@@ -4,11 +4,16 @@ import type { PricingTier, CarePlan, PricingFactor } from "./types";
  * Three-tier custom-first pricing.
  * Prices reflect Colorado freelance positioning - competitive entry,
  * room to grow, no agency overhead.
+ *
+ * NOTE: `tiers` below is the single source of truth for tier pricing.
+ * All other price copy across the site (hero badges, meta descriptions,
+ * JSON-LD, contact form, FAQ prose, trust strip, etc.) is derived from
+ * the helpers exported at the bottom of this file. Update prices here.
  */
 export const tiers: PricingTier[] = [
   {
     name: "Starter Site",
-    price: "$349",
+    price: "$249",
     description:
       "A focused one-page custom build with a clear message and a simple path to inquiries. Perfect first website or a clean refresh on a tight budget.",
     bestFor: "New service businesses launching their first real site",
@@ -22,7 +27,7 @@ export const tiers: PricingTier[] = [
   },
   {
     name: "Business Site",
-    price: "$799",
+    price: "$599",
     featured: true,
     featuredLabel: "Most popular",
     description:
@@ -39,7 +44,7 @@ export const tiers: PricingTier[] = [
   },
   {
     name: "Growth Site",
-    price: "$1,299",
+    price: "$949",
     description:
       "An expanded custom build with deeper content, advanced conversion flows, and the structure to grow into. Built for businesses that want their site to actually pull weight.",
     bestFor: "Businesses investing in lead quality and long-term growth",
@@ -100,12 +105,35 @@ export const wordpressPricingNote = {
   body: "I can build on WordPress when it's genuinely the right fit - usually for teams already trained on it or sites that need a specific plugin ecosystem. For most local service businesses, a custom build is faster, cheaper to maintain, and easier to evolve over time. Happy to talk through which makes sense for your business.",
 };
 
+/* ────────────────────────────────────────────────────────────────
+ * Derived price helpers - single source of truth for money strings
+ * used across the marketing site. Import from these instead of
+ * hardcoding dollar amounts in prose, badges, meta, or JSON-LD.
+ * ──────────────────────────────────────────────────────────────── */
+
+/** Tier prices, indexed by tier name for direct lookup. */
+export const starterPrice = tiers[0].price;
+export const businessPrice = tiers[1].price;
+export const growthPrice = tiers[2].price;
+
+/** Separate entry-level for WordPress quick-start builds (not a tier). */
+export const wordpressStartPrice = starterPrice;
+
+/** Custom-build minimum quoted in FAQ - sits between Starter and Business. */
+export const customStartPrice = "$299";
+
+/** "$249 – $949+" range label used in meta, JSON-LD, and pricing anchor. */
+export const priceRangeLabel = `${starterPrice} – ${growthPrice}+`;
+
+/** "From $249+" - used on the hero badge. */
+export const heroBadgeLabel = `From ${starterPrice}+`;
+
 /* Anchor bar - used at top of pricing page to frame value */
 export const pricingAnchor = {
   comparison: [
     { label: "Typical local agency", value: "$5,000 – $15,000" },
     { label: "Marketplace template kits", value: "$200 – $800" },
-    { label: "Working with me", value: "$349 – $1,299+", highlight: true },
+    { label: "Working with me", value: priceRangeLabel, highlight: true },
   ],
   note: "Lower than an agency because there's no overhead. Higher than a template because it's actually built around your business.",
 };

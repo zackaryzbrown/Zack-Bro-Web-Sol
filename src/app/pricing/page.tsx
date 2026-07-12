@@ -13,14 +13,14 @@ import {
   pricingFactors,
   pricingAnchor,
   wordpressPricingNote,
+  priceRangeLabel,
 } from "@/content/pricing";
 import { brand } from "@/content/site";
 import { pricingFaqItems } from "@/content/faq";
 
 export const metadata = createMetadata({
   title: "Pricing",
-  description:
-    "Transparent custom website pricing from $349 to $1,299+. Three clear tiers, no surprise estimates, optional monthly care plan after launch.",
+  description: `Transparent custom website pricing from ${priceRangeLabel}. Three clear tiers, no surprise estimates, optional monthly care plan after launch.`,
   path: "/pricing",
 });
 

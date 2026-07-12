@@ -1,4 +1,5 @@
 import type { ServiceItem } from "./types";
+import { starterPrice, businessPrice } from "./pricing";
 
 export const servicesDetailed: ServiceItem[] = [
   {
@@ -21,7 +22,7 @@ export const servicesDetailed: ServiceItem[] = [
     notFor:
       "If you need a large e-commerce catalog or a complex booking platform, I'll point you to a better fit.",
     timeline: "2 – 4 weeks",
-    startingPrice: "from $349",
+    startingPrice: `from ${starterPrice}`,
     process: [
       { label: "Discovery", detail: "Goals, audience, and content audit." },
       { label: "Design + build", detail: "Custom layout, reviewed in stages." },
@@ -48,7 +49,7 @@ export const servicesDetailed: ServiceItem[] = [
     notFor:
       "If you're happy with your current site but need ongoing updates, the care plan is a better fit.",
     timeline: "2 – 5 weeks",
-    startingPrice: "from $799",
+    startingPrice: `from ${businessPrice}`,
     process: [
       { label: "Audit", detail: "What's working, what's costing you leads." },
       { label: "Rebuild", detail: "New design, copy refinements, dev work." },
@@ -74,7 +75,7 @@ export const servicesDetailed: ServiceItem[] = [
     notFor:
       "If you don't have a site yet, start with a Custom Website - the page work folds in.",
     timeline: "1 – 2 weeks",
-    startingPrice: "from $349",
+    startingPrice: `from ${starterPrice}`,
     process: [
       { label: "Map", detail: "Trace the path from visit to inquiry." },
       { label: "Build", detail: "Design + wire up forms and integrations." },

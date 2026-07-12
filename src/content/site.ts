@@ -1,4 +1,5 @@
 import type { NavItem, TrustStripItem } from "./types";
+import { starterPrice } from "./pricing";
 
 /* ── Brand ── */
 export const brand = {
@@ -41,7 +42,7 @@ export const navLinks: NavItem[] = [
 export const trustStripItems: TrustStripItem[] = [
   { text: "Reply within 1 business day" },
   { text: "Colorado-based, work remotely" },
-  { text: "Transparent pricing from $349+" },
+  { text: `Transparent pricing from ${starterPrice}+` },
   { text: "Ongoing care after launch" },
 ];
 

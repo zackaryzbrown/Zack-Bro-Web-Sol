@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
 import { createMetadata } from "@/lib/metadata";
+import { starterPrice } from "@/content/pricing";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -22,8 +23,7 @@ const instrumentSerif = Lora({
 
 export const metadata: Metadata = createMetadata({
   title: "Colorado Web Designer for Local Service Businesses",
-  description:
-    "Founder-led web design for local service businesses in Denver, Boulder, Colorado Springs, and across Colorado. Clear pricing from $349, conversion-focused builds, and ongoing care after launch.",
+  description: `Founder-led web design for local service businesses in Denver, Boulder, Colorado Springs, and across Colorado. Clear pricing from ${starterPrice}, conversion-focused builds, and ongoing care after launch.`,
 });
 
 export default function RootLayout({

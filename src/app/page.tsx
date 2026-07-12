@@ -22,6 +22,7 @@ import {
 import { featuredProjects } from "@/content/work";
 import { hasPublishedTestimonials } from "@/content/testimonials";
 import { brand } from "@/content/site";
+import { heroBadgeLabel } from "@/content/pricing";
 
 export default function HomePage() {
   return (
@@ -104,7 +105,7 @@ export default function HomePage() {
                   className="hero-badge"
                   style={{ bottom: "-12px", left: "-12px" }}
                 >
-                  From $349+
+                  {heroBadgeLabel}
                 </div>
                 <div
                   className="hero-badge"
@@ -113,7 +114,7 @@ export default function HomePage() {
                   Ongoing care available
                 </div>
                 <div className="hero-badges-mobile">
-                  <span className="hero-badge">From $349+</span>
+                  <span className="hero-badge">{heroBadgeLabel}</span>
                   <span className="hero-badge">Ongoing care available</span>
                 </div>
               </div>

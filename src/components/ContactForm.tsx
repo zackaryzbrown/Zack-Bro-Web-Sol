@@ -9,6 +9,7 @@ import {
   trackFormFailure,
 } from "@/lib/analytics";
 import { CONTACT_FORM_SUBJECT, CONTACT_HONEYPOT_FIELD } from "@/lib/contact";
+import { starterPrice, businessPrice, growthPrice } from "@/content/pricing";
 
 const SUBMISSION_COOLDOWN_MS = 60_000;
 const MIN_FILL_TIME_MS = 3_000;
@@ -30,9 +31,9 @@ const SERVICE_OPTIONS: { value: string; label: string }[] = [
 ];
 
 const BUDGET_OPTIONS: { value: string; label: string }[] = [
-  { value: "starter", label: "Starter Site - around $349" },
-  { value: "business", label: "Business Site - around $799" },
-  { value: "growth", label: "Growth Site - $1,299+" },
+  { value: "starter", label: `Starter Site - around ${starterPrice}` },
+  { value: "business", label: `Business Site - around ${businessPrice}` },
+  { value: "growth", label: `Growth Site - ${growthPrice}+` },
   { value: "care-only", label: "Just care / maintenance" },
   { value: "discuss", label: "Let's discuss" },
 ];

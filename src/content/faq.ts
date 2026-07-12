@@ -1,4 +1,5 @@
 import type { FAQItem } from "./types";
+import { wordpressStartPrice, customStartPrice } from "./pricing";
 
 /* ── Homepage FAQ (tight subset - 6 items) ── */
 export { homeFaqItems } from "./home";
@@ -57,8 +58,7 @@ export const pricingFaqItems: FAQItem[] = [
 export const fullFaqItems: FAQItem[] = [
   {
     question: "How much does a website cost?",
-    answer:
-      "WordPress quick-start websites begin at $349. Custom websites begin at $399 and scale with scope. I provide a clear scoped quote after learning about your goals.",
+    answer: `WordPress quick-start websites begin at ${wordpressStartPrice}. Custom websites begin at ${customStartPrice} and scale with scope. I provide a clear scoped quote after learning about your goals.`,
   },
   {
     question: "How long does a project take?",

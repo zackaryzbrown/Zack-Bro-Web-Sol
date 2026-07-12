@@ -26,7 +26,7 @@ export function ProjectGrid({
 
   const filtered = useMemo(() => {
     if (filter === ALL) return projects;
-    return projects.filter((p) => p.industry === filter);
+    return projects.filter((p) => p.type === filter);
   }, [projects, filter]);
 
   const close = useCallback(() => setActiveIndex(null), []);
@@ -107,7 +107,7 @@ export function ProjectGrid({
             <span className="work-filter__count">{projects.length}</span>
           </button>
           {industries.map((ind) => {
-            const count = projects.filter((p) => p.industry === ind).length;
+            const count = projects.filter((p) => p.type === ind).length;
             const isActive = filter === ind;
             return (
               <button
