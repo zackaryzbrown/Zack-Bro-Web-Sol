@@ -18,6 +18,7 @@ import {
   processSteps,
   whyWorkWithMe,
   homeFaqItems,
+  aiNote,
 } from "@/content/home";
 import { featuredProjects } from "@/content/work";
 import { hasPublishedTestimonials } from "@/content/testimonials";
@@ -216,6 +217,17 @@ export default function HomePage() {
               Learn More About Services
             </TrackedLink>
           </div>
+        </FadeIn>
+
+        {/* AI add-on soft aside */}
+        <FadeIn delay={400}>
+          <aside className="ai-note" style={{ marginTop: "3rem" }}>
+            <div className="ai-note__rule" aria-hidden />
+            <div>
+              <h3 className="ai-note__heading">{aiNote.heading}</h3>
+              <p className="ai-note__body">{aiNote.body}</p>
+            </div>
+          </aside>
         </FadeIn>
       </SectionShell>
 

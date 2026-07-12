@@ -13,6 +13,8 @@ import {
   pricingFactors,
   pricingAnchor,
   wordpressPricingNote,
+  aiAddOns,
+  offers,
   priceRangeLabel,
 } from "@/content/pricing";
 import { brand } from "@/content/site";
@@ -92,6 +94,28 @@ export default function PricingPage() {
         </FadeIn>
       </SectionShell>
 
+      {/* AI add-ons */}
+      <SectionShell variant="alt">
+        <div id="ai">
+          <SectionIntro
+            label="AI add-ons"
+            heading="Bolt AI onto any site."
+            subtext="Small, focused packages that plug directly into your existing site. Can be added to a new build or a site I didn't originally build - happy to scope either way."
+          />
+          <div className="care-plan-grid">
+            {aiAddOns.map((addon, i) => (
+              <FadeIn key={addon.name} delay={i * 90}>
+                <PricingTierCard
+                  tier={addon}
+                  ctaHref={`/contact?service=ai&budget=discuss`}
+                  ctaLabel="Ask about this add-on"
+                />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
       {/* Care plan */}
       <SectionShell variant="alt">
         <div id="care">
@@ -126,6 +150,36 @@ export default function PricingPage() {
               </article>
             </FadeIn>
           ))}
+        </div>
+      </SectionShell>
+
+      {/* Ways to save - referral + business-card offers */}
+      <SectionShell variant="alt">
+        <div id="offers">
+          <SectionIntro
+            label="Ways to save"
+            heading="Two straightforward discounts, no gimmicks."
+            subtext="Every project starts at list price, but here are two honest ways to bring it down."
+          />
+          <div className="offer-grid">
+            {offers.map((offer, i) => (
+              <FadeIn key={offer.heading} delay={i * 90}>
+                <article className="offer-card">
+                  <div className="offer-card__top">
+                    <span className="offer-card__icon" aria-hidden>
+                      {offer.icon}
+                    </span>
+                    <span className="offer-card__amount">{offer.amount}</span>
+                  </div>
+                  <h3 className="offer-card__heading">{offer.heading}</h3>
+                  <p className="offer-card__body">{offer.body}</p>
+                  {offer.terms && (
+                    <p className="offer-card__terms">{offer.terms}</p>
+                  )}
+                </article>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </SectionShell>
 
