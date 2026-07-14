@@ -208,6 +208,39 @@ const projectCatalog: Project[] = [
     ],
   },
   {
+    name: "Studio — Photography Concept",
+    type: "Photography",
+    isSpec: true,
+    image: "/projects/PhotoDemo.png",
+    url: "photographymockup.netlify.app",
+    challenge:
+      "Modern photographers often lose bookings to sites that feel dated or generic — grids of thumbnails with no story, no editorial feel, and no clear path to inquire. A photography studio needs a portfolio that reads like a magazine, not a proof gallery.",
+    solution:
+      "Designed a cinematic, editorial concept site with a full-bleed hero, asymmetric featured work grid, three category cards, service packages, and a booking-focused CTA. Typography pairs Cormorant Garamond with Inter for a modern editorial feel, and the ember accent color gives the dark palette warmth without competing with the imagery.",
+    result:
+      "A concept portfolio that positions a photographer as a premium creative — every section is built around the imagery, with clear paths from browsing to booking a session. Ready to be re-skinned with a real photographer's brand, work, and contact details.",
+    capabilities: [
+      "Editorial layout",
+      "Cinematic hero",
+      "Portfolio grid",
+      "Booking CTA",
+    ],
+    tech: [
+      "Next.js 14",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "lucide-react",
+    ],
+    improvements: [
+      "Full-bleed hero that lets a single image do the selling",
+      "Asymmetric featured work grid inspired by editorial magazines",
+      "Category cards routing visitors by shoot type (sports, portraits, events)",
+      "Service packages structured for clear, quotable booking inquiries",
+    ],
+  },
+  {
     name: "The Futons",
     type: "Music / Band",
     image: "/projects/the-futons.png",
@@ -242,6 +275,7 @@ const projectTypePriority: Record<string, number> = {
   "Bike Shop": 5,
   "Design Studio": 6,
   Contractors: 7,
+  Photography: 8,
 };
 
 export const projects: Project[] = [...projectCatalog].sort((a, b) => {
