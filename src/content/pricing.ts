@@ -185,7 +185,7 @@ export const offers: Offer[] = [
     icon: "→",
     heading: "Referral discount",
     amount: "$75 off + $20 gift",
-    body: "Introduce me to another local business that ends up booking a project. You get $75 off your next invoice, they get $50 off theirs — plus a $20 gift card (or cash, your call) from me as a personal thank-you.",
+    body: "Introduce me to another local business that ends up booking a project. You get $75 off your next invoice, they get $50 off theirs, plus a $20 gift card (or cash, your call) from me as a personal thank-you.",
     terms:
       "Discount and thank-you gift both sent once the referred project is signed. Stackable with the business-card discount.",
   },

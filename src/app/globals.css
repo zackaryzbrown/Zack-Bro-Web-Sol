@@ -3292,7 +3292,7 @@ p {
   will-change: transform;
 }
 
-/* Ambient multi-axis rotation — subtle "breathing" that gives the
+/* Ambient multi-axis rotation - subtle "breathing" that gives the
    stack life on every axis, not just the constant left-lean. */
 .hero-showcase__wander {
   position: relative;
@@ -3600,7 +3600,7 @@ button.hero-showcase__card[data-state="stack-2"]:hover .hero-showcase__frame {
   transition: opacity 200ms ease;
 }
 
-/* Mobile-only fallback dots — hidden by default */
+/* Mobile-only fallback dots - hidden by default */
 .hero-showcase__dots {
   display: none;
   gap: 0.5rem;

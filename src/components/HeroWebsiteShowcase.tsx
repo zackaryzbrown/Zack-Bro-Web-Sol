@@ -13,7 +13,7 @@ interface ShowcaseItem {
 
 /**
  * Curated real-project previews used only in the hero showcase.
- * Data mirrors `src/content/work.ts` — update in tandem when project
+ * Data mirrors `src/content/work.ts` - update in tandem when project
  * names, URLs, or screenshots change.
  */
 const items: ShowcaseItem[] = [
@@ -213,7 +213,7 @@ export function HeroWebsiteShowcase({
                 className="hero-showcase__stage"
                 role="group"
                 aria-roledescription="Website preview carousel"
-                aria-label={`${activeItem.name} — website preview ${activeIndex + 1} of ${total}`}
+                aria-label={`${activeItem.name} - website preview ${activeIndex + 1} of ${total}`}
               >
                 {items.map((item, i) => {
                   const state = computeState(i, activeIndex, total);
@@ -297,7 +297,7 @@ export function HeroWebsiteShowcase({
         />
       </div>
 
-      {/* Mobile-only fallback dots — visible stack is flattened at ≤900px, so
+      {/* Mobile-only fallback dots - visible stack is flattened at ≤900px, so
           users still need a way to switch previews on touch devices. */}
       <div
         className="hero-showcase__dots"

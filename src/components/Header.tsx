@@ -148,7 +148,7 @@ export function Header() {
         </Link>
 
         {/* Desktop nav - visible 1100+ */}
-        {/* Contact is intentionally omitted here — the "Request a Quote"
+        {/* Contact is intentionally omitted here - the "Request a Quote"
             CTA is the primary contact affordance. Footer still lists it. */}
         <nav className="desktop-nav">
           {navLinks
