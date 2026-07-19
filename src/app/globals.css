@@ -706,6 +706,109 @@ p {
   line-height: 1.18;
 }
 
+/* Two-column layout when meta is provided; single column otherwise. */
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .page-hero-grid[data-has-meta="true"] {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+}
+
+/* Editorial page-meta aside */
+.page-hero__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  max-width: 340px;
+  padding-top: 0.4rem;
+}
+
+.page-hero__meta-count {
+  margin: 0;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.page-hero__meta-count-total {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.page-hero__meta-rule {
+  display: block;
+  height: 1px;
+  width: 44px;
+  background: var(--accent);
+  margin-bottom: 0.15rem;
+}
+
+.page-hero__meta-list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-hero__meta-item {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.page-hero__meta-item:last-child {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.page-hero__meta-label {
+  margin: 0;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.page-hero__meta-value {
+  margin: 0;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+
+@media (max-width: 899px) {
+  .page-hero__meta {
+    max-width: none;
+    padding-top: 0;
+    margin-top: 1.75rem;
+  }
+
+  .page-hero__meta-item {
+    padding: 0.7rem 0;
+  }
+
+  .page-hero__meta-value {
+    font-size: 1rem;
+  }
+}
+
 /* ---- Buttons ---- */
 .btn-primary {
   display: inline-flex;
@@ -3002,8 +3105,8 @@ p {
    ================================================================ */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.22fr);
+  gap: 2rem;
   align-items: center;
 }
 
@@ -3160,6 +3263,508 @@ p {
 /* Mobile badges container - hidden on desktop */
 .hero-badges-mobile {
   display: none;
+}
+
+/* ================================================================
+   HERO WEBSITE SHOWCASE (3D layered browser preview)
+   ================================================================ */
+.hero-showcase {
+  position: relative;
+  width: 100%;
+  perspective: 1350px;
+  perspective-origin: 55% 45%;
+}
+
+/* Positioning context for the mockup + its floating badges only.
+   Caption / progress / dots live outside this wrapper so badge
+   positioning never collides with them. */
+.hero-showcase__stage-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.hero-showcase__float {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  transform-style: preserve-3d;
+  animation: heroShowcaseFloat 7.5s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Ambient multi-axis rotation — subtle "breathing" that gives the
+   stack life on every axis, not just the constant left-lean. */
+.hero-showcase__wander {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: heroShowcaseWander 15s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-showcase__tilt {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 550ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.hero-showcase__stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.hero-showcase__card {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition:
+    transform 900ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Button-cards (behind-stack) reset native browser styling */
+button.hero-showcase__card {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+button.hero-showcase__card:focus {
+  outline: none;
+}
+
+button.hero-showcase__card:focus-visible .hero-showcase__frame {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+.hero-showcase__card[data-state="active"] {
+  transform: translate3d(0, 0, 0) rotateX(3deg) rotateY(-6deg) scale(1);
+  opacity: 1;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.hero-showcase__card[data-state="stack-1"] {
+  transform: translate3d(9%, -3%, -110px) rotateX(2deg) rotateY(-15deg) scale(0.93);
+  opacity: 0.78;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.hero-showcase__card[data-state="stack-2"] {
+  transform: translate3d(17%, -6%, -220px) rotateX(2deg) rotateY(-21deg) scale(0.86);
+  opacity: 0.42;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.hero-showcase__card[data-state="exiting"] {
+  transform: translate3d(-30%, 9%, 130px) rotateX(-2deg) rotateY(14deg) scale(0.88);
+  opacity: 0;
+  z-index: 2;
+}
+
+.hero-showcase__card[data-state="hidden"] {
+  transform: translate3d(24%, -9%, -320px) rotateX(2deg) rotateY(-26deg) scale(0.8);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Subtle "come closer" lift when hovering a behind card */
+button.hero-showcase__card[data-state="stack-1"] .hero-showcase__frame,
+button.hero-showcase__card[data-state="stack-2"] .hero-showcase__frame {
+  transition:
+    transform 450ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 450ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+button.hero-showcase__card[data-state="stack-1"]:hover .hero-showcase__frame,
+button.hero-showcase__card[data-state="stack-2"]:hover .hero-showcase__frame {
+  transform: translateZ(28px);
+  box-shadow:
+    0 30px 70px -20px rgba(20, 45, 35, 0.32),
+    0 12px 28px -10px rgba(0, 0, 0, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.hero-showcase__frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow:
+    0 28px 68px -18px rgba(20, 45, 35, 0.32),
+    0 12px 28px -8px rgba(0, 0, 0, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backface-visibility: hidden;
+}
+
+.hero-showcase__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+.hero-showcase__lights {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.hero-showcase__lights span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.82;
+}
+
+.hero-showcase__address {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.32rem 0.7rem;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+}
+
+.hero-showcase__address svg {
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.hero-showcase__address span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-showcase__viewport {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.hero-showcase__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* Floating badges anchored to just the mockup (not caption/progress) */
+.hero-showcase__badge {
+  position: absolute;
+  z-index: 10;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-showcase__badge--primary {
+  bottom: -14px;
+  left: -14px;
+}
+
+.hero-showcase__badge--secondary {
+  top: 44%;
+  right: -14px;
+}
+
+/* Editorial caption row (replaces dot controls on desktop) */
+.hero-showcase__caption {
+  display: flex;
+  align-items: baseline;
+  gap: 0.95rem;
+  margin-top: 1.9rem;
+  padding-left: 0.15rem;
+  min-width: 0;
+}
+
+.hero-showcase__count {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  padding-top: 0.15rem;
+}
+
+.hero-showcase__count-total {
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.hero-showcase__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.hero-showcase__title {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hero-showcase__subtitle {
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Progress line filling teal over the auto-advance duration */
+.hero-showcase__progress {
+  position: relative;
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.7rem;
+  margin-left: 0.15rem;
+  margin-right: 0.15rem;
+}
+
+.hero-showcase__progress-bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation-name: heroShowcaseProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+  will-change: transform;
+}
+
+.hero-showcase__progress[data-paused="true"] .hero-showcase__progress-bar {
+  animation-play-state: paused;
+  opacity: 0.35;
+  transition: opacity 200ms ease;
+}
+
+/* Mobile-only fallback dots — hidden by default */
+.hero-showcase__dots {
+  display: none;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.hero-showcase__dot {
+  height: 8px;
+  width: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--border);
+  cursor: pointer;
+  transition:
+    background-color 220ms ease,
+    width 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-showcase__dot:hover {
+  background: var(--accent-muted);
+}
+
+.hero-showcase__dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.hero-showcase__dot[aria-current="true"] {
+  background: var(--accent);
+  width: 34px;
+}
+
+@keyframes heroShowcaseFloat {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes heroShowcaseWander {
+  0% {
+    transform: rotateX(-3.5deg) rotateY(4deg) rotateZ(1deg);
+  }
+
+  33% {
+    transform: rotateX(2.5deg) rotateY(-3deg) rotateZ(-0.9deg);
+  }
+
+  66% {
+    transform: rotateX(1.6deg) rotateY(2.6deg) rotateZ(1.3deg);
+  }
+
+  100% {
+    transform: rotateX(-3.5deg) rotateY(4deg) rotateZ(1deg);
+  }
+}
+
+@keyframes heroShowcaseProgress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-showcase {
+    perspective: 1100px;
+  }
+
+  .hero-showcase__float {
+    animation-duration: 9s;
+  }
+
+  .hero-showcase__wander {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-showcase__card[data-state="active"] {
+    transform: translate3d(0, 0, 0) rotateX(1deg) rotateY(0deg) scale(1);
+  }
+
+  .hero-showcase__card[data-state="stack-1"],
+  .hero-showcase__card[data-state="stack-2"],
+  .hero-showcase__card[data-state="exiting"],
+  .hero-showcase__card[data-state="hidden"] {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hero-showcase__tilt {
+    transform: none;
+  }
+
+  /* Flow badges below the mockup on mobile so they don't overhang
+     awkwardly at the reduced perspective. */
+  .hero-showcase__badge {
+    position: static;
+    display: inline-flex;
+    margin: 0.5rem 0.5rem 0 0;
+  }
+
+  .hero-showcase__badge--secondary {
+    /* Reset absolute values so static flow takes over cleanly */
+    top: auto;
+    right: auto;
+  }
+
+  .hero-showcase__badge--primary {
+    bottom: auto;
+    left: auto;
+  }
+
+  .hero-showcase__dots {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-showcase__float,
+  .hero-showcase__wander {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-showcase__tilt {
+    transform: none;
+    transition: none;
+  }
+
+  .hero-showcase__card {
+    transition: opacity 180ms ease;
+    transform: none !important;
+  }
+
+  .hero-showcase__card[data-state="active"] {
+    opacity: 1;
+  }
+
+  .hero-showcase__card:not([data-state="active"]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hero-showcase__dot,
+  button.hero-showcase__card[data-state="stack-1"] .hero-showcase__frame,
+  button.hero-showcase__card[data-state="stack-2"] .hero-showcase__frame {
+    transition: none;
+  }
+
+  .hero-showcase__progress-bar {
+    animation: none;
+    transform: scaleX(0);
+  }
 }
 
 /* ================================================================

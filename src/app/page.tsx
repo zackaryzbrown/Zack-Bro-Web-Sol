@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import { FAQ } from "@/components/FAQ";
 import { BrowserMockup } from "@/components/BrowserMockup";
+import { HeroWebsiteShowcase } from "@/components/HeroWebsiteShowcase";
 import { PageCta } from "@/components/PageCta";
 import { TrustStrip } from "@/components/TrustStrip";
 import { BuiltWithStrip } from "@/components/BuiltWithStrip";
@@ -92,32 +93,10 @@ export default function HomePage() {
 
             <FadeIn delay={300} direction="right">
               <div className="hero-mockup-wrapper">
-                <BrowserMockup url="www.greenscapepro.com">
-                  <Image
-                    src="/projects/greenscape.png"
-                    alt="GreenScape Pro website preview"
-                    width={1200}
-                    height={800}
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                    priority
-                  />
-                </BrowserMockup>
-                <div
-                  className="hero-badge"
-                  style={{ bottom: "-12px", left: "-12px" }}
-                >
-                  {heroBadgeLabel}
-                </div>
-                <div
-                  className="hero-badge"
-                  style={{ top: "50%", right: "-12px" }}
-                >
-                  Ongoing care available
-                </div>
-                <div className="hero-badges-mobile">
-                  <span className="hero-badge">{heroBadgeLabel}</span>
-                  <span className="hero-badge">Ongoing care available</span>
-                </div>
+                <HeroWebsiteShowcase
+                  primaryBadge={heroBadgeLabel}
+                  secondaryBadge="Ongoing care available"
+                />
               </div>
             </FadeIn>
           </div>

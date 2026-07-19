@@ -24,6 +24,16 @@ export default function WorkPage() {
         label="Selected Work"
         title="Sites built for service businesses that need to look the part."
         subtitle="A mix of live client work and portfolio concepts - each one structured around clarity, credibility, and the path from first visit to inquiry."
+        index={2}
+        total={5}
+        meta={[
+          { label: "Live client sites", value: `${liveCount} client builds` },
+          { label: "Portfolio concepts", value: `${specCount} spec projects` },
+          {
+            label: "Industries covered",
+            value: `${industries.length} verticals`,
+          },
+        ]}
       />
 
       <SectionShell variant="alt">
@@ -50,17 +60,13 @@ export default function WorkPage() {
         </FadeIn>
 
         <div style={{ marginTop: "2.5rem" }}>
-          <ProjectGrid
-            projects={projects}
-            industries={industries}
-            showFilter
-          />
+          <ProjectGrid projects={projects} industries={industries} showFilter />
         </div>
       </SectionShell>
 
       <PageCta
         title="Have a project in mind?"
-        description="Tell me about your business and I&apos;ll help you map the right website direction - even if it&apos;s a smaller scope than you came in expecting."
+        description="Tell me about your business and I'll help you map the right website direction - even if it's a smaller scope than you came in expecting."
         secondaryHref={brand.bookingUrl}
         secondaryLabel="Book a Free Call"
         sectionClassName="section"

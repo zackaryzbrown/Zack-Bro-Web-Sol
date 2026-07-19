@@ -33,6 +33,13 @@ export default function PricingPage() {
         label="Pricing"
         title="Custom websites, priced honestly."
         subtitle="Three tiers built around what local service businesses actually need. Every project is from pricing, scoped to your goals, and quoted before any work begins."
+        index={3}
+        total={5}
+        meta={[
+          { label: "Range", value: priceRangeLabel },
+          { label: "Custom tiers", value: `${tiers.length} clear options` },
+          { label: "Care plans", value: `${carePlans.length} monthly tiers` },
+        ]}
       />
 
       {/* Value anchor bar */}

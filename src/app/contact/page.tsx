@@ -21,6 +21,13 @@ export default function ContactPage() {
         label="Contact"
         title="Tell me about your project."
         subtitle="Share a few details and I'll reply within 1 business day with next steps or a scoped quote."
+        index={5}
+        total={5}
+        meta={[
+          { label: "Reply within", value: "1 business day" },
+          { label: "Based in", value: brand.location },
+          { label: "Book a call", value: "30-min intro" },
+        ]}
       />
 
       <SectionShell variant="alt">

@@ -29,6 +29,13 @@ export default function AboutPage() {
         label="ABOUT"
         title="Modern websites for local service businesses."
         subtitle="I build clean, modern websites that help service businesses make a stronger first impression and make it easier for customers to get in touch."
+        index={4}
+        total={5}
+        meta={[
+          { label: "Founder", value: brand.founder },
+          { label: "Based in", value: brand.location },
+          { label: "Focus", value: "Local service businesses" },
+        ]}
       />
 
       {/* Founder Section */}

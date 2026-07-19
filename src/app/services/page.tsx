@@ -5,6 +5,7 @@ import { SectionShell } from "@/components/SectionShell";
 import { TrackedLink } from "@/components/TrackedLink";
 import { createMetadata } from "@/lib/metadata";
 import { servicesDetailed, wordpressNote } from "@/content/services";
+import { starterPrice } from "@/content/pricing";
 import { brand } from "@/content/site";
 
 export const metadata = createMetadata({
@@ -54,6 +55,16 @@ export default function ServicesPage() {
         label="Services"
         title="Websites built to earn trust and book the work."
         subtitle="Four focused offers for Colorado service businesses. Each one ships with clear deliverables, a real timeline, and a starting price - no surprise estimates after the call."
+        index={1}
+        total={5}
+        meta={[
+          {
+            label: "Scope",
+            value: `${servicesDetailed.length} focused offers`,
+          },
+          { label: "Starting at", value: `From ${starterPrice}` },
+          { label: "Timeline", value: "1 – 5 weeks typical" },
+        ]}
       />
 
       {/* Quick service index */}
