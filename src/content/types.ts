@@ -116,3 +116,18 @@ export interface Testimonial {
   role?: string;
   location?: string;
 }
+
+export type SocialPlatform =
+  | "linkedin"
+  | "instagram"
+  | "x"
+  | "youtube"
+  | "tiktok"
+  | "github";
+
+export interface SocialLink {
+  platform: SocialPlatform;
+  label: string;
+  href: string;
+  handle?: string;
+}

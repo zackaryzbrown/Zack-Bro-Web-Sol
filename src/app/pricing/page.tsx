@@ -71,12 +71,11 @@ export default function PricingPage() {
         />
         <div className="pricing-tier-v2-grid">
           {tiers.map((tier, i) => {
-            const budgetSlug = tier.name.toLowerCase().split(" ")[0];
             return (
               <FadeIn key={tier.name} delay={i * 90}>
                 <PricingTierCard
                   tier={tier}
-                  ctaHref={`/contact?service=custom-website&budget=${budgetSlug}`}
+                  ctaHref={`/contact?service=custom-website`}
                 />
               </FadeIn>
             );
@@ -114,7 +113,7 @@ export default function PricingPage() {
               <FadeIn key={addon.name} delay={i * 90}>
                 <PricingTierCard
                   tier={addon}
-                  ctaHref={`/contact?service=ai&budget=discuss`}
+                  ctaHref={`/contact?service=ai`}
                   ctaLabel="Ask about this add-on"
                 />
               </FadeIn>

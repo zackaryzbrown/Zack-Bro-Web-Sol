@@ -31,12 +31,11 @@ function getClientIP(req: NextRequest): string {
 
 /* Validation */
 function validateFields(body: Record<string, string>): string | null {
-  const { name, email, message, service } = body;
+  const { name, email, message } = body;
 
   if (!name || name.trim().length < 2) return "Name is required.";
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     return "A valid email is required.";
-  if (!service) return "Please select what you're looking for.";
   if (!message || message.trim().length < 20)
     return "Please provide more detail about your project (at least 20 characters).";
 
@@ -118,16 +117,7 @@ export async function POST(req: NextRequest) {
   try {
     const resend = new Resend(apiKey);
 
-    const {
-      name,
-      email,
-      phone,
-      business,
-      website,
-      service,
-      timeline,
-      message,
-    } = body;
+    const { name, email, business, website, service, message } = body;
 
     const { error } = await resend.emails.send({
       from: getResendFromEmail(),
@@ -137,11 +127,9 @@ export async function POST(req: NextRequest) {
       text: [
         `Name: ${name?.trim()}`,
         `Email: ${email?.trim()}`,
-        `Phone: ${phone?.trim() || "Not provided"}`,
         `Business: ${business?.trim() || "Not provided"}`,
         `Website: ${website?.trim() || "Not provided"}`,
-        `Service: ${service}`,
-        `Timeline: ${timeline || "Not specified"}`,
+        `Service: ${service?.trim() || "Not specified"}`,
         ``,
         `Message:`,
         message?.trim(),
@@ -160,7 +148,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.info(`[contact] Submission success | service: ${service}`);
+    console.info(
+      `[contact] Submission success | service: ${service?.trim() || "unspecified"}`,
+    );
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("[contact] Fetch error:", err);

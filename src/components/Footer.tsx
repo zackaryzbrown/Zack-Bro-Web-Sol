@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/SocialLinks";
 import { TrackedLink } from "@/components/TrackedLink";
 import { brand, navLinks, serviceCities } from "@/content/site";
 
@@ -66,6 +67,11 @@ export function Footer() {
             <a href={`mailto:${brand.email}`} className="site-footer__email">
               {brand.email}
             </a>
+            <SocialLinks
+              variant="dark"
+              ariaLabel="Follow Zackary on social media"
+              trackingPrefix="footer_social"
+            />
           </div>
 
           {/* Pages */}

@@ -9,7 +9,6 @@ import {
   trackFormFailure,
 } from "@/lib/analytics";
 import { CONTACT_FORM_SUBJECT, CONTACT_HONEYPOT_FIELD } from "@/lib/contact";
-import { starterPrice, businessPrice, growthPrice } from "@/content/pricing";
 
 const SUBMISSION_COOLDOWN_MS = 60_000;
 const MIN_FILL_TIME_MS = 3_000;
@@ -31,14 +30,6 @@ const SERVICE_OPTIONS: { value: string; label: string }[] = [
   { value: "not-sure", label: "Not sure yet" },
 ];
 
-const BUDGET_OPTIONS: { value: string; label: string }[] = [
-  { value: "starter", label: `Starter Site - around ${starterPrice}` },
-  { value: "business", label: `Business Site - around ${businessPrice}` },
-  { value: "growth", label: `Growth Site - ${growthPrice}+` },
-  { value: "care-only", label: "Just care / maintenance" },
-  { value: "discuss", label: "Let's discuss" },
-];
-
 function shouldShowFallbackEmail(message: string): boolean {
   return !message.toLowerCase().includes(CONTACT_EMAIL);
 }
@@ -46,14 +37,10 @@ function shouldShowFallbackEmail(message: string): boolean {
 function ContactFormInner() {
   const searchParams = useSearchParams();
   const serviceParam = searchParams.get("service") ?? "";
-  const budgetParam = searchParams.get("budget") ?? "";
 
   // Map external query values to internal option values
   const resolvedService = SERVICE_OPTIONS.find(
     (o) => o.value === serviceParam,
-  )?.value;
-  const resolvedBudget = BUDGET_OPTIONS.find(
-    (o) => o.value === budgetParam,
   )?.value;
 
   const [submitted, setSubmitted] = useState(false);
@@ -61,17 +48,12 @@ function ContactFormInner() {
   const [submitting, setSubmitting] = useState(false);
   const [startedAt] = useState(() => Date.now());
   const [service, setService] = useState<string>(resolvedService ?? "");
-  const [budget, setBudget] = useState<string>(resolvedBudget ?? "");
   const formStartedRef = useRef(false);
 
   // Keep state in sync if user navigates with new query params
   useEffect(() => {
     if (resolvedService) setService(resolvedService);
   }, [resolvedService]);
-
-  useEffect(() => {
-    if (resolvedBudget) setBudget(resolvedBudget);
-  }, [resolvedBudget]);
 
   const handleFocus = () => {
     if (!formStartedRef.current) {
@@ -172,7 +154,7 @@ function ContactFormInner() {
     );
   }
 
-  const hasPrefill = !!resolvedService || !!resolvedBudget;
+  const hasPrefill = !!resolvedService;
 
   return (
     <form
@@ -247,17 +229,24 @@ function ContactFormInner() {
           />
         </div>
         <div>
-          <label htmlFor="phone" className="form-label">
-            Phone <span className="form-label__hint">(optional)</span>
+          <label htmlFor="service" className="form-label">
+            What do you need?{" "}
+            <span className="form-label__hint">(optional)</span>
           </label>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
+          <select
+            id="service"
+            name="service"
             className="form-input"
-            placeholder="(555) 123-4567"
-          />
+            value={service}
+            onChange={(e) => setService(e.target.value)}
+          >
+            <option value="">Not sure / tell me in the message</option>
+            {SERVICE_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
@@ -274,73 +263,6 @@ function ContactFormInner() {
           className="form-input"
           placeholder="https://yourbusiness.com - or a social link"
         />
-      </div>
-
-      <div className="form-grid">
-        <div>
-          <label htmlFor="service" className="form-label">
-            What do you need?
-          </label>
-          <select
-            id="service"
-            name="service"
-            className="form-input"
-            value={service}
-            onChange={(e) => setService(e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Select a service
-            </option>
-            {SERVICE_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="budget" className="form-label">
-            Budget range
-          </label>
-          <select
-            id="budget"
-            name="budget"
-            className="form-input"
-            value={budget}
-            onChange={(e) => setBudget(e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Pick a starting point
-            </option>
-            {BUDGET_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>
-                {o.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label htmlFor="timeline" className="form-label">
-          Timeline <span className="form-label__hint">(optional)</span>
-        </label>
-        <select
-          id="timeline"
-          name="timeline"
-          className="form-input"
-          defaultValue=""
-        >
-          <option value="" disabled>
-            When would you like to launch?
-          </option>
-          <option value="asap">As soon as possible</option>
-          <option value="2-4-weeks">2 – 4 weeks</option>
-          <option value="1-2-months">1 – 2 months</option>
-          <option value="flexible">Flexible</option>
-        </select>
       </div>
 
       <div>

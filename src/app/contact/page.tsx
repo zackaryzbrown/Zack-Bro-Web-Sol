@@ -2,10 +2,11 @@ import { FadeIn } from "@/components/FadeIn";
 import { ContactForm } from "@/components/ContactForm";
 import { PageHero } from "@/components/PageHero";
 import { SectionShell } from "@/components/SectionShell";
+import { SocialLinks } from "@/components/SocialLinks";
 import { TrackedLink } from "@/components/TrackedLink";
 import { createMetadata } from "@/lib/metadata";
 import { contactSteps } from "@/content/contact";
-import { brand } from "@/content/site";
+import { brand, socialLinks } from "@/content/site";
 
 export const metadata = createMetadata({
   title: "Contact",
@@ -93,6 +94,22 @@ export default function ContactPage() {
                   <span aria-hidden> ↗</span>
                 </TrackedLink>
               </div>
+
+              {/* Social */}
+              {socialLinks.some((link) => link.href.trim().length > 0) && (
+                <div className="contact-sidebar__card">
+                  <p className="contact-sidebar__heading">Elsewhere</p>
+                  <p className="contact-sidebar__note">
+                    Not urgent? You can also find me on:
+                  </p>
+                  <SocialLinks
+                    variant="light"
+                    ariaLabel="Find Zackary on social media"
+                    trackingPrefix="contact_social"
+                    className="social-links--sidebar"
+                  />
+                </div>
+              )}
 
               {/* What happens next */}
               <div className="contact-sidebar__card">

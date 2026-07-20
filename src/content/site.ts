@@ -1,4 +1,4 @@
-import type { NavItem, TrustStripItem } from "./types";
+import type { NavItem, SocialLink, TrustStripItem } from "./types";
 import { starterPrice } from "./pricing";
 
 /* ── Brand ── */
@@ -58,4 +58,46 @@ export const industries: string[] = [
   "Landscapers",
   "Cleaning Services",
   "Local Service Brands",
+];
+
+/* ── Social profiles ──
+   Order here controls display order everywhere the row renders.
+   Any entry with an empty `href` is hidden site-wide. */
+export const socialLinks: SocialLink[] = [
+  {
+    platform: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/zackaryzbrown/",
+    handle: "zackaryzbrown",
+  },
+  {
+    platform: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/zbwebsolutions/",
+    handle: "@zbwebsolutions",
+  },
+  {
+    platform: "x",
+    label: "X (Twitter)",
+    href: "https://x.com/zbwebsolutions",
+    handle: "@zbwebsolutions",
+  },
+  {
+    platform: "youtube",
+    label: "YouTube",
+    href: "https://www.youtube.com/@ZBWebSolutions",
+    handle: "@ZBWebSolutions",
+  },
+  {
+    platform: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@zbwebsolutions",
+    handle: "@zbwebsolutions",
+  },
+  {
+    platform: "github",
+    label: "GitHub",
+    href: "https://github.com/zackaryzbrown",
+    handle: "zackaryzbrown",
+  },
 ];

@@ -4,6 +4,7 @@ import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
+import { SocialLinks } from "@/components/SocialLinks";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { createMetadata } from "@/lib/metadata";
 import {
@@ -13,7 +14,7 @@ import {
   process,
   proofStats,
 } from "@/content/about";
-import { brand } from "@/content/site";
+import { brand, socialLinks } from "@/content/site";
 
 export const metadata = createMetadata({
   title: "About",
@@ -103,6 +104,18 @@ export default function AboutPage() {
                   </p>
                 ))}
               </div>
+              {socialLinks.some((link) => link.href.trim().length > 0) && (
+                <div className="about-founder-elsewhere">
+                  <span className="about-founder-elsewhere__label">
+                    Elsewhere
+                  </span>
+                  <SocialLinks
+                    variant="light"
+                    ariaLabel="Find Zackary on social media"
+                    trackingPrefix="about_social"
+                  />
+                </div>
+              )}
             </div>
           </FadeIn>
         </div>

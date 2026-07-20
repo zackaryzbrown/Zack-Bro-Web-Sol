@@ -4489,3 +4489,114 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* ================================================================
+   SOCIAL LINKS - reusable row of icon links (footer, contact, about)
+   ================================================================ */
+
+/* Screen-reader-only utility (used for icon-only link labels) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links__item {
+  margin: 0;
+}
+
+.social-links__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: color 0.18s ease, background-color 0.18s ease,
+    border-color 0.18s ease, transform 0.18s ease;
+}
+
+.social-links__link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.social-links__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.social-links__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Light variant - for on-cream sections (contact, about) */
+.social-links--light .social-links__link {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.social-links--light .social-links__link:hover {
+  color: var(--accent);
+  border-color: var(--accent-muted);
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+/* Dark variant - for the footer */
+.social-links--dark .social-links__link {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.social-links--dark .social-links__link:hover {
+  color: #fff;
+  border-color: var(--accent);
+  background: rgba(45, 106, 79, 0.22);
+  transform: translateY(-1px);
+}
+
+/* Sidebar layout tweak - tighter spacing above the row */
+.social-links--sidebar {
+  margin-top: 0.25rem;
+}
+
+/* About page "Elsewhere" strip under the founder bio */
+.about-founder-elsewhere {
+  margin-top: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.about-founder-elsewhere__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
