@@ -327,6 +327,23 @@ export function ProjectGrid({
                     ↗
                   </span>
                 </TrackedLink>
+                {active.repo && (
+                  <TrackedLink
+                    href={`https://${active.repo.replace(/^https?:\/\//, "")}`}
+                    className="btn-secondary"
+                    label={`work_view_code_${active.name.toLowerCase().replaceAll(" ", "_")}`}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    View Code
+                    <span aria-hidden="true" style={{ fontSize: "1.1em" }}>
+                      ↗
+                    </span>
+                  </TrackedLink>
+                )}
                 <Link
                   href={`/work/${projectSlug(active.name)}`}
                   className="btn-secondary"

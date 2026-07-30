@@ -23,7 +23,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-  if (!project) return createMetadata({ title: "Case Study", description: "", path: `/work/${slug}` });
+  if (!project)
+    return createMetadata({
+      title: "Case Study",
+      description: "",
+      path: `/work/${slug}`,
+    });
 
   const descBase = project.outcomeMetric ?? project.result;
   return createMetadata({
@@ -43,10 +48,16 @@ export default async function ProjectCaseStudyPage({
   if (!project) notFound();
 
   const liveHref = `https://${project.url.replace(/^https?:\/\//, "")}`;
+  const repoHref = project.repo
+    ? `https://${project.repo.replace(/^https?:\/\//, "")}`
+    : null;
 
   // Related: next two projects after this one (wraps).
   const idx = projects.findIndex((p) => projectSlug(p.name) === slug);
-  const related = [projects[(idx + 1) % projects.length], projects[(idx + 2) % projects.length]];
+  const related = [
+    projects[(idx + 1) % projects.length],
+    projects[(idx + 2) % projects.length],
+  ];
 
   return (
     <>
@@ -185,7 +196,13 @@ export default async function ProjectCaseStudyPage({
           )}
 
           <FadeIn delay={100}>
-            <div className="project-modal-footer" style={{ borderTop: "1px solid var(--border)", paddingTop: "2rem" }}>
+            <div
+              className="project-modal-footer"
+              style={{
+                borderTop: "1px solid var(--border)",
+                paddingTop: "2rem",
+              }}
+            >
               <div className="project-modal-footer-col">
                 <h3 className="project-modal-label">Capabilities</h3>
                 <ul className="project-modal-cap-list">
@@ -209,7 +226,14 @@ export default async function ProjectCaseStudyPage({
               )}
             </div>
 
-            <div style={{ marginTop: "2rem" }}>
+            <div
+              style={{
+                marginTop: "2rem",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "0.75rem",
+              }}
+            >
               <TrackedLink
                 href={liveHref}
                 className="btn-primary"
@@ -225,6 +249,23 @@ export default async function ProjectCaseStudyPage({
                   ↗
                 </span>
               </TrackedLink>
+              {repoHref && (
+                <TrackedLink
+                  href={repoHref}
+                  className="btn-secondary"
+                  label={`case_study_view_code_${slug}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  View Code
+                  <span aria-hidden="true" style={{ fontSize: "1.1em" }}>
+                    ↗
+                  </span>
+                </TrackedLink>
+              )}
             </div>
           </FadeIn>
         </div>

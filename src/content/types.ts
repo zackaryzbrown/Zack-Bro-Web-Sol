@@ -67,6 +67,7 @@ export interface Project {
   outcomeMetric?: string;
   image: string;
   url: string;
+  repo?: string;
   isSpec?: boolean;
   challenge: string;
   solution: string;

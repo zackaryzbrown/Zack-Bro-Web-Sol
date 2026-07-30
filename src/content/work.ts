@@ -241,6 +241,41 @@ const projectCatalog: Project[] = [
     ],
   },
   {
+    name: "Lumière Hair Studio",
+    type: "Hair Salon",
+    isSpec: true,
+    image: "/projects/HairSolonImg.png",
+    url: "lumierehairstudio.netlify.app",
+    repo: "github.com/zackaryzbrown/HairSolonDemo",
+    challenge:
+      "Small salons lose bookings to sites that feel dated, generic, or buried under stock photography. A modern hair studio needs a boutique online presence that funnels visitors straight to a booked appointment — without waiting on a photographer, CMS, or six-figure agency build.",
+    solution:
+      "Designed a conversion-focused, single-page marketing site for a fictional modern salon. Editorial typography (Playfair Display + Inter) and a warm neutral palette deliver a premium boutique feel, while every layout choice — hero, services, stylist cards, before/after gallery, and a persistent mobile Call/Book bar — funnels toward the booking form. All business details (services, stylists, hours, address, pricing) are centralized in typed data files so it can be rebranded for a real salon in under an hour.",
+    result:
+      "A ship-ready local-business template that reads like a boutique brand, not a template. SEO metadata, HairSalon JSON-LD structured data, WCAG-conscious UX, and Core Web Vitals wins are wired up from day one — ready to hand off to a real salon with only content swaps.",
+    capabilities: [
+      "Editorial single-page design",
+      "Booking form + mobile CTA bar",
+      "Before/after gallery",
+      "HairSalon structured data",
+    ],
+    tech: [
+      "Next.js 14",
+      "React 18",
+      "TypeScript 5",
+      "Tailwind CSS 3",
+      "next/font",
+      "lucide-react",
+    ],
+    improvements: [
+      "Conversion-optimized layout funneling every section toward the booking form",
+      "Token-driven design system (CSS variables → Tailwind → TS constants) keeping brand in sync across UI, theme color, and JSON-LD",
+      "WCAG-conscious UX: skip link, aria-invalid/aria-describedby form wiring, focus return in mobile drawer, reduced-motion support",
+      "Accessible booking form with typed state machine, honeypot anti-spam, and pluggable Web3Forms/Formspree/Resend handler",
+      "SEO fundamentals wired in: Metadata API, canonical/OG/Twitter cards, HairSalon JSON-LD from a single config file",
+    ],
+  },
+  {
     name: "The Futons",
     type: "Music / Band",
     image: "/projects/the-futons.png",
