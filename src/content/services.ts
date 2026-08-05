@@ -102,7 +102,7 @@ export const servicesDetailed: ServiceItem[] = [
     notFor:
       "If you need weekly marketing pages or campaign builds, we'll scope that separately.",
     timeline: "Ongoing, month-to-month",
-    startingPrice: "from $49 / mo",
+    startingPrice: "from $25 / mo",
     process: [
       { label: "Onboard", detail: "Access, baseline checks, comm channel." },
       { label: "Maintain", detail: "Monthly updates and monitoring." },

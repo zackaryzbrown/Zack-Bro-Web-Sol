@@ -403,7 +403,7 @@ export default function HomePage() {
                   maxWidth: "480px",
                 }}
               >
-                Managed Hosting starts at $20/month. Website Care starts at
+                Managed Hosting starts at $25/month. Website Care starts at
                 $49/month for clients who want ongoing support.
               </p>
             </div>

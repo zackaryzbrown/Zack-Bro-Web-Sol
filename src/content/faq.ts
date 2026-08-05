@@ -18,7 +18,7 @@ export const pricingFaqItems: FAQItem[] = [
       "Page count is only one factor. WordPress is usually the faster, lower-cost path, while custom work is priced for tailored design control and messaging structure. Custom landing pages start focused and scale with scope.",
   },
   {
-    question: "What is included in Managed Hosting at $20/mo?",
+    question: "What is included in Managed Hosting at $25/mo?",
     answer:
       "Managed Hosting includes secure hosting, SSL, backups, uptime monitoring, and basic domain or DNS help if needed. It does not include content edits, design changes, larger updates, new pages or features, or ongoing support work.",
   },
@@ -78,7 +78,7 @@ export const fullFaqItems: FAQItem[] = [
   {
     question: "Do you offer ongoing support after launch?",
     answer:
-      "Yes. After launch you can choose Managed Hosting at $20/month for hosting essentials, or Website Care at $49/month for ongoing help and updates.",
+      "Yes. After launch you can choose Managed Hosting at $25/month for hosting essentials, or Website Care at $49/month for ongoing help and updates.",
   },
   {
     question: "Can you work with businesses outside Colorado?",

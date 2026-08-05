@@ -134,7 +134,7 @@ export const homeFaqItems: FAQItem[] = [
   {
     question: "Do you offer ongoing support after launch?",
     answer:
-      "Yes. Managed Hosting starts at $20/month and Website Care starts at $49/month.",
+      "Yes. Managed Hosting starts at $25/month and Website Care starts at $49/month.",
   },
   {
     question: "What makes a professional website better than a DIY site?",

@@ -78,6 +78,6 @@ export const commitments: FeatureItem[] = [
   },
   {
     title: "Support after launch",
-    text: "Need hosting, edits, or ongoing peace of mind? Care plans start at $20/mo so you're never left figuring it out alone.",
+    text: "Need hosting, edits, or ongoing peace of mind? Care plans start at $25/mo so you're never left figuring it out alone.",
   },
 ];

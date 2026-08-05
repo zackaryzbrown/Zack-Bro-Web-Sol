@@ -63,7 +63,7 @@ export const tiers: PricingTier[] = [
 export const carePlans: CarePlan[] = [
   {
     name: "Managed Hosting",
-    price: "$20",
+    price: "$25",
     period: "/mo",
     description:
       "Just the essentials - your site stays online, secure, and backed up. No ongoing design or content work.",
