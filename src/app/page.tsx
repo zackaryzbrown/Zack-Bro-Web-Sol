@@ -11,6 +11,7 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { CardGrid } from "@/components/CardGrid";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { TrackedLink } from "@/components/TrackedLink";
+import { SocialLinks } from "@/components/SocialLinks";
 import { Testimonials } from "@/components/Testimonials";
 import { LocalServiceAreas } from "@/components/LocalServiceAreas";
 import {
@@ -31,15 +32,19 @@ export default function HomePage() {
     <>
       {/* ===== HERO ===== */}
       <section
-        className="section"
+        className="section home-hero"
         style={{
           paddingTop: "clamp(2rem, 4vw, 3.5rem)",
           paddingBottom: "3rem",
         }}
       >
+        <div className="home-hero__depth" aria-hidden="true">
+          <span className="home-hero__panel home-hero__panel--one" />
+          <span className="home-hero__panel home-hero__panel--two" />
+        </div>
         <div className="container">
           <div className="hero-grid">
-            <div style={{ minWidth: 0 }}>
+            <div className="hero-copy">
               <FadeIn>
                 <p className="section-label">
                   Web Design for Local Service Businesses
@@ -47,7 +52,9 @@ export default function HomePage() {
               </FadeIn>
               <FadeIn delay={80}>
                 <h1 className="hero-heading">
-                  Local-business websites that turn visitors into booked work.
+                  <span>Websites that turn</span>
+                  <span>local visitors into</span>
+                  <span>booked work.</span>
                 </h1>
               </FadeIn>
               <FadeIn delay={160}>
@@ -88,6 +95,18 @@ export default function HomePage() {
                     or browse recent work &rarr;
                   </TrackedLink>
                 </p>
+                <div className="hero-social-proof">
+                  <span className="hero-social-proof__label">
+                    Code & network
+                  </span>
+                  <SocialLinks
+                    variant="light"
+                    className="hero-social-proof__links"
+                    ariaLabel="View Zackary Brown on LinkedIn and GitHub"
+                    trackingPrefix="home_hero_social"
+                    platforms={["linkedin", "github"]}
+                  />
+                </div>
               </FadeIn>
             </div>
 

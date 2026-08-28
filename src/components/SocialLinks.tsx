@@ -9,6 +9,7 @@ interface SocialLinksProps {
   className?: string;
   ariaLabel?: string;
   trackingPrefix?: string;
+  platforms?: SocialPlatform[];
 }
 
 /* ── Icon set ──
@@ -88,9 +89,12 @@ export function SocialLinks({
   className,
   ariaLabel = "Find me on social media",
   trackingPrefix = "social",
+  platforms,
 }: SocialLinksProps) {
   const links: SocialLink[] = socialLinks.filter(
-    (link) => link.href.trim().length > 0,
+    (link) =>
+      link.href.trim().length > 0 &&
+      (!platforms || platforms.includes(link.platform)),
   );
 
   if (links.length === 0) {
