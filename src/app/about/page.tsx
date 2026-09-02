@@ -52,7 +52,7 @@ export default function AboutPage() {
                 <div className="about-founder-portrait__frame">
                   <div className="about-founder-portrait__inner">
                     <Image
-                      src="/zackary-brown-profile.jpg"
+                      src="https://res.cloudinary.com/djnazqqgr/image/upload/v1788235199/IMG_9026_t0vzcf.jpg"
                       alt={`${brand.founder}, Founder and Developer`}
                       width={600}
                       height={750}
