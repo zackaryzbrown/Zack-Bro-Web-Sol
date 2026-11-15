@@ -1,0 +1,313 @@
+{
+  "/": {
+    "height": 13250,
+    "missingImages": [],
+    "hidden": []
+  },
+  "/work": {
+    "height": 7794,
+    "missingImages": [],
+    "hidden": []
+  },
+  "/contact": {
+    "height": 4514,
+    "missingImages": [],
+    "hidden": []
+  },
+  "/pricing": {
+    "height": 11207,
+    "missingImages": [],
+    "hidden": []
+  },
+  "/about": {
+    "height": 7537,
+    "missingImages": [],
+    "hidden": []
+  },
+  "/services": {
+    "height": 10743,
+    "missingImages": [],
+    "hidden": []
+  },
+  "modal": {
+    "text": "✕\nzekie-demo.zackarybrown.net\nAUTOMOTIVE DETAILING\nLIVE CLIENT SITE\nMobile Auto Detailing\nTHE CHALLENGE\n\nThe business needed a website that could serve as their primary lead generation tool. It had to showcase services, build trust, and make it simple for vehicle owners to request a quote.\n\nTHE SOLUTION\n\nDesigned a conversion-focused site with clear service tiers, upfront pricing transparency, and prominent quote request forms. Optimized for mobile since the majority of detailing customers search from their phones.\n\nTHE RESULT\n\nA polished, professional site that builds instant trust and gives customers a clear, frictionless path from browsing services to requesting a quote.\n\nKEY IMPROVEMENTS\n✓\nService tier structure clarifying offerings and pricing\n✓\nQuote request forms placed at key decision points\n✓\nMobile-optimized for phone-first customer behavior\n✓\nTrust-building design for a competitive local market\nCAPABILITIES\nCustom design\nQuote forms\nService & pricing pages\nMobile-first\nTOOLS & TECH\nReact\nTypeScript\nVite\nTailwind CSS\nRadix UI\nshadcn/ui\nFramer Motion\nReact Hook Form\nVisit Live Site\n↗\nView full case study →",
+    "focus": {
+      "tag": "BUTTON",
+      "html": "<button class=\"project-grid-card\" type=\"button\" aria-label=\"View details for Mobile Auto Detailing\" style=\"animation-delay:0ms\"><div class=\"project-grid-image\"><span class=\"project-grid-badge\">Auto Detailing</span><img alt=\"Mobile Auto Detailing website screenshot\" loading=\"lazy\" width=\"864\" height=",
+      "insideDialog": false
+    },
+    "escClosed": true
+  },
+  "prefill": "redesign",
+  "forms": {
+    "method": "get",
+    "action": "https://zbweb.solutions/contact?service=redesign",
+    "fields": [
+      {
+        "name": "subject",
+        "type": "hidden",
+        "required": false
+      },
+      {
+        "name": "botcheck",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "business",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "service",
+        "type": "select-one",
+        "required": false
+      },
+      {
+        "name": "website",
+        "type": "url",
+        "required": false
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "required": true
+      },
+      {
+        "name": "",
+        "type": "submit"
+      }
+    ]
+  },
+  "mockPayload": {
+    "subject": "New inquiry from ZB Web Solutions",
+    "botcheck": "",
+    "name": "Audit Visitor",
+    "email": "audit@example.com",
+    "business": "Audit Business",
+    "service": "redesign",
+    "website": "",
+    "message": "Checking the client interface using an intercepted request only."
+  },
+  "mockSuccess": [
+    "✓Thanks - your inquiry is in.I'll review the details and reply within 1 business day. Keep an eye on your inbox (and your spam folder, just in case)."
+  ],
+  "analytics": {
+    "gtag": "function",
+    "events": [
+      [
+        "event",
+        "form_started",
+        {
+          "form": "contact"
+        }
+      ],
+      [
+        "event",
+        "form_submitted",
+        {
+          "form": "contact"
+        }
+      ],
+      [
+        "event",
+        "form_success",
+        {
+          "form": "contact"
+        }
+      ]
+    ]
+  },
+  "menu": {
+    "expanded": "true",
+    "text": [],
+    "afterEscape": "false"
+  },
+  "brokenFragments": [],
+  "http": [
+    {
+      "url": "http://zbweb.solutions",
+      "status": 200,
+      "final": "https://zbweb.solutions/",
+      "type": "text/html; charset=utf-8",
+      "title": "Zackary Brown Web Solutions | Modern Websites for Local Service Businesses"
+    },
+    {
+      "url": "https://www.zbweb.solutions",
+      "status": 200,
+      "final": "https://www.zbweb.solutions/",
+      "type": "text/html; charset=utf-8",
+      "title": "Zackary Brown Web Solutions | Modern Websites for Local Service Businesses"
+    },
+    {
+      "url": "http://www.zbweb.solutions",
+      "status": 200,
+      "final": "https://www.zbweb.solutions/",
+      "type": "text/html; charset=utf-8",
+      "title": "Zackary Brown Web Solutions | Modern Websites for Local Service Businesses"
+    },
+    {
+      "url": "https://zbweb.solutions/robots.txt",
+      "status": 200,
+      "final": "https://zbweb.solutions/robots.txt",
+      "type": "text/plain",
+      "text": "User-Agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://zbweb.solutions/sitemap.xml\n"
+    },
+    {
+      "url": "https://zbweb.solutions/not-a-real-audit-page-2026",
+      "status": 404,
+      "final": "https://zbweb.solutions/not-a-real-audit-page-2026",
+      "type": "text/html; charset=utf-8",
+      "title": "404: This page could not be found."
+    },
+    {
+      "url": "https://zbweb.solutions/services/",
+      "status": 200,
+      "final": "https://zbweb.solutions/services",
+      "type": "text/html; charset=utf-8",
+      "title": "Services | Zackary Brown Web Solutions"
+    },
+    {
+      "url": "https://zbweb.solutions/opengraph-image",
+      "status": 200,
+      "final": "https://zbweb.solutions/opengraph-image",
+      "type": "image/png"
+    },
+    {
+      "url": "https://zbweb.solutions/icon",
+      "status": 200,
+      "final": "https://zbweb.solutions/icon",
+      "type": "image/png"
+    },
+    {
+      "url": "https://calendly.com/zackary-zbweb/30min",
+      "status": 200,
+      "final": "https://calendly.com/zackary-zbweb/30min",
+      "type": "text/html; charset=utf-8",
+      "title": "\nCalendly\n"
+    },
+    {
+      "url": "https://www.linkedin.com/in/zackaryzbrown/",
+      "status": 999,
+      "final": "https://www.linkedin.com/in/zackaryzbrown",
+      "type": "text/html"
+    },
+    {
+      "url": "https://github.com/zackaryzbrown",
+      "status": 200,
+      "final": "https://github.com/zackaryzbrown",
+      "type": "text/html; charset=utf-8",
+      "title": "zackaryzbrown (Zackary Brown) · GitHub"
+    },
+    {
+      "url": "https://zekie-demo.zackarybrown.net/",
+      "status": 200,
+      "final": "https://zekie-demo.zackarybrown.net/",
+      "type": "text/html; charset=UTF-8",
+      "title": "Mobile Auto Detailing"
+    },
+    {
+      "url": "https://mobile-details-demo.zackarybrown.net/",
+      "status": 200,
+      "final": "https://mobile-details-demo.zackarybrown.net/",
+      "type": "text/html; charset=UTF-8",
+      "title": "Mobile Details | Premium Mobile Car Detailing in Denver"
+    },
+    {
+      "url": "https://demo-greenscape.netlify.app/",
+      "status": 200,
+      "final": "https://demo-greenscape.netlify.app/",
+      "type": "text/html; charset=utf-8",
+      "title": "GreenScape Pro | Lawn Care &amp; Landscaping Services"
+    },
+    {
+      "url": "https://www.instagram.com/zbwebsolutions/",
+      "status": 200,
+      "final": "https://www.instagram.com/zbwebsolutions/",
+      "type": "text/html; charset=\"utf-8\"",
+      "title": "Instagram"
+    },
+    {
+      "url": "https://x.com/zbwebsolutions",
+      "status": 403,
+      "final": "https://x.com/zbwebsolutions"
+    },
+    {
+      "url": "https://www.youtube.com/@ZBWebSolutions",
+      "error": "Error: apiRequestContext.get: Parse Error: Header overflow\nCall log:\n\u001b[2m  - → GET https://www.youtube.com/@ZBWebSolutions\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Macintosh; Intel "
+    },
+    {
+      "url": "https://www.tiktok.com/@zbwebsolutions",
+      "status": 200,
+      "final": "https://www.tiktok.com/@zbwebsolutions",
+      "type": "text/html; charset=utf-8",
+      "title": "TikTok - Make Your Day"
+    },
+    {
+      "url": "https://www.mhktraining.com/",
+      "status": 200,
+      "final": "https://www.mhktraining.com/",
+      "type": "text/html",
+      "title": "Mile High Karate"
+    },
+    {
+      "url": "https://zackaryzbrown-yeswj.wordpress.com/",
+      "status": 200,
+      "final": "https://zackaryzbrown-yeswj.wordpress.com/",
+      "type": "text/html; charset=UTF-8",
+      "title": "Trailhead Cycles &#8211; Your local shop for bikes, tune-ups, rentals, and trail-ready gear. Trailhead Cycles helps riders get outside with expert service, quality bikes, and a community built around the ride."
+    },
+    {
+      "url": "https://photographymockup.netlify.app/",
+      "status": 200,
+      "final": "https://photographymockup.netlify.app/",
+      "type": "text/html; charset=utf-8",
+      "title": "Photography Portfolio — Design Demo"
+    },
+    {
+      "url": "https://stupendous-otter-759661.netlify.app/",
+      "status": 200,
+      "final": "https://stupendous-otter-759661.netlify.app/",
+      "type": "text/html; charset=UTF-8",
+      "title": "Floor Hosting - Premium Web Hosting Solutions"
+    },
+    {
+      "url": "https://malikbeats.com/",
+      "status": 200,
+      "final": "https://malikbeats.com/",
+      "type": "text/html",
+      "title": "JustMalikBeats"
+    },
+    {
+      "url": "https://lumierehairstudio.netlify.app/",
+      "status": 200,
+      "final": "https://lumierehairstudio.netlify.app/",
+      "type": "text/html; charset=utf-8",
+      "title": "Lumière Hair Studio · Modern hair, designed around you"
+    },
+    {
+      "url": "https://github.com/zackaryzbrown/HairSolonDemo",
+      "status": 200,
+      "final": "https://github.com/zackaryzbrown/HairSolonDemo",
+      "type": "text/html; charset=utf-8",
+      "title": "GitHub - zackaryzbrown/HairSolonDemo · GitHub"
+    },
+    {
+      "url": "https://thefutons.band/",
+      "status": 200,
+      "final": "https://thefutons.band/",
+      "type": "text/html",
+      "title": "The Futons | Live In The Smoke"
+    }
+  ]
+}

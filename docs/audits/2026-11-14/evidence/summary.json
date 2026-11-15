@@ -1,0 +1,46 @@
+{
+  "audit_date_mountain": "2026-11-14",
+  "site": "https://zbweb.solutions",
+  "target": "Erie, CO and roughly 25 miles nearby",
+  "pages_crawled": 16,
+  "findings": 35,
+  "application_changed": false,
+  "email_sent": false,
+  "appointment_booked": false,
+  "lighthouse": [
+    {
+      "file": "lighthouse-mobile.json",
+      "version": "12.8.2",
+      "timestamp_utc": "2026-11-15T06:23:15.318Z",
+      "scores": {
+        "performance": 45,
+        "accessibility": 90,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": "2.8\u00a0s",
+        "largest-contentful-paint": "5.6\u00a0s",
+        "total-blocking-time": "1,820\u00a0ms",
+        "cumulative-layout-shift": "0"
+      }
+    },
+    {
+      "file": "lighthouse-mobile-isolated.json",
+      "version": "12.8.2",
+      "timestamp_utc": "2026-11-15T06:27:12.386Z",
+      "scores": {
+        "performance": 45,
+        "accessibility": 90,
+        "best-practices": 100,
+        "seo": 100
+      },
+      "metrics": {
+        "first-contentful-paint": "2.8\u00a0s",
+        "largest-contentful-paint": "5.3\u00a0s",
+        "total-blocking-time": "3,220\u00a0ms",
+        "cumulative-layout-shift": "0"
+      }
+    }
+  ]
+}
