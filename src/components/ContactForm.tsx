@@ -13,7 +13,7 @@ import { CONTACT_FORM_SUBJECT, CONTACT_HONEYPOT_FIELD } from "@/lib/contact";
 const SUBMISSION_COOLDOWN_MS = 60_000;
 const MIN_FILL_TIME_MS = 3_000;
 const LAST_SUBMISSION_KEY = "zbws-contact-last-submission-at";
-const CONTACT_EMAIL = "zackary@zbweb.solutions";
+const CONTACT_EMAIL = "zackaryzbrown@gmail.com";
 const DEFAULT_ERROR_MESSAGE =
   "Something went wrong. Please try again or email me directly.";
 

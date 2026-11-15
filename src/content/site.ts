@@ -7,7 +7,7 @@ export const brand = {
   shortName: "Zackary Brown",
   tagline: "Web Solutions",
   founder: "Zackary Brown",
-  email: "zackary@zbweb.solutions",
+  email: "zackaryzbrown@gmail.com",
   location: "Colorado",
   url: "https://zbweb.solutions",
   bookingUrl: "https://calendly.com/zackary-zbweb/30min",

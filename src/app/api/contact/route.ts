@@ -7,7 +7,7 @@ import {
 import { limitContactByIdentifier } from "@/lib/rate-limit";
 
 function getResendToEmail(): string {
-  return process.env["RESEND_TO_EMAIL"]?.trim() ?? "zackary@zbweb.solutions";
+  return process.env["RESEND_TO_EMAIL"]?.trim() || "zackaryzbrown@gmail.com";
 }
 
 function getResendFromEmail(): string {
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
       {
         success: false,
         error:
-          "The contact form is not configured yet. Please email directly at zackary@zbweb.solutions.",
+          "The contact form is not configured yet. Please email directly at zackaryzbrown@gmail.com.",
       },
       { status: 500 },
     );
@@ -142,7 +142,7 @@ export async function POST(req: NextRequest) {
         {
           success: false,
           error:
-            "Something went wrong. Please try again or email directly at zackary@zbweb.solutions.",
+            "Something went wrong. Please try again or email directly at zackaryzbrown@gmail.com.",
         },
         { status: 502 },
       );
@@ -158,7 +158,7 @@ export async function POST(req: NextRequest) {
       {
         success: false,
         error:
-          "Something went wrong. Please try again or email directly at zackary@zbweb.solutions.",
+          "Something went wrong. Please try again or email directly at zackaryzbrown@gmail.com.",
       },
       { status: 500 },
     );
