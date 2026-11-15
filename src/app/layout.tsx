@@ -21,10 +21,15 @@ const instrumentSerif = Lora({
   style: ["normal", "italic"],
 });
 
-export const metadata: Metadata = createMetadata({
-  title: "Colorado Web Designer for Local Service Businesses",
-  description: `Founder-led web design for local service businesses in Denver, Boulder, Colorado Springs, and across Colorado. Clear pricing from ${starterPrice}, conversion-focused builds, and ongoing care after launch.`,
-});
+export const metadata: Metadata = {
+  ...createMetadata({
+    title: "Colorado Web Designer for Local Service Businesses",
+    description: `Founder-led web design for local service businesses in Denver, Boulder, Colorado Springs, and across Colorado. Clear pricing from ${starterPrice}, conversion-focused builds, and ongoing care after launch.`,
+  }),
+  verification: {
+    google: "Zb_41rCg82i_lR6TI2RjkhfCigT2sqK2jhvwGRyYVKY",
+  },
+};
 
 export default function RootLayout({
   children,
