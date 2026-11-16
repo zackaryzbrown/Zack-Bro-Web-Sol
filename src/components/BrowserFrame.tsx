@@ -36,9 +36,9 @@ export function BrowserFrame({
   imageHeight = 800,
   className = "",
 }: BrowserFrameProps) {
-  const imgProps: Pick<ImageProps, "loading" | "priority"> = priority
-    ? { priority: true }
-    : { loading: "lazy" };
+  const imgProps: Pick<ImageProps, "loading" | "fetchPriority"> = priority
+    ? { loading: "eager", fetchPriority: "high" }
+    : { loading: "lazy", fetchPriority: "low" };
 
   return (
     <div className={`hero-showcase__frame ${className}`.trim()}>

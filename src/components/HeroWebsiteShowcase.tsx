@@ -12,31 +12,31 @@ interface ShowcaseItem {
 }
 
 /**
- * Curated real-project previews used only in the hero showcase.
+ * Selected project previews used only in the hero showcase.
  * Data mirrors `src/content/work.ts` - update in tandem when project
  * names, URLs, or screenshots change.
  */
 const items: ShowcaseItem[] = [
   {
-    name: "GreenScape Pro",
-    url: "demo-greenscape.netlify.app",
-    image: "/projects/greenscape.png",
-    alt: "GreenScape Pro lawn care website preview",
-    label: "Lawn Care & Landscaping",
+    name: "A Child's Perspective",
+    url: "a-childs-perspective.com",
+    image: "/projects/a-childs-perspective.png",
+    alt: "A Child's Perspective child life practice website preview",
+    label: "Child life practice",
   },
   {
     name: "MHK Training",
     url: "www.mhktraining.com",
     image: "/projects/mhk-training.png",
     alt: "MHK Training fitness website preview",
-    label: "Martial Arts & Fitness",
+    label: "Martial arts member platform",
   },
   {
-    name: "Mobile Detailing",
-    url: "mobile-details-demo.zackarybrown.net",
-    image: "/projects/MobileDetailing.png",
-    alt: "Mobile Detailing service website preview",
-    label: "Automotive Detailing",
+    name: "JustMalikBeats",
+    url: "malikbeats.com",
+    image: "/projects/justmalikbeats.png",
+    alt: "JustMalikBeats music licensing website preview",
+    label: "Music production & licensing",
   },
   {
     name: "The Futons",
@@ -48,7 +48,6 @@ const items: ShowcaseItem[] = [
 ];
 
 const AUTO_ADVANCE_MS = 5500;
-const MANUAL_PAUSE_MS = 12000;
 const MAX_TILT_DEG = 12;
 const TILT_RESET_DELAY_MS = 250;
 
@@ -83,13 +82,12 @@ export function HeroWebsiteShowcase({
   secondaryBadge,
 }: HeroWebsiteShowcaseProps = {}) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(true);
   const total = items.length;
 
   const rootRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
   const autoTimerRef = useRef<number | null>(null);
-  const pauseTimerRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
   const reducedMotionRef = useRef(false);
   const finePointerRef = useRef(false);
@@ -140,9 +138,6 @@ export function HeroWebsiteShowcase({
       mql.removeEventListener("change", onMotionChange);
       pointerMql.removeEventListener("change", onPointerChange);
       clearAutoTimer();
-      if (pauseTimerRef.current !== null) {
-        window.clearTimeout(pauseTimerRef.current);
-      }
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current);
       }
@@ -154,12 +149,6 @@ export function HeroWebsiteShowcase({
       setActiveIndex(nextIndex);
       setIsPaused(true);
       clearAutoTimer();
-      if (pauseTimerRef.current !== null) {
-        window.clearTimeout(pauseTimerRef.current);
-      }
-      pauseTimerRef.current = window.setTimeout(() => {
-        setIsPaused(false);
-      }, MANUAL_PAUSE_MS);
     },
     [clearAutoTimer],
   );
@@ -202,6 +191,7 @@ export function HeroWebsiteShowcase({
     <div
       ref={rootRef}
       className="hero-showcase"
+      data-paused={isPaused ? "true" : undefined}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
@@ -318,6 +308,15 @@ export function HeroWebsiteShowcase({
           );
         })}
       </div>
+
+      <button
+        type="button"
+        className="hero-showcase__playback"
+        onClick={() => setIsPaused((paused) => !paused)}
+        aria-pressed={!isPaused}
+      >
+        {isPaused ? "Play previews" : "Pause previews"}
+      </button>
     </div>
   );
 }

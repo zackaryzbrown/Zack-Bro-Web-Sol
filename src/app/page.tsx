@@ -11,7 +11,6 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { CardGrid } from "@/components/CardGrid";
 import { FeatureGrid } from "@/components/FeatureGrid";
 import { TrackedLink } from "@/components/TrackedLink";
-import { SocialLinks } from "@/components/SocialLinks";
 import { Testimonials } from "@/components/Testimonials";
 import { LocalServiceAreas } from "@/components/LocalServiceAreas";
 import {
@@ -22,7 +21,7 @@ import {
   homeFaqItems,
   aiNote,
 } from "@/content/home";
-import { featuredProjects } from "@/content/work";
+import { featuredProjects, projectSlug } from "@/content/work";
 import { hasPublishedTestimonials } from "@/content/testimonials";
 import { brand } from "@/content/site";
 import { heroBadgeLabel } from "@/content/pricing";
@@ -45,79 +44,56 @@ export default function HomePage() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-copy">
-              <FadeIn>
-                <p className="section-label">
-                  Web Design for Local Service Businesses
-                </p>
-              </FadeIn>
-              <FadeIn delay={80}>
-                <h1 className="hero-heading">
-                  <span>Websites that turn</span>
-                  <span>local visitors into</span>
-                  <span>booked work.</span>
-                </h1>
-              </FadeIn>
-              <FadeIn delay={160}>
-                <p className="hero-subtext">
-                  Founder-led web design for Colorado service businesses.
-                  Clearer messaging, mobile-first builds, and a frictionless
-                  path from first visit to inquiry.
-                </p>
-                <p className="hero-founder-line">
-                  You work directly with me from scope to launch.
-                </p>
-              </FadeIn>
-              <FadeIn delay={240}>
-                <div className="hero-ctas">
-                  <TrackedLink
-                    href="/contact"
-                    className="btn-primary"
-                    label="home_hero_request_quote"
-                  >
-                    Request a Quote
-                  </TrackedLink>
-                  <TrackedLink
-                    href={brand.bookingUrl}
-                    className="btn-secondary"
-                    label="home_hero_book_call"
-                  >
-                    Book a Free Call
-                  </TrackedLink>
-                </div>
-                <p className="hero-promise">
-                  <span className="hero-promise__dot" aria-hidden="true" />
-                  {brand.responsePromise} ·{" "}
-                  <TrackedLink
-                    href="/work"
-                    className="hero-promise__link"
-                    label="home_hero_view_work"
-                  >
-                    or browse recent work &rarr;
-                  </TrackedLink>
-                </p>
-                <div className="hero-social-proof">
-                  <span className="hero-social-proof__label">
-                    Code & network
-                  </span>
-                  <SocialLinks
-                    variant="light"
-                    className="hero-social-proof__links"
-                    ariaLabel="View Zackary Brown on LinkedIn and GitHub"
-                    trackingPrefix="home_hero_social"
-                    platforms={["linkedin", "github"]}
-                  />
-                </div>
-              </FadeIn>
+              <p className="section-label">Web design in Erie, Colorado</p>
+              <h1 className="hero-heading">
+                <span>Websites built for</span>
+                <span>Erie businesses.</span>
+              </h1>
+              <p className="hero-subtext">
+                Make your services clear and your next customer&apos;s first
+                step easy. Custom websites and redesigns for businesses in Erie
+                and nearby Front Range communities.
+              </p>
+              <p className="hero-founder-line">
+                You work directly with me from scope to launch.
+              </p>
+              <div className="hero-ctas">
+                <TrackedLink
+                  href="/contact"
+                  className="btn-primary"
+                  label="home_hero_request_quote"
+                >
+                  Request a Quote
+                </TrackedLink>
+                <TrackedLink
+                  href={brand.bookingUrl}
+                  className="btn-secondary"
+                  label="home_hero_book_call"
+                >
+                  Book a Free Call
+                </TrackedLink>
+              </div>
+              <p className="hero-promise">
+                <span className="hero-promise__dot" aria-hidden="true" />
+                {brand.responsePromise} ·{" "}
+                <TrackedLink
+                  href="/work"
+                  className="hero-promise__link"
+                  label="home_hero_view_work"
+                >
+                  or browse recent work &rarr;
+                </TrackedLink>
+              </p>
             </div>
 
-            <FadeIn delay={300} direction="right">
+            <div>
               <div className="hero-mockup-wrapper">
                 <HeroWebsiteShowcase
                   primaryBadge={heroBadgeLabel}
                   secondaryBadge="Ongoing care available"
                 />
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -127,8 +103,68 @@ export default function HomePage() {
         <TrustStrip />
       </FadeIn>
 
-      {/* ===== BUILT WITH (tech credibility strip) ===== */}
-      <BuiltWithStrip />
+      {/* ===== FEATURED WORK ===== */}
+      <SectionShell>
+        <SectionIntro
+          label="Recent Work"
+          heading="A closer look at the work."
+          subtext="Explore the design, functionality, and thinking behind selected websites. Portfolio concepts are labeled."
+        />
+        <CardGrid minWidth="300px">
+          {featuredProjects.map((project, i) => (
+            <FadeIn key={project.name} delay={i * 100}>
+              <div className="card" style={{ height: "100%" }}>
+                <div
+                  style={{
+                    borderRadius: "var(--radius)",
+                    marginBottom: "1.5rem",
+                    overflow: "hidden",
+                  }}
+                >
+                  <BrowserMockup url={project.url}>
+                    <Image
+                      src={project.image}
+                      alt={`${project.name} website screenshot`}
+                      width={864}
+                      height={486}
+                      sizes="(max-width: 700px) 94vw, (max-width: 1100px) 46vw, 380px"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                      }}
+                    />
+                  </BrowserMockup>
+                </div>
+                <h3 style={{ fontSize: "1.125rem", marginBottom: "0.5rem" }}>
+                  {project.name}
+                </h3>
+                <p style={{ fontSize: "0.9375rem", lineHeight: 1.6 }}>
+                  {project.cardSummary ?? project.result}
+                </p>
+                <TrackedLink
+                  href={`/work/${projectSlug(project.name)}`}
+                  label={`home_case_study_${projectSlug(project.name)}`}
+                  className="project-case-link"
+                >
+                  View project details <span aria-hidden>→</span>
+                </TrackedLink>
+              </div>
+            </FadeIn>
+          ))}
+        </CardGrid>
+        <FadeIn>
+          <div style={{ marginTop: "2.5rem" }}>
+            <TrackedLink
+              href="/work"
+              className="btn-secondary"
+              label="home_work_view_all"
+            >
+              View All Work
+            </TrackedLink>
+          </div>
+        </FadeIn>
+      </SectionShell>
 
       {/* ===== VALUE LOOP (4 quick pillars for skimmers) ===== */}
       <section className="value-loop-section">
@@ -148,7 +184,7 @@ export default function HomePage() {
               {
                 num: "03",
                 title: "Local SEO Ready",
-                text: "Structured for visibility in Colorado local search.",
+                text: "Clear services, location details, and search-friendly page structure.",
               },
               {
                 num: "04",
@@ -201,6 +237,15 @@ export default function HomePage() {
                 <p style={{ fontSize: "0.9375rem", lineHeight: 1.6 }}>
                   {service.description}
                 </p>
+                {service.href && (
+                  <TrackedLink
+                    href={service.href}
+                    label={`home_service_${service.title}`}
+                    className="project-case-link"
+                  >
+                    Explore this service <span aria-hidden>→</span>
+                  </TrackedLink>
+                )}
               </div>
             </FadeIn>
           ))}
@@ -229,70 +274,25 @@ export default function HomePage() {
         </FadeIn>
       </SectionShell>
 
-      {/* ===== FEATURED WORK ===== */}
-      <SectionShell>
-        <SectionIntro
-          label="Recent Work"
-          heading="Real projects for real businesses."
-          subtext="Most projects are for local service businesses where clarity and trust directly affect inquiries."
-        />
-        <CardGrid minWidth="300px">
-          {featuredProjects.map((project, i) => (
-            <FadeIn key={project.name} delay={i * 100}>
-              <div className="card" style={{ height: "100%" }}>
-                <div
-                  style={{
-                    borderRadius: "var(--radius)",
-                    marginBottom: "1.5rem",
-                    overflow: "hidden",
-                  }}
-                >
-                  <BrowserMockup url={project.url}>
-                    <Image
-                      src={project.image}
-                      alt={`${project.name} website screenshot`}
-                      width={864}
-                      height={486}
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        display: "block",
-                      }}
-                    />
-                  </BrowserMockup>
-                </div>
-                <h3 style={{ fontSize: "1.125rem", marginBottom: "0.5rem" }}>
-                  {project.name}
-                </h3>
-                <p style={{ fontSize: "0.9375rem", lineHeight: 1.6 }}>
-                  {project.result}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </CardGrid>
-        <FadeIn>
-          <div style={{ marginTop: "2.5rem" }}>
-            <TrackedLink
-              href="/work"
-              className="btn-secondary"
-              label="home_work_view_all"
-            >
-              View All Work
-            </TrackedLink>
-          </div>
-        </FadeIn>
-      </SectionShell>
-
       {/* ===== TESTIMONIALS (auto-hides until quotes are filled in) ===== */}
       {hasPublishedTestimonials && (
         <SectionShell variant="alt">
           <SectionIntro
-            label="What Clients Say"
+            label="Client & colleague feedback"
             heading="Honest words from real projects."
-            subtext="A short list of clients I've worked with directly. Quotes used with permission."
+            subtext="Feedback from a website client and a college project collaborator."
           />
           <Testimonials />
+          <p className="testimonial-review-link">
+            Worked with me?{" "}
+            <a
+              href={brand.googleReviewUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Share your experience on Google ↗
+            </a>
+          </p>
         </SectionShell>
       )}
 
@@ -354,6 +354,8 @@ export default function HomePage() {
         </CardGrid>
       </SectionShell>
 
+      <BuiltWithStrip />
+
       {/* ===== PRICING PREVIEW ===== */}
       <SectionShell variant="alt">
         <SectionIntro
@@ -369,7 +371,7 @@ export default function HomePage() {
                   className={`card home-pricing-card ${tier.featured ? "home-pricing-card-featured" : ""}`}
                 >
                   {tier.featured && (
-                    <span className="home-pricing-badge">Most Common</span>
+                    <span className="home-pricing-badge">Recommended</span>
                   )}
                   <h3 className="home-pricing-title">{tier.name}</h3>
                   <p className="home-pricing-note">{tier.note}</p>
