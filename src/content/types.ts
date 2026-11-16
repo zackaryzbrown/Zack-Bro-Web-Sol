@@ -7,6 +7,7 @@ export interface NavItem {
 
 export interface ServiceItem {
   title: string;
+  href?: string;
   description: string;
   icon: string;
   outcome?: string;
@@ -66,9 +67,12 @@ export interface Project {
   cardSummary?: string;
   outcomeMetric?: string;
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
   url: string;
   repo?: string;
   isSpec?: boolean;
+  isClient?: boolean;
   challenge: string;
   solution: string;
   result: string;
@@ -119,12 +123,7 @@ export interface Testimonial {
 }
 
 export type SocialPlatform =
-  | "linkedin"
-  | "instagram"
-  | "x"
-  | "youtube"
-  | "tiktok"
-  | "github";
+  "linkedin" | "instagram" | "x" | "youtube" | "tiktok" | "github";
 
 export interface SocialLink {
   platform: SocialPlatform;

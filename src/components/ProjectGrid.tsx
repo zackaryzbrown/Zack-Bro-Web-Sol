@@ -1,12 +1,19 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useRef,
+  useId,
+} from "react";
 import Image from "next/image";
 import { BrowserMockup } from "./BrowserMockup";
 import Link from "next/link";
 import { TrackedLink } from "./TrackedLink";
 import type { Project } from "@/content/types";
-import { projectSlug } from "@/content/work";
+import { projectSlug, projectStatusLabel } from "@/lib/projects";
 
 interface ProjectGridProps {
   projects: Project[];
@@ -23,6 +30,8 @@ export function ProjectGrid({
 }: ProjectGridProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [filter, setFilter] = useState<string>(ALL);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const filterId = useId();
 
   const filtered = useMemo(() => {
     if (filter === ALL) return projects;
@@ -33,14 +42,16 @@ export function ProjectGrid({
 
   useEffect(() => {
     if (activeIndex === null) return;
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-    };
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKey);
     return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKey);
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      if (previousFocus instanceof HTMLElement) previousFocus.focus();
     };
   }, [activeIndex, close]);
 
@@ -88,15 +99,37 @@ export function ProjectGrid({
     <>
       {/* Industry filter */}
       {showFilter && industries.length > 0 && (
+        <div className="work-filter-mobile">
+          <label htmlFor={filterId} className="form-label">
+            Filter by industry
+          </label>
+          <select
+            id={filterId}
+            className="form-input"
+            value={filter}
+            onChange={(event) => {
+              setFilter(event.target.value);
+              close();
+            }}
+          >
+            <option value={ALL}>All work ({projects.length})</option>
+            {industries.map((industry) => (
+              <option key={industry} value={industry}>
+                {industry}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+      {showFilter && industries.length > 0 && (
         <div
           className="work-filter"
-          role="tablist"
+          role="group"
           aria-label="Filter by industry"
         >
           <button
             type="button"
-            role="tab"
-            aria-selected={filter === ALL}
+            aria-pressed={filter === ALL}
             className={`work-filter__chip${filter === ALL ? " is-active" : ""}`}
             onClick={() => {
               setFilter(ALL);
@@ -113,8 +146,7 @@ export function ProjectGrid({
               <button
                 key={ind}
                 type="button"
-                role="tab"
-                aria-selected={isActive}
+                aria-pressed={isActive}
                 className={`work-filter__chip${isActive ? " is-active" : ""}`}
                 onClick={() => {
                   setFilter(ind);
@@ -132,62 +164,85 @@ export function ProjectGrid({
       {/* Thumbnail Grid */}
       <div className="project-grid">
         {filtered.map((project, i) => (
-          <button
+          <article
             key={project.name}
             className="project-grid-card"
-            onClick={() => setActiveIndex(i)}
-            type="button"
-            aria-label={`View details for ${project.name}`}
             style={{ animationDelay: `${i * 60}ms` }}
           >
-            <div className="project-grid-image">
-              <span className="project-grid-badge">
-                {getBadgeLabel(project)}
-              </span>
-              {project.isSpec && (
-                <span
-                  className="project-grid-spec-badge"
-                  title="A concept project built to demonstrate capability. Not a paid client engagement."
-                >
-                  Portfolio concept
+            <Link
+              href={`/work/${projectSlug(project.name)}`}
+              className="project-grid-main"
+            >
+              <div className="project-grid-image">
+                <span className="project-grid-badge">
+                  {getBadgeLabel(project)}
                 </span>
-              )}
-              <Image
-                src={project.image}
-                alt={`${project.name} website screenshot`}
-                width={864}
-                height={486}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                }}
-              />
-            </div>
-            <div className="project-grid-info">
-              <h3 className="project-grid-name">{project.name}</h3>
-              <p className="project-grid-summary">{getCardSummary(project)}</p>
-              <div className="project-grid-caps">
-                {getCardTags(project).map((cap) => (
-                  <span key={cap} className="project-grid-cap">
-                    {cap}
+                {project.isSpec && (
+                  <span
+                    className="project-grid-spec-badge"
+                    title="A concept project built to demonstrate capability. Not a paid client engagement."
+                  >
+                    Portfolio concept
                   </span>
-                ))}
+                )}
+                <Image
+                  src={project.image}
+                  alt={`${project.name} website screenshot`}
+                  width={864}
+                  height={486}
+                  sizes="(max-width: 700px) 94vw, (max-width: 1100px) 46vw, 380px"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
               </div>
-            </div>
-          </button>
+              <div className="project-grid-info">
+                <h3 className="project-grid-name">{project.name}</h3>
+                <p className="project-grid-status">
+                  {projectStatusLabel(project)}
+                </p>
+                <p className="project-grid-summary">
+                  {getCardSummary(project)}
+                </p>
+                <div className="project-grid-caps">
+                  {getCardTags(project).map((cap) => (
+                    <span key={cap} className="project-grid-cap">
+                      {cap}
+                    </span>
+                  ))}
+                </div>
+                <span className="project-case-link">
+                  View project <span aria-hidden>→</span>
+                </span>
+              </div>
+            </Link>
+            <button
+              type="button"
+              className="project-preview-button"
+              onClick={() => setActiveIndex(i)}
+              aria-label={`Quick preview of ${project.name}`}
+            >
+              Quick preview
+            </button>
+          </article>
         ))}
       </div>
 
       {/* Detail Modal */}
       {active && (
-        <div
+        <dialog
+          ref={dialogRef}
           className="project-modal-backdrop"
           onClick={(e) => {
             if (e.target === e.currentTarget) close();
           }}
-          role="dialog"
-          aria-modal="true"
+          onCancel={(event) => {
+            event.preventDefault();
+            close();
+          }}
+          onClose={close}
           aria-label={`${active.name} project details`}
         >
           <div className="project-modal">
@@ -205,8 +260,9 @@ export function ProjectGrid({
                 <Image
                   src={active.image}
                   alt={`${active.name} website screenshot`}
-                  width={1728}
-                  height={972}
+                  width={active.imageWidth ?? 1728}
+                  height={active.imageHeight ?? 972}
+                  sizes="(max-width: 850px) 94vw, 850px"
                   style={{
                     width: "100%",
                     height: "auto",
@@ -225,7 +281,7 @@ export function ProjectGrid({
                   </span>
                 ) : (
                   <span className="project-modal-status project-modal-status--live">
-                    Live client site
+                    {projectStatusLabel(active)}
                   </span>
                 )}
               </div>
@@ -252,7 +308,7 @@ export function ProjectGrid({
               </div>
 
               <div style={{ marginBottom: "1.25rem" }}>
-                <h4 className="project-modal-label">The Result</h4>
+                <h4 className="project-modal-label">What was delivered</h4>
                 <p className="project-modal-text">{active.result}</p>
               </div>
 
@@ -354,7 +410,7 @@ export function ProjectGrid({
               </div>
             </div>
           </div>
-        </div>
+        </dialog>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import { FadeIn } from "./FadeIn";
+import type { ReactNode } from "react";
 
 export interface PageHeroMetaItem {
   label: string;
@@ -15,6 +15,8 @@ interface PageHeroProps {
   total?: number;
   /** Editorial meta list rendered in the right column. */
   meta?: readonly PageHeroMetaItem[];
+  compact?: boolean;
+  children?: ReactNode;
 }
 
 function pad2(n: number): string {
@@ -28,26 +30,31 @@ export function PageHero({
   index,
   total,
   meta,
+  compact = false,
+  children,
 }: PageHeroProps) {
   const hasMeta = Boolean(meta && meta.length > 0);
   const showCounter =
     typeof index === "number" && typeof total === "number" && total > 0;
 
   return (
-    <section className="section page-hero">
+    <section
+      className={`section page-hero${compact ? " page-hero--compact" : ""}`}
+    >
       <div className="container">
         <div
           className="page-hero-grid"
           data-has-meta={hasMeta ? "true" : undefined}
         >
-          <FadeIn>
+          <div>
             <p className="section-label">{label}</p>
             <h1 className="page-hero-title">{title}</h1>
             {subtitle && <p className="section-subtext">{subtitle}</p>}
-          </FadeIn>
+            {children && <div className="page-hero__actions">{children}</div>}
+          </div>
 
           {(hasMeta || showCounter) && (
-            <FadeIn delay={120} direction="right">
+            <div className="page-hero__overview">
               <aside className="page-hero__meta" aria-label="Page overview">
                 {showCounter && (
                   <>
@@ -72,7 +79,7 @@ export function PageHero({
                   </dl>
                 )}
               </aside>
-            </FadeIn>
+            </div>
           )}
         </div>
       </div>

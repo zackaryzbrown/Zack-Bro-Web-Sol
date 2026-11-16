@@ -8,7 +8,12 @@ import { FadeIn } from "@/components/FadeIn";
 import { PageCta } from "@/components/PageCta";
 import { TrackedLink } from "@/components/TrackedLink";
 
-import { projects, projectSlug, getProjectBySlug } from "@/content/work";
+import {
+  projects,
+  projectSlug,
+  getProjectBySlug,
+  projectStatusLabel,
+} from "@/content/work";
 import { createMetadata } from "@/lib/metadata";
 import { brand } from "@/content/site";
 
@@ -30,7 +35,8 @@ export async function generateMetadata({
       path: `/work/${slug}`,
     });
 
-  const descBase = project.outcomeMetric ?? project.result;
+  const descBase =
+    project.outcomeMetric ?? project.cardSummary ?? project.result;
   return createMetadata({
     title: `${project.name} - ${project.type}`,
     description: `${project.name}: ${descBase}`,
@@ -71,7 +77,7 @@ export default async function ProjectCaseStudyPage({
             about: project.type,
             creator: { "@type": "Organization", name: brand.name },
             url: `${brand.url}/work/${slug}`,
-            image: project.image,
+            image: new URL(project.image, brand.url).toString(),
           }),
         }}
       />
@@ -106,7 +112,7 @@ export default async function ProjectCaseStudyPage({
                 </span>
               ) : (
                 <span className="project-modal-status project-modal-status--live">
-                  Live client site
+                  {projectStatusLabel(project)}
                 </span>
               )}
             </div>
@@ -131,10 +137,11 @@ export default async function ProjectCaseStudyPage({
               <Image
                 src={project.image}
                 alt={`${project.name} website screenshot`}
-                width={1728}
-                height={972}
+                width={project.imageWidth ?? 1728}
+                height={project.imageHeight ?? 972}
                 style={{ width: "100%", height: "auto", display: "block" }}
-                priority
+                preload
+                sizes="(max-width: 1000px) 94vw, 1000px"
               />
             </BrowserMockup>
           </FadeIn>
@@ -158,7 +165,7 @@ export default async function ProjectCaseStudyPage({
               </p>
             </div>
             <div>
-              <h2 className="project-modal-label">The Result</h2>
+              <h2 className="project-modal-label">What was delivered</h2>
               <p className="project-modal-text" style={{ fontSize: "1.05rem" }}>
                 {project.result}
               </p>
@@ -339,8 +346,8 @@ export default async function ProjectCaseStudyPage({
       </section>
 
       <PageCta
-        title="Want results like this for your business?"
-        description="Tell me about your project. I'll send back a clear plan, a fixed price, and a realistic timeline within one business day."
+        title="Have a similar project in mind?"
+        description="Tell me about your project. I'll reply within one business day with next steps toward a clear scope, price, and timeline."
         linkLabel="Start your project"
         secondaryHref="/work"
         secondaryLabel="See all work"

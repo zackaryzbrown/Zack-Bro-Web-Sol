@@ -1,41 +1,105 @@
 import type { Project } from "./types";
+import { projectSlug } from "@/lib/projects";
+export { projectSlug, projectStatusLabel } from "@/lib/projects";
 
 const projectCatalog: Project[] = [
   {
+    name: "A Child's Perspective",
+    type: "Child Life Practice",
+    isClient: true,
+    image: "/projects/a-childs-perspective.png",
+    imageWidth: 1440,
+    imageHeight: 1000,
+    url: "a-childs-perspective.com",
+    challenge:
+      "Explain a child life practice's services clearly and help families find support information, learn about the practitioners, and take the next step toward an appointment.",
+    solution:
+      "Built a responsive practice website with service information for children, teens, siblings, and caregivers, practitioner profiles, and clear appointment links. The design uses calm colors and readable page structure to support a sensitive subject.",
+    result:
+      "A practice website bringing service information, practitioner introductions, and appointment paths into one clear experience for families.",
+    cardSummary:
+      "A child life practice website with clear service information and appointment paths for Colorado families.",
+    capabilities: [
+      "Service pages",
+      "Practitioner profiles",
+      "Appointment links",
+      "Responsive layout",
+    ],
+    improvements: [
+      "Services organized around the people the practice supports",
+      "Clear introductions to the practitioners",
+      "Consistent paths to appointment and contact information",
+      "Responsive layouts for families browsing on a phone",
+    ],
+  },
+  {
+    name: "CutePetShowdown",
+    type: "Community Fundraising",
+    isClient: true,
+    image: "/projects/cute-pet-showdown.png",
+    imageWidth: 1440,
+    imageHeight: 1000,
+    url: "cutepetshowdown.com",
+    challenge:
+      "Present a community pet-photo fundraiser, explain entry and donation-based voting, and make the supporting rescue cause easy to understand.",
+    solution:
+      "Built the Pets for Pups fundraiser website with entry information, donation checkout links, voting guidance, a public leaderboard, and cause and rules pages. The interface separates entering a pet from supporting an existing entry.",
+    result:
+      "A community fundraiser website bringing pet entries, voting information, donation links, and public standings together in one place.",
+    cardSummary:
+      "The Pets for Pups pet-photo fundraiser, with entries, donation links, voting guidance, and a public leaderboard.",
+    capabilities: [
+      "Entry flow",
+      "Public leaderboard",
+      "Donation links",
+      "Rules & FAQ",
+    ],
+    improvements: [
+      "Separate instructions for pet entries and vote donations",
+      "Public standings with clear navigation",
+      "Cause information explaining the rescue fundraiser",
+      "Rules and FAQs supporting participant questions",
+    ],
+  },
+  {
     name: "Trailhead Cycles",
+    isSpec: true,
     type: "Bike Shop",
     image: "/projects/trailhead-cycles.png",
     url: "zackaryzbrown-yeswj.wordpress.com",
     challenge:
-      "A neighborhood bike shop needed a website that reflected their premium, community-focused brand while making it easy for customers to explore bikes, book service appointments, and reserve rentals.",
+      "Explore a neighborhood bike shop website that makes service information, bike options, and rental details easy to find. This is a portfolio concept rather than a client engagement.",
     solution:
       "Built a clean WordPress site with dedicated pages for bikes, service and repairs, rentals, and contact. Hero imagery and clear navigation guide visitors to the right service, while a contact form simplifies appointment scheduling.",
     result:
-      "A polished, inviting online presence that positions Trailhead Cycles as the go-to local bike shop, with clear paths from browsing to booking a service or rental.",
+      "A bike shop website concept with service information, rental options, and a contact form.",
     capabilities: ["WordPress", "Service pages", "Rental info", "Contact form"],
     tech: ["WordPress", "PHP", "CSS"],
     improvements: [
       "Service pages breaking down tune-ups, repairs, and custom builds",
       "Rental section with clear gear options for visitors",
-      "Customer reviews building trust with real testimonials",
+      "Example review section demonstrating where client feedback could appear",
       "Mobile-friendly layout for riders on the go",
     ],
   },
   {
     name: "MHK Training",
+    isClient: true,
     type: "Martial Arts / Fitness",
     image: "/projects/mhk-training.png",
     url: "www.mhktraining.com",
     challenge:
-      "MHK Training had strong programs but their online presence didn't reflect it. Potential clients couldn't easily understand what was offered or take the next step toward booking.",
+      "MHK Training needed a shared workspace for martial arts students and families to find class schedules, curriculum, and training pathways in one place.",
     solution:
-      "Built a clean, structured website with clear service breakdowns, trainer credentials, and integrated booking. Every page guides visitors from understanding the training approach to scheduling a session.",
+      "Built a responsive member platform with a public schedule preview, sign-in entry points, and structured curriculum pathways. The interface brings class planning and training resources into a consistent experience.",
     result:
-      "A credible, conversion-ready web presence that positions MHK Training as a serious fitness business, with a streamlined path from first visit to booked session.",
+      "A martial arts member platform that brings class schedules, curriculum, and training resources into one workspace.",
+    cardSummary:
+      "A member platform for class schedules, curriculum, and martial arts training resources.",
     capabilities: [
       "Custom design",
-      "Service pages",
-      "Booking integration",
+      "Member workspace",
+      "Class schedules",
       "Mobile-responsive",
     ],
     tech: [
@@ -48,23 +112,24 @@ const projectCatalog: Project[] = [
       "Node.js",
     ],
     improvements: [
-      "Clear service hierarchy for multiple program types",
-      "Integrated booking flow reducing friction to sign-up",
-      "Mobile-first design for on-the-go browsing",
-      "Professional credibility through structured content",
+      "Public schedule preview with clear sign-in paths",
+      "Organized curriculum and training pathways",
+      "Responsive access for students and families",
+      "Consistent navigation across academy resources",
     ],
   },
   {
     name: "Mobile Auto Detailing",
+    isSpec: true,
     type: "Automotive Detailing",
     image: "/projects/Auto-detailing.png",
     url: "zekie-demo.zackarybrown.net",
     challenge:
-      "The business needed a website that could serve as their primary lead generation tool. It had to showcase services, build trust, and make it simple for vehicle owners to request a quote.",
+      "Create a portfolio concept showing how a detailing business could present services, explain pricing, and make quote requests easy on a phone.",
     solution:
       "Designed a conversion-focused site with clear service tiers, upfront pricing transparency, and prominent quote request forms. Optimized for mobile since the majority of detailing customers search from their phones.",
     result:
-      "A polished, professional site that builds instant trust and gives customers a clear, frictionless path from browsing services to requesting a quote.",
+      "A detailing website concept with service tiers, pricing information, and quote request forms.",
     capabilities: [
       "Custom design",
       "Quote forms",
@@ -90,15 +155,16 @@ const projectCatalog: Project[] = [
   },
   {
     name: "Mobile Detailing",
+    isSpec: true,
     type: "Automotive Detailing",
     image: "/projects/MobileDetailing.png",
     url: "mobile-details-demo.zackarybrown.net",
     challenge:
-      "A Denver-based mobile detailing business needed a site that could generate leads, showcase real results, and make it dead simple for customers to request a quote via text or call.",
+      "Explore a mobile detailing concept with a Denver service-area example, visual work samples, and clear text-or-call quote links.",
     solution:
       "Built a conversion-driven single-page site with before/after galleries, service breakdowns, a step-by-step booking flow, and prominent text-to-quote CTAs. Everything was optimized for the phone-first behavior of detailing customers.",
     result:
-      "A high-trust, mobile-optimized site that turns visitors into quote requests through social proof, visual results, and a frictionless text-based booking experience.",
+      "A mobile detailing website concept with service information, before-and-after galleries, and text-to-quote links.",
     capabilities: [
       "Custom design",
       "Before/after gallery",
@@ -119,20 +185,21 @@ const projectCatalog: Project[] = [
       "Before/after comparisons building instant credibility",
       "Text-to-quote flow matching how customers actually communicate",
       "Service area coverage map for local SEO and trust",
-      "Review showcase reinforcing quality with real feedback",
+      "Example review showcase demonstrating a customer-feedback layout",
     ],
   },
   {
     name: "GreenScape Pro",
+    isSpec: true,
     type: "Lawn Care & Landscaping",
     image: "/projects/greenscape.png",
     url: "demo-greenscape.netlify.app",
     challenge:
-      "A Boulder County lawn care and landscaping company needed a professional site that communicated reliability, showcased their range of services, and made it easy for homeowners and businesses to request a quote.",
+      "Create a landscaping website concept using a Boulder County service-area example, with clear service categories and a simple quote-request path.",
     solution:
       "Designed a structured, trust-forward site with clear service categories, a project gallery, service area mapping, and a streamlined quote request flow. All built to convert property owners browsing for dependable outdoor maintenance.",
     result:
-      "A polished web presence that positions GreenScape Pro as the reliable, professional choice in a crowded local market, with clear paths from discovery to quote request.",
+      "A landscaping website concept with service pages, a project gallery, and quote-request paths.",
     capabilities: [
       "Custom design",
       "Service pages",
@@ -142,22 +209,25 @@ const projectCatalog: Project[] = [
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     improvements: [
       "Service tier structure covering residential and commercial needs",
-      "Project gallery showcasing real transformation results",
+      "Example project gallery demonstrating the presentation of outdoor work",
       "Service area map building local trust and relevance",
       "Testimonials and trust signals reinforcing reliability",
     ],
   },
   {
     name: "Floor Hosting",
+    cardSummary:
+      "A hosting website concept with plan comparisons, feature explanations, and example content.",
     type: "Hosting / SaaS Concept",
+    isSpec: true,
     image: "/projects/FloorHosting.png",
     url: "stupendous-otter-759661.netlify.app",
     challenge:
-      "A web hosting startup needed a credible, modern site that could compete with established providers. It had to communicate speed, reliability, and real human support without feeling generic or templated.",
+      "Explore how a hosting brand could present plans, technical features, and signup paths in a clear website concept.",
     solution:
-      "Built a clean, developer-friendly site with clear plan breakdowns, feature highlights, and social proof from real customers. The design balances technical credibility with approachable messaging that appeals to both developers and small business owners.",
+      "Designed a hosting concept with clear plan comparisons, feature explanations, and example content to demonstrate how a technical service can be presented to customers.",
     result:
-      "A professional hosting site that builds confidence through clear pricing, strong feature presentation, and authentic testimonials. It positions Floor Hosting as a serious alternative to commodity providers.",
+      "A hosting website concept demonstrating pricing comparisons, feature presentation, and a clear path to choosing a plan. Example content illustrates the design rather than verified customer outcomes.",
     capabilities: [
       "Custom design",
       "Pricing pages",
@@ -168,13 +238,14 @@ const projectCatalog: Project[] = [
     improvements: [
       "Clear plan comparison helping customers choose confidently",
       "Feature grid communicating technical advantages simply",
-      "Customer testimonials building trust with real use cases",
+      "Clearly structured example content demonstrating the page layout",
       "Clean, modern design competing with established brands",
     ],
   },
 
   {
     name: "JustMalikBeats",
+    isClient: true,
     type: "Music Production",
     image: "/projects/justmalikbeats.png",
     url: "malikbeats.com",
@@ -183,7 +254,7 @@ const projectCatalog: Project[] = [
     solution:
       "Built a custom platform with audio playback, licensing breakdowns, and a polished brand presentation. The site balances creative expression with clear business functionality.",
     result:
-      "A professional music platform that showcases the catalog effectively and provides a clear path to licensing, positioning JustMalikBeats as a credible, established producer.",
+      "A custom music platform with audio previews, licensing information, and a purchase flow.",
     capabilities: [
       "Custom build",
       "Audio integration",
@@ -209,6 +280,8 @@ const projectCatalog: Project[] = [
   },
   {
     name: "Studio - Photography Concept",
+    cardSummary:
+      "An editorial photography portfolio concept with image-led galleries, service packages, and inquiry paths.",
     type: "Photography",
     isSpec: true,
     image: "/projects/PhotoDemo.png",
@@ -242,6 +315,8 @@ const projectCatalog: Project[] = [
   },
   {
     name: "Lumière Hair Studio",
+    cardSummary:
+      "A salon website concept with service menus, team profiles, and appointment links.",
     type: "Hair Salon",
     isSpec: true,
     image: "/projects/HairSolonImg.png",
@@ -277,6 +352,7 @@ const projectCatalog: Project[] = [
   },
   {
     name: "The Futons",
+    isClient: true,
     type: "Music / Band",
     image: "/projects/the-futons.png",
     url: "thefutons.band",
@@ -285,7 +361,7 @@ const projectCatalog: Project[] = [
     solution:
       "Created a site that balances personality with practicality, featuring music samples, show information, and clear contact options for booking inquiries.",
     result:
-      "An authentic online presence that represents the band professionally and makes booking inquiries frictionless for event organizers.",
+      "A band website presenting music, show updates, media, and booking inquiries.",
     capabilities: [
       "Custom design",
       "Media integration",
@@ -303,6 +379,7 @@ const projectCatalog: Project[] = [
 ];
 
 const projectTypePriority: Record<string, number> = {
+  "Child Life Practice": 0,
   "Dental Practice": 1,
   "Automotive Detailing": 2,
   "Lawn Care & Landscaping": 3,
@@ -314,6 +391,8 @@ const projectTypePriority: Record<string, number> = {
 };
 
 export const projects: Project[] = [...projectCatalog].sort((a, b) => {
+  if (Boolean(a.isClient) !== Boolean(b.isClient)) return a.isClient ? -1 : 1;
+  if (Boolean(a.isSpec) !== Boolean(b.isSpec)) return a.isSpec ? 1 : -1;
   const aPriority = projectTypePriority[a.type] ?? 99;
   const bPriority = projectTypePriority[b.type] ?? 99;
 
@@ -322,7 +401,13 @@ export const projects: Project[] = [...projectCatalog].sort((a, b) => {
 });
 
 /* Homepage featured subset */
-export const featuredProjects = projects.slice(0, 3);
+export const featuredProjects = [
+  "A Child's Perspective",
+  "MHK Training",
+  "JustMalikBeats",
+]
+  .map((name) => projects.find((project) => project.name === name))
+  .filter((project): project is Project => project !== undefined);
 
 /* Unique industry/category labels (derived from project `type`),
    ordered by the same priority as `projects` above. */
@@ -330,15 +415,7 @@ export const industries: string[] = Array.from(
   new Set(projects.map((p) => p.type)),
 );
 
-/** Slugify a project name for /work/[slug] routing. */
-export function projectSlug(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
+/** Find the project associated with a case-study route. */
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => projectSlug(p.name) === slug);
 }
