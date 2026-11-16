@@ -2,165 +2,127 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import {
   CONTACT_FORM_SUBJECT,
+  CONTACT_REFERRAL_OPTIONS,
   hasTriggeredContactHoneypot,
+  normalizeContactWebsite,
+  parseContactFields,
+  validateContactFields,
 } from "@/lib/contact";
 import { limitContactByIdentifier } from "@/lib/rate-limit";
 
-function getResendToEmail(): string {
-  return process.env["RESEND_TO_EMAIL"]?.trim() || "zackaryzbrown@gmail.com";
-}
-
-function getResendFromEmail(): string {
-  return (
-    process.env["RESEND_FROM_EMAIL"]?.trim() ??
-    "Contact Form <contact@zbweb.solutions>"
-  );
-}
-
-function getResendApiKey(): string {
-  return process.env["RESEND_API_KEY"]?.trim() ?? "";
-}
-
-function getClientIP(req: NextRequest): string {
-  return (
-    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    req.headers.get("x-real-ip") ||
-    "unknown"
-  );
-}
-
-/* Validation */
-function validateFields(body: Record<string, string>): string | null {
-  const { name, email, message } = body;
-
-  if (!name || name.trim().length < 2) return "Name is required.";
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-    return "A valid email is required.";
-  if (!message || message.trim().length < 20)
-    return "Please provide more detail about your project (at least 20 characters).";
-
-  // Basic URL spam check in message
-  const urlCount = (message.match(/https?:\/\//g) || []).length;
-  if (urlCount > 3) return "Message contains too many links.";
-
-  return null;
-}
+const FALLBACK_MESSAGE =
+  "Your inquiry couldn't be sent. Please try again or email zackaryzbrown@gmail.com.";
 
 export async function POST(req: NextRequest) {
-  const ip = getClientIP(req);
-  const apiKey = getResendApiKey();
-
-  /* Rate limiting */
-  const rateLimitResult = await limitContactByIdentifier(`contact:${ip}`);
-  if (!rateLimitResult.success) {
-    const retryAfterSeconds = Math.max(
-      1,
-      Math.ceil((rateLimitResult.resetAt - Date.now()) / 1000),
-    );
-
-    console.warn(`[contact] Rate limited: ${ip}`);
-    return NextResponse.json(
-      { success: false, error: "Too many requests. Please try again later." },
-      {
-        status: 429,
-        headers: {
-          "Retry-After": String(retryAfterSeconds),
-          "X-RateLimit-Limit": String(rateLimitResult.limit),
-          "X-RateLimit-Remaining": String(rateLimitResult.remaining),
-          "X-RateLimit-Reset": String(rateLimitResult.resetAt),
-        },
-      },
-    );
-  }
-
-  /* Parse body */
-  let body: Record<string, string>;
-  try {
-    body = (await req.json()) as Record<string, string>;
-  } catch {
-    return NextResponse.json(
-      { success: false, error: "Invalid request body." },
-      { status: 400 },
-    );
-  }
-
-  /* Honeypot check */
-  if (hasTriggeredContactHoneypot(body)) {
-    console.warn(`[contact] Honeypot triggered: ${ip}`);
-    // Return success to not tip off bots
-    return NextResponse.json({ success: true });
-  }
-
-  /* Validation */
-  const validationError = validateFields(body);
-  if (validationError) {
-    return NextResponse.json(
-      { success: false, error: validationError },
-      { status: 400 },
-    );
-  }
-
-  /* Check config */
-  if (!apiKey) {
-    console.error("[contact] RESEND_API_KEY is not configured.");
-    return NextResponse.json(
-      {
-        success: false,
-        error:
-          "The contact form is not configured yet. Please email directly at zackaryzbrown@gmail.com.",
-      },
-      { status: 500 },
-    );
-  }
-
-  /* Send email via Resend */
-  try {
-    const resend = new Resend(apiKey);
-
-    const { name, email, business, website, service, message } = body;
-
-    const { error } = await resend.emails.send({
-      from: getResendFromEmail(),
-      to: getResendToEmail(),
-      replyTo: email?.trim(),
-      subject: CONTACT_FORM_SUBJECT,
-      text: [
-        `Name: ${name?.trim()}`,
-        `Email: ${email?.trim()}`,
-        `Business: ${business?.trim() || "Not provided"}`,
-        `Website: ${website?.trim() || "Not provided"}`,
-        `Service: ${service?.trim() || "Not specified"}`,
-        ``,
-        `Message:`,
-        message?.trim(),
-      ].join("\n"),
-    });
-
-    if (error) {
-      console.error("[contact] Resend error:", error);
+  const wantsJson =
+    req.headers.get("content-type")?.includes("application/json") ||
+    req.headers.get("accept")?.includes("application/json");
+  const respond = (
+    success: boolean,
+    status: number,
+    error?: string,
+    field?: string,
+    headers?: Record<string, string>,
+    leadReference?: string,
+  ) => {
+    if (wantsJson)
       return NextResponse.json(
         {
-          success: false,
-          error:
-            "Something went wrong. Please try again or email directly at zackaryzbrown@gmail.com.",
+          success,
+          ...(error ? { error, field } : {}),
+          ...(leadReference ? { leadReference } : {}),
         },
-        { status: 502 },
+        { status, headers },
+      );
+    const destination = new URL("/contact", req.url);
+    destination.searchParams.set("status", success ? "sent" : "error");
+    return NextResponse.redirect(destination, { status: 303, headers });
+  };
+
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    req.headers.get("x-real-ip") ||
+    "unknown";
+  try {
+    const limit = await limitContactByIdentifier(`contact:${ip}`);
+    if (!limit.success) {
+      return respond(
+        false,
+        429,
+        "Please wait a minute before sending another inquiry.",
+        undefined,
+        {
+          "Retry-After": String(
+            Math.max(1, Math.ceil((limit.resetAt - Date.now()) / 1000)),
+          ),
+        },
       );
     }
+  } catch {
+    console.error("[contact] Rate limit service unavailable.");
+    return respond(false, 503, FALLBACK_MESSAGE);
+  }
 
+  let body: Record<string, string> | null;
+  try {
+    const raw = req.headers.get("content-type")?.includes("application/json")
+      ? await req.json()
+      : Object.fromEntries(await req.formData());
+    body = parseContactFields(raw);
+  } catch {
+    return respond(false, 400, "Please check your details and try again.");
+  }
+  if (!body)
+    return respond(false, 400, "Please check your details and try again.");
+  if (hasTriggeredContactHoneypot(body)) return respond(true, 200);
+
+  const validation = validateContactFields(body);
+  if (validation)
+    return respond(false, 400, validation.message, validation.field);
+
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    console.error("[contact] RESEND_API_KEY is not configured.");
+    return respond(false, 503, FALLBACK_MESSAGE);
+  }
+
+  try {
+    const resend = new Resend(apiKey);
+    const leadReference = `ZB-${crypto.randomUUID().replaceAll("-", "").slice(0, 12).toUpperCase()}`;
+    const { name, email, business, website, service, referral, message } = body;
+    const { data, error } = await resend.emails.send({
+      from:
+        process.env.RESEND_FROM_EMAIL?.trim() ||
+        "Contact Form <contact@zbweb.solutions>",
+      to: process.env.RESEND_TO_EMAIL?.trim() || "zackaryzbrown@gmail.com",
+      replyTo: email,
+      subject: `${CONTACT_FORM_SUBJECT} [${leadReference}]`,
+      text: [
+        `Inquiry reference: ${leadReference}`,
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Business: ${business || "Not provided"}`,
+        `Website: ${normalizeContactWebsite(website) || "Not provided"}`,
+        `Service: ${service || "Not specified"}`,
+        `How they found me: ${CONTACT_REFERRAL_OPTIONS.find((option) => option.value === referral)?.label || "Not provided"}`,
+        "",
+        "Message:",
+        message,
+      ].join("\n"),
+    });
+    if (error || !data?.id) {
+      console.error(
+        "[contact] Email provider rejected submission:",
+        error?.name ?? "missing_message_id",
+      );
+      return respond(false, 502, FALLBACK_MESSAGE);
+    }
     console.info(
-      `[contact] Submission success | service: ${service?.trim() || "unspecified"}`,
+      `[contact] Submission accepted | reference: ${leadReference} | message_id: ${data?.id ?? "unavailable"}`,
     );
-    return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("[contact] Fetch error:", err);
-    return NextResponse.json(
-      {
-        success: false,
-        error:
-          "Something went wrong. Please try again or email directly at zackaryzbrown@gmail.com.",
-      },
-      { status: 500 },
-    );
+    return respond(true, 200, undefined, undefined, undefined, leadReference);
+  } catch {
+    console.error("[contact] Email delivery request failed.");
+    return respond(false, 502, FALLBACK_MESSAGE);
   }
 }

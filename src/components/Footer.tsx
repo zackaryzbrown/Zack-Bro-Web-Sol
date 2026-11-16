@@ -4,8 +4,8 @@ import { TrackedLink } from "@/components/TrackedLink";
 import { brand, navLinks, serviceCities } from "@/content/site";
 
 const serviceLinks = [
-  { label: "Custom Websites", href: "/services#custom-websites" },
-  { label: "Website Redesigns", href: "/services#website-redesigns" },
+  { label: "Custom Websites", href: "/services/web-design" },
+  { label: "Website Redesigns", href: "/services/website-redesign" },
   {
     label: "Conversion-Focused Pages",
     href: "/services#conversion-focused-pages",
@@ -18,6 +18,12 @@ const resourceLinks = [
   { label: "FAQ", href: "/pricing#faq" },
   { label: "Care plans", href: "/pricing#care" },
   { label: "Book a free call", href: brand.bookingUrl, external: true },
+  { label: "Find me on Google", href: brand.googleBusinessUrl, external: true },
+  {
+    label: "Leave a Google review",
+    href: brand.googleReviewUrl,
+    external: true,
+  },
 ];
 
 export function Footer() {
@@ -31,8 +37,8 @@ export function Footer() {
           <div className="site-footer__promise-mark">
             <span className="site-footer__promise-dot" aria-hidden />
             <span className="site-footer__promise-text">
-              {brand.responsePromise} · {brand.location}-based, working with
-              local service businesses across the Front Range
+              {brand.responsePromise} · Based in {brand.location}, serving Erie
+              and nearby communities
             </span>
           </div>
           <TrackedLink
@@ -61,8 +67,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="site-footer__desc">
-              Founder-led web design for Colorado service businesses. Custom
-              builds, transparent pricing, and ongoing care after launch.
+              Web design for small businesses in Erie and nearby Front Range
+              communities. Custom builds, clear pricing, and optional care.
             </p>
             <a href={`mailto:${brand.email}`} className="site-footer__email">
               {brand.email}
@@ -151,7 +157,7 @@ export function Footer() {
             <span aria-hidden className="site-footer__pin">
               ⌖
             </span>{" "}
-            Colorado service areas
+            Erie &amp; nearby service areas
           </p>
           <ul className="site-footer__cities">
             {serviceCities.map((city) => (
@@ -169,6 +175,12 @@ export function Footer() {
             &copy; {currentYear} {brand.name}. All rights reserved.
           </p>
           <div className="site-footer__bottom-links">
+            <Link href="/privacy" className="site-footer__link-muted">
+              Privacy &amp; analytics
+            </Link>
+            <span className="site-footer__bottom-sep" aria-hidden>
+              ·
+            </span>
             <Link href="/sitemap.xml" className="site-footer__link-muted">
               Sitemap
             </Link>

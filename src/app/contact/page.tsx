@@ -9,16 +9,27 @@ import { contactSteps } from "@/content/contact";
 import { brand, socialLinks } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "Contact",
+  title: "Contact Your Erie Web Designer",
   description:
-    "Request a quote for your custom website project. Colorado-based, replies within 1 business day. No pressure, no spam.",
+    "Tell Zackary Brown about your website project. Based in Erie, CO and serving nearby businesses. Get a reply within one business day.",
   path: "/contact",
 });
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    service?: string | string[];
+    status?: string | string[];
+  }>;
+}) {
+  const params = await searchParams;
+  const service = typeof params.service === "string" ? params.service : "";
+  const status = typeof params.status === "string" ? params.status : "";
   return (
     <>
       <PageHero
+        compact
         label="Contact"
         title="Tell me about your project."
         subtitle="Share a few details and I'll reply within 1 business day with next steps or a scoped quote."
@@ -34,17 +45,22 @@ export default function ContactPage() {
       <SectionShell variant="alt">
         <div className="contact-layout">
           {/* Form panel */}
-          <FadeIn>
+          <div>
             <div className="contact-form-panel">
               <header className="contact-form-panel__header">
                 <h2 className="contact-form-panel__title">Request a quote</h2>
                 <p className="contact-form-panel__subtitle">
-                  Five minutes here saves us both a long discovery call.
+                  Share what you need. I&apos;ll help you work out the next
+                  step.
                 </p>
               </header>
-              <ContactForm />
+              <ContactForm
+                key={`${service}-${status}`}
+                initialService={service}
+                initialStatus={status}
+              />
             </div>
-          </FadeIn>
+          </div>
 
           {/* Sidebar */}
           <FadeIn delay={100}>
@@ -73,8 +89,8 @@ export default function ContactPage() {
                   {brand.email}
                 </a>
                 <p className="contact-sidebar__note">
-                  Based in {brand.location}. Available locally and remotely
-                  across the Front Range.
+                  Based in {brand.location}. Working with businesses in Erie,
+                  Lafayette, Louisville, Broomfield, Boulder, and Longmont.
                 </p>
               </div>
 

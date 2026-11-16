@@ -7,10 +7,13 @@
  *   trackEvent("cta_click", { label: "hero_request_quote" });
  */
 
+import { getAnalyticsPreference } from "./analytics-preferences";
+
 type EventParams = Record<string, string | number | boolean>;
 
 export function trackEvent(name: string, params?: EventParams): void {
   if (typeof window === "undefined") return;
+  if (getAnalyticsPreference() !== "on") return;
 
   // Google Analytics 4 / gtag.js
   if (typeof window.gtag === "function") {
@@ -39,6 +42,10 @@ export function trackFormSubmitted(): void {
 
 export function trackFormSuccess(): void {
   trackEvent("form_success", { form: "contact" });
+  trackEvent("generate_lead", {
+    form: "contact",
+    lead_type: "website_inquiry",
+  });
 }
 
 export function trackFormFailure(reason?: string): void {
@@ -52,6 +59,7 @@ export function trackOutboundClick(url: string): void {
 /* ── Global type augmentation for gtag ── */
 declare global {
   interface Window {
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
   }
 }
