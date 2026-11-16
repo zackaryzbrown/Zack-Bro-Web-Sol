@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-11-16T08:54:34.786Z",
+  "scope": "Owner-approved project policy source updates",
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "checks": 2
+    },
+    {
+      "route": "/pricing",
+      "status": 200,
+      "checks": 5
+    },
+    {
+      "route": "/services",
+      "status": 200,
+      "checks": 2
+    },
+    {
+      "route": "/services/web-design",
+      "status": 200,
+      "checks": 4
+    },
+    {
+      "route": "/services/website-redesign",
+      "status": 200,
+      "checks": 4
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "checks": 3
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "checks": 1
+    }
+  ],
+  "checks": [
+    "Approved policy wording returned in server HTML on seven affected pages.",
+    "Pricing summary and service links point to the policy/FAQ sections.",
+    "Old balance-at-launch and Growth-only support wording absent from checked page content.",
+    "Build, lint, typecheck, and diff whitespace checks passed."
+  ],
+  "limitations": [
+    "Visual browser review unavailable: native pipe startup failure.",
+    "Website source changes have not been deployed.",
+    "Project-specific proposal and agreement fields still need completion per client."
+  ]
+}

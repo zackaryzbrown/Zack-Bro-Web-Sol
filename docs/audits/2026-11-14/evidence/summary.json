@@ -42,5 +42,11 @@
         "cumulative-layout-shift": "0"
       }
     }
-  ]
+  ],
+  "owner_confirmations": {
+    "google_business_profile_set_up": true,
+    "google_search_console_set_up": true,
+    "source": "Owner reply after live audit",
+    "account_data_inspected": false
+  }
 }

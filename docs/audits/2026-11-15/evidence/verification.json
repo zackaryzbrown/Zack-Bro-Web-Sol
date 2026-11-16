@@ -1,0 +1,224 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "status": 200,
+      "title": "Web Design in Erie, CO | Zackary Brown Web Solutions",
+      "h1": "Websites built for\nErie businesses.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": [],
+      "imageCheck": "Visible images loaded; inactive mobile previews are intentionally deferred."
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "title": "Web Design & Website Services in Erie, CO | Zackary Brown Web Solutions",
+      "h1": "Websites built to earn trust and book the work.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/work",
+      "status": 200,
+      "title": "Website Projects & Portfolio | Zackary Brown Web Solutions",
+      "h1": "Explore the work.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/pricing",
+      "status": 200,
+      "title": "Website Pricing for Erie Small Businesses | Zackary Brown Web Solutions",
+      "h1": "Custom websites, priced honestly.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "title": "About Your Erie Web Designer | Zackary Brown Web Solutions",
+      "h1": "Modern websites for local service businesses.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "title": "Contact Your Erie Web Designer | Zackary Brown Web Solutions",
+      "h1": "Tell me about your project.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/services/web-design",
+      "status": 200,
+      "title": "Custom Website Design in Erie, CO | Zackary Brown Web Solutions",
+      "h1": "A clear online home for your business.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/services/website-redesign",
+      "status": 200,
+      "title": "Website Redesigns for Erie Businesses | Zackary Brown Web Solutions",
+      "h1": "Make your website fit your business today.",
+      "erie": true,
+      "overflow": false,
+      "missingImages": [],
+      "accessibility": []
+    },
+    {
+      "path": "/work/a-child-s-perspective",
+      "status": 200,
+      "title": "A Child's Perspective - Child Life Practice | Zackary Brown Web Solutions",
+      "h1": "A Child's Perspective",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/mhk-training",
+      "status": 200,
+      "title": "MHK Training - Martial Arts / Fitness | Zackary Brown Web Solutions",
+      "h1": "MHK Training",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/cutepetshowdown",
+      "status": 200,
+      "title": "CutePetShowdown - Community Fundraising | Zackary Brown Web Solutions",
+      "h1": "CutePetShowdown",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/justmalikbeats",
+      "status": 200,
+      "title": "JustMalikBeats - Music Production | Zackary Brown Web Solutions",
+      "h1": "JustMalikBeats",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/the-futons",
+      "status": 200,
+      "title": "The Futons - Music / Band | Zackary Brown Web Solutions",
+      "h1": "The Futons",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/mobile-auto-detailing",
+      "status": 200,
+      "title": "Mobile Auto Detailing - Automotive Detailing | Zackary Brown Web Solutions",
+      "h1": "Mobile Auto Detailing",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/mobile-detailing",
+      "status": 200,
+      "title": "Mobile Detailing - Automotive Detailing | Zackary Brown Web Solutions",
+      "h1": "Mobile Detailing",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/greenscape-pro",
+      "status": 200,
+      "title": "GreenScape Pro - Lawn Care & Landscaping | Zackary Brown Web Solutions",
+      "h1": "GreenScape Pro",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/trailhead-cycles",
+      "status": 200,
+      "title": "Trailhead Cycles - Bike Shop | Zackary Brown Web Solutions",
+      "h1": "Trailhead Cycles",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/studio-photography-concept",
+      "status": 200,
+      "title": "Studio - Photography Concept - Photography | Zackary Brown Web Solutions",
+      "h1": "Studio - Photography Concept",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/floor-hosting",
+      "status": 200,
+      "title": "Floor Hosting - Hosting / SaaS Concept | Zackary Brown Web Solutions",
+      "h1": "Floor Hosting",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    },
+    {
+      "path": "/work/lumi-re-hair-studio",
+      "status": 200,
+      "title": "Lumière Hair Studio - Hair Salon | Zackary Brown Web Solutions",
+      "h1": "Lumière Hair Studio",
+      "erie": true,
+      "overflow": false,
+      "missingImages": []
+    }
+  ],
+  "checks": [
+    "Five confirmed client projects, seven labeled concepts, and twelve persistent case-study links",
+    "Project dialog contains focus, handles Escape, and restores opener focus",
+    "Mobile industry filter switches the visible projects",
+    "Storage-blocked submission accepts an optional business name, normalizes a bare domain, and displays success with a queued analytics event",
+    "Provider failure preserves entered details and allows a retry",
+    "Network failure provides a usable direct email link",
+    "Without JavaScript, the form renders with prefill and POSTs to a private status redirect",
+    "API rejects malformed field types and accepts optional fields; native redirects omit inquiry contents",
+    "Canonical host redirect preserves the path and query",
+    "Pricing terms and all previously checked main-page contrast issues pass automated accessibility checks",
+    "No document overflow on the tested landing pages at widths 320, 360, 768, 1024, and 1440",
+    "Deferred mobile preview images load on selection; playback, pause, and reduced-motion controls work"
+  ],
+  "emailSendingDisabled": true,
+  "firstProjectTop": 450.609375,
+  "firstInputTop": 583.375,
+  "checkedWidths": [
+    320,
+    360,
+    768,
+    1024,
+    1440
+  ],
+  "completed": true,
+  "mobileCarousel": {
+    "deferredInactivePreviews": true,
+    "lowPrioritySecondaryImages": true,
+    "playPause": true,
+    "reducedMotion": true
+  }
+}

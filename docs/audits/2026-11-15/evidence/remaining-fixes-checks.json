@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-11-15T08:56:44.060Z",
+  "completed": true,
+  "checks": [
+    "Referral values accept only the published optional choices; malformed types are rejected.",
+    "Provider acceptance returns an inquiry reference also present in the email, with normalized website, referral, and correct reply-to.",
+    "Provider rejection, a missing acceptance ID, and the honeypot branch cannot return a conversion reference. No email was sent.",
+    "Analytics opt-out, immediate disable flag, first-party cookie removal, cross-tab updates, Global Privacy Control, and blocked storage checks pass.",
+    "Analytics events stop while opted out. The accepted inquiry emits the diagnostic event plus generate_lead without form content.",
+    "Local HTTP checks: privacy page metadata and H1, native inquiry fields, corrected booking link, collaborator attribution, review link, and 21 sitemap pages."
+  ],
+  "limits": [
+    "Email provider mocked; no actual inquiry or appointment sent.",
+    "Native browser connection failed before a visual check of the new privacy page and search performance/indexing reports.",
+    "Production changes have not been deployed."
+  ]
+}
