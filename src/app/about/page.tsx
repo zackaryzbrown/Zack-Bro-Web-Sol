@@ -17,9 +17,9 @@ import {
 import { brand, socialLinks } from "@/content/site";
 
 export const metadata = createMetadata({
-  title: "About",
+  title: "About Your Erie Web Designer",
   description:
-    "Websites for local service businesses that need to look credible online. Clear, professional, inquiry-focused execution.",
+    "Meet Zackary Brown, an Erie, Colorado web designer working directly with small businesses on custom websites, redesigns, and ongoing care.",
   path: "/about",
 });
 
@@ -61,7 +61,8 @@ export default function AboutPage() {
                         height: "auto",
                         display: "block",
                       }}
-                      priority
+                      preload
+                      sizes="(max-width: 900px) 85vw, 450px"
                     />
                   </div>
                 </div>

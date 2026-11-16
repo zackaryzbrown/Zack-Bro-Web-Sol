@@ -8,23 +8,24 @@ export const brand = {
   tagline: "Web Solutions",
   founder: "Zackary Brown",
   email: "zackaryzbrown@gmail.com",
-  location: "Colorado",
+  location: "Erie, CO",
   url: "https://zbweb.solutions",
-  bookingUrl: "https://calendly.com/zackary-zbweb/30min",
+  bookingUrl: "https://calendly.com/zackaryzbrown/30min",
+  googleReviewUrl: "https://g.page/r/CbnLFwqHD5FiEBM/review",
+  googleBusinessUrl:
+    "https://www.google.com/maps/search/?api=1&query=ZBWebSolutions&query_place_id=ChIJg--xAtmHT4sRucsXCocPkWI",
   responsePromise: "Reply within 1 business day",
   description:
-    "Founder-led web business building modern, conversion-focused websites for local service businesses across Colorado. Custom sites, redesigns, and ongoing support.",
+    "Web design and website redesigns for small businesses in Erie, Colorado, and nearby Front Range communities. Work directly with Zackary Brown from planning to launch.",
 } as const;
 
 /* ── Cities served (used for SEO + schema) ── */
 export const serviceCities: string[] = [
-  "Denver",
+  "Erie",
+  "Lafayette",
+  "Louisville",
+  "Broomfield",
   "Boulder",
-  "Colorado Springs",
-  "Fort Collins",
-  "Aurora",
-  "Lakewood",
-  "Loveland",
   "Longmont",
 ];
 
@@ -41,7 +42,7 @@ export const navLinks: NavItem[] = [
 /* ── Trust strip ── */
 export const trustStripItems: TrustStripItem[] = [
   { text: "Reply within 1 business day" },
-  { text: "Colorado-based, work remotely" },
+  { text: "Based in Erie, Colorado" },
   { text: `Transparent pricing from ${starterPrice}+` },
   { text: "Ongoing care after launch" },
 ];

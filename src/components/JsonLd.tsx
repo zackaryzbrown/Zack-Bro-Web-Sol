@@ -1,4 +1,4 @@
-import { brand, serviceCities } from "@/content/site";
+import { brand, serviceCities, socialLinks } from "@/content/site";
 import { services } from "@/content/home";
 import { starterPrice, growthPrice } from "@/content/pricing";
 
@@ -21,12 +21,17 @@ export function JsonLd() {
       url: brand.url,
       email: brand.email,
       description: brand.description,
+      sameAs: [
+        brand.googleBusinessUrl,
+        ...socialLinks.map((link) => link.href).filter(Boolean),
+      ],
       image: `${brand.url}/opengraph-image`,
       logo: `${brand.url}/icon`,
       priceRange: `${starterPrice} - ${growthPrice}+`,
       founder: { "@id": personId },
       address: {
         "@type": "PostalAddress",
+        addressLocality: "Erie",
         addressRegion: "CO",
         addressCountry: "US",
       },
@@ -36,8 +41,6 @@ export function JsonLd() {
           name: city,
           containedInPlace: { "@type": "State", name: "Colorado" },
         })),
-        { "@type": "State", name: "Colorado" },
-        { "@type": "Country", name: "United States" },
       ],
       serviceType: [
         "Web Design",
@@ -74,6 +77,11 @@ export function JsonLd() {
       jobTitle: "Founder & Web Developer",
       worksFor: { "@id": businessId },
       url: `${brand.url}/about`,
+      sameAs: socialLinks
+        .filter(
+          (link) => link.platform === "linkedin" || link.platform === "github",
+        )
+        .map((link) => link.href),
       knowsAbout: [
         "Web Design",
         "WordPress Development",

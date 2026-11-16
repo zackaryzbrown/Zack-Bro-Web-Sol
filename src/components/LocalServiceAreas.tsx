@@ -1,22 +1,19 @@
 import { serviceCities } from "@/content/site";
 import { industries } from "@/content/site";
 
-/**
- * Local-SEO block: surfaces every (city × industry) intent in plain text so
- * Google can crawl it, but presents it as a tasteful editorial grid rather
- * than a keyword-stuffed wall. Real text, real links, no cloaking.
- */
+/** The local service area, presented for business owners comparing options. */
 export function LocalServiceAreas() {
   return (
     <div className="local-service-areas">
       <div className="local-service-areas__cities">
         <p className="section-label">Service Areas</p>
         <h2 className="local-service-areas__heading">
-          Built for Colorado service businesses.
+          Based in Erie. Built for nearby businesses.
         </h2>
         <p className="local-service-areas__intro">
-          Working with local businesses across the Front Range and beyond.
-          Remote-friendly, in-person available when it helps.
+          Web design for small businesses within about 25 miles of Erie,
+          including Lafayette, Louisville, Broomfield, Boulder, and Longmont.
+          Local meetings and remote collaboration are available.
         </p>
         <ul className="local-service-areas__city-list">
           {serviceCities.map((city) => (

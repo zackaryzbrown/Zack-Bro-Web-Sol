@@ -96,7 +96,7 @@ export function createSocialImage() {
                 color: "#2D6A4F",
               }}
             >
-              Colorado-based
+              Erie, Colorado
             </div>
           </div>
 
@@ -186,7 +186,7 @@ export function createSocialImage() {
                     background: "#2D6A4F",
                   }}
                 />
-                Based in Colorado, working locally and remotely.
+                Based in Erie, Colorado. Built for local businesses.
               </div>
             </div>
 

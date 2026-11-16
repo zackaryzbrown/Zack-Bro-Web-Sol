@@ -16,12 +16,9 @@ export function createMetadata({
   path = "",
   ogImage,
 }: PageMetaOptions): Metadata {
-  const fullTitle =
-    path === "" || path === "/"
-      ? `${brand.name} | Modern Websites for Local Service Businesses`
-      : `${title} | ${brand.name}`;
+  const fullTitle = `${title} | ${brand.name}`;
 
-  const url = `${BASE_URL}${path}`;
+  const url = new URL(path || "/", BASE_URL).toString();
 
   return {
     title: fullTitle,
@@ -52,17 +49,5 @@ export function createMetadata({
       description,
       images: ogImage ? [ogImage] : undefined,
     },
-    keywords: [
-      "Colorado web designer",
-      "Denver web design",
-      "Boulder web designer",
-      "Colorado Springs website design",
-      "small business website Colorado",
-      "local service business website",
-      "lead generation website",
-      "website redesign Colorado",
-      "WordPress designer Colorado",
-      "freelance web developer Colorado",
-    ],
   };
 }
