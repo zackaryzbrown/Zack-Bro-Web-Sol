@@ -1,4 +1,5 @@
 import type { ContactStep } from "./types";
+import { projectPolicies } from "./project-policies";
 
 export const contactSteps: ContactStep[] = [
   {
@@ -14,6 +15,6 @@ export const contactSteps: ContactStep[] = [
   {
     step: "3",
     title: "We confirm scope and start",
-    text: "Once the scope and timeline are agreed, a 50% deposit kicks off the work - the rest is due at launch.",
+    text: projectPolicies.paymentShort,
   },
 ];

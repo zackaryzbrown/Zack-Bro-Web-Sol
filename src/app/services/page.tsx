@@ -7,11 +7,17 @@ import { createMetadata } from "@/lib/metadata";
 import { servicesDetailed, wordpressNote } from "@/content/services";
 import { starterPrice } from "@/content/pricing";
 import { brand } from "@/content/site";
+import Link from "next/link";
+
+const DETAIL_PATHS: Record<string, string> = {
+  "Custom Websites": "/services/web-design",
+  "Website Redesigns": "/services/website-redesign",
+};
 
 export const metadata = createMetadata({
-  title: "Services",
+  title: "Web Design & Website Services in Erie, CO",
   description:
-    "Custom websites, redesigns, conversion-focused pages, and ongoing care for Colorado service businesses.",
+    "Custom websites, website redesigns, lead capture, and ongoing care for small businesses in Erie, CO and nearby Front Range communities.",
   path: "/services",
 });
 
@@ -39,6 +45,11 @@ const SERVICE_CTA: Record<
     label: "See care plan pricing",
     track: "services_care_pricing",
   },
+  "AI Assistant & Automation": {
+    href: "/contact?service=ai",
+    label: "Ask about AI add-ons",
+    track: "services_ai_contact",
+  },
 };
 
 const slugify = (s: string) =>
@@ -54,7 +65,7 @@ export default function ServicesPage() {
       <PageHero
         label="Services"
         title="Websites built to earn trust and book the work."
-        subtitle="Four focused offers for Colorado service businesses. Each one ships with clear deliverables, a real timeline, and a starting price - no surprise estimates after the call."
+        subtitle="Website services for businesses in Erie and nearby communities. Compare the scope, starting prices, and timelines, then choose the next step that fits."
         index={1}
         total={5}
         meta={[
@@ -123,6 +134,15 @@ export default function ServicesPage() {
                   {/* Left column - narrative */}
                   <div className="service-block__col service-block__col--narrative">
                     <p className="service-block__desc">{service.description}</p>
+                    {DETAIL_PATHS[service.title] && (
+                      <Link
+                        href={DETAIL_PATHS[service.title]}
+                        className="project-case-link"
+                      >
+                        Explore {service.title.toLowerCase()}{" "}
+                        <span aria-hidden>→</span>
+                      </Link>
+                    )}
 
                     {service.bestFor && (
                       <p className="service-block__fit">

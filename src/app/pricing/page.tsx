@@ -3,6 +3,7 @@ import { FAQ } from "@/components/FAQ";
 import { PageCta } from "@/components/PageCta";
 import { PageHero } from "@/components/PageHero";
 import { PricingTierCard } from "@/components/PricingTierCard";
+import { ProjectPolicySummary } from "@/components/ProjectPolicySummary";
 import { SectionShell } from "@/components/SectionShell";
 import { SectionIntro } from "@/components/SectionIntro";
 import { CarePlanCard } from "@/components/CarePlanCard";
@@ -11,17 +12,17 @@ import {
   tiers,
   carePlans,
   pricingFactors,
-  pricingAnchor,
   wordpressPricingNote,
   aiAddOns,
   offers,
   priceRangeLabel,
+  starterPrice,
 } from "@/content/pricing";
 import { brand } from "@/content/site";
 import { pricingFaqItems } from "@/content/faq";
 
 export const metadata = createMetadata({
-  title: "Pricing",
+  title: "Website Pricing for Erie Small Businesses",
   description: `Transparent custom website pricing from ${priceRangeLabel}. Three clear tiers, no surprise estimates, optional monthly care plan after launch.`,
   path: "/pricing",
 });
@@ -30,9 +31,10 @@ export default function PricingPage() {
   return (
     <>
       <PageHero
+        compact
         label="Pricing"
         title="Custom websites, priced honestly."
-        subtitle="Three tiers built around what local service businesses actually need. Every project is from pricing, scoped to your goals, and quoted before any work begins."
+        subtitle={`Custom website builds from ${starterPrice}, scoped to your business and quoted before work begins. Hosting and active care are separate, optional plans.`}
         index={3}
         total={5}
         meta={[
@@ -41,26 +43,6 @@ export default function PricingPage() {
           { label: "Care plans", value: `${carePlans.length} monthly tiers` },
         ]}
       />
-
-      {/* Value anchor bar */}
-      <SectionShell>
-        <FadeIn>
-          <div className="pricing-anchor">
-            <div className="pricing-anchor__rows">
-              {pricingAnchor.comparison.map((row) => (
-                <div
-                  key={row.label}
-                  className={`pricing-anchor__row${row.highlight ? " is-highlight" : ""}`}
-                >
-                  <span className="pricing-anchor__label">{row.label}</span>
-                  <span className="pricing-anchor__value">{row.value}</span>
-                </div>
-              ))}
-            </div>
-            <p className="pricing-anchor__note">{pricingAnchor.note}</p>
-          </div>
-        </FadeIn>
-      </SectionShell>
 
       {/* Tier cards */}
       <SectionShell variant="alt">
@@ -81,6 +63,7 @@ export default function PricingPage() {
             );
           })}
         </div>
+        <ProjectPolicySummary />
       </SectionShell>
 
       {/* WordPress soft note */}

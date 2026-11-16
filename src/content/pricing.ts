@@ -29,7 +29,7 @@ export const tiers: PricingTier[] = [
     name: "Business Site",
     price: "$599",
     featured: true,
-    featuredLabel: "Most popular",
+    featuredLabel: "Recommended",
     description:
       "A custom 3 – 5 page site with the structure most local service businesses actually need. The full credibility piece, scoped tightly enough to stay affordable.",
     bestFor: "Established businesses ready for a real online home",
@@ -54,7 +54,7 @@ export const tiers: PricingTier[] = [
       "Quote, booking, or scheduling integration",
       "Trust + credibility sections",
       "Performance + technical polish",
-      "30-day post-launch support",
+      "Launch and handover checklist",
     ],
   },
 ];
@@ -102,7 +102,7 @@ export const carePlans: CarePlan[] = [
 /* Soft WordPress aside - mirrors the services page tone */
 export const wordpressPricingNote = {
   heading: "What about WordPress?",
-  body: "I can build on WordPress when it's genuinely the right fit - usually for teams already trained on it or sites that need a specific plugin ecosystem. For most local service businesses, a custom build is faster, cheaper to maintain, and easier to evolve over time. Happy to talk through which makes sense for your business.",
+  body: "These packages describe custom website builds. If WordPress fits your editing needs or existing tools better, I'll quote that separately. We'll compare functionality, editing access, and maintenance before agreeing on the platform.",
 };
 
 /* AI add-ons - small, focused packages that bolt onto any site */
@@ -152,7 +152,7 @@ export const growthPrice = tiers[2].price;
 export const wordpressStartPrice = starterPrice;
 
 /** Custom-build minimum quoted in FAQ - sits between Starter and Business. */
-export const customStartPrice = "$299";
+export const customStartPrice = starterPrice;
 
 /** "$249 – $949+" range label used in meta, JSON-LD, and pricing anchor. */
 export const priceRangeLabel = `${starterPrice} – ${growthPrice}+`;

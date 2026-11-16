@@ -1,4 +1,5 @@
 import type { ServiceItem, ProcessStep, FeatureItem, FAQItem } from "./types";
+import { projectPolicies } from "./project-policies";
 import {
   tiers as pricingTiers,
   starterPrice,
@@ -10,12 +11,14 @@ import {
 export const services: ServiceItem[] = [
   {
     title: "Custom Websites",
+    href: "/services/web-design",
     description:
       "Purpose-built websites designed around your business goals, services, and audience.",
     icon: "◆",
   },
   {
     title: "Website Redesigns",
+    href: "/services/website-redesign",
     description:
       "Rebuild outdated sites with clearer messaging, modern structure, and better mobile performance.",
     icon: "◇",
@@ -38,7 +41,7 @@ export const services: ServiceItem[] = [
 // Tier names + prices come from pricing.ts (imported at top) so they never drift.
 const PREVIEW_NOTES: Record<string, string> = {
   "Starter Site": "One-page custom build for a clear online presence.",
-  "Business Site": "Custom 3 – 5 page site. Most popular for local businesses.",
+  "Business Site": "Custom 3 – 5 page site for an established local business.",
   "Growth Site": "Expanded build with advanced conversion flows.",
 };
 
@@ -76,12 +79,14 @@ export const processSteps: ProcessStep[] = [
   {
     step: "04",
     title: "Review & Refine",
-    description: "You review the build and I refine details before launch.",
+    description:
+      "Two consolidated revision rounds refine the agreed design and content.",
   },
   {
     step: "05",
     title: "Launch",
-    description: "I handle launch setup, domain connection, and final checks.",
+    description:
+      "After approval and final payment, I launch and hand over the agreed files and access.",
   },
   {
     step: "06",
@@ -133,12 +138,11 @@ export const homeFaqItems: FAQItem[] = [
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer:
-      "Yes. Managed Hosting starts at $25/month and Website Care starts at $49/month.",
+    answer: `${projectPolicies.supportShort} Ongoing Managed Hosting starts at $25/month and Website Care starts at $49/month. Both plans are optional.`,
   },
   {
     question: "What makes a professional website better than a DIY site?",
     answer:
-      "DIY builders can get something online fast, but they often look generic and lack the structure needed to convert visitors into customers. A professionally built site is designed around your business goals, loads faster, ranks better in search, and builds real trust with potential customers.",
+      "A DIY builder can be a good starting point. Working with me adds a site plan, tailored design, clearer service information, and a checked inquiry flow. We'll choose an approach around your business goals, budget, and editing needs.",
   },
 ];

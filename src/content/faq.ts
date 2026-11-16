@@ -1,5 +1,6 @@
 import type { FAQItem } from "./types";
-import { wordpressStartPrice, customStartPrice } from "./pricing";
+import { starterPrice } from "./pricing";
+import { projectPolicies } from "./project-policies";
 
 /* ── Homepage FAQ (tight subset - 6 items) ── */
 export { homeFaqItems } from "./home";
@@ -9,13 +10,12 @@ export const pricingFaqItems: FAQItem[] = [
   {
     question: "Are these fixed prices or starting prices?",
     answer:
-      "These are starting prices. Final pricing depends on your platform choice (WordPress or custom), scope, content needs, and functionality. You'll get a clear quote before any work starts.",
+      "These are starting prices for custom builds. The final quote covers your pages, content, integrations, and agreed support. WordPress projects are quoted separately. You approve the scope and price before work starts.",
   },
   {
-    question:
-      "Why can a one-page custom site cost more than a three-page WordPress site?",
+    question: "How do we choose between a custom build and WordPress?",
     answer:
-      "Page count is only one factor. WordPress is usually the faster, lower-cost path, while custom work is priced for tailored design control and messaging structure. Custom landing pages start focused and scale with scope.",
+      "We compare the functions you need, how you want to edit the site, and the ongoing maintenance involved. WordPress can suit a familiar editing workflow or particular plugins; a custom build can suit a focused design or integration. Neither is automatically the cheaper or better choice.",
   },
   {
     question: "What is included in Managed Hosting at $25/mo?",
@@ -29,18 +29,34 @@ export const pricingFaqItems: FAQItem[] = [
   },
   {
     question: "Do I need to pay everything upfront?",
-    answer:
-      "I typically work with a 50% deposit to begin, with the remainder due at launch. For larger projects, we can discuss a payment schedule that works for both of us.",
+    answer: projectPolicies.payment,
+  },
+  {
+    question: "How many revisions are included?",
+    answer: projectPolicies.revisions,
+  },
+  {
+    question: "What support is included after launch?",
+    answer: projectPolicies.support,
   },
   {
     question: "What's not included in these prices?",
     answer:
-      "Domain registration, premium stock photography, and third-party service subscriptions (like booking software) are separate. Hosting is optional and selected in your final scope.",
+      "Domain registration, premium stock photography, copywriting beyond the agreed scope, and third-party subscriptions or AI usage are separate. Hosting is optional. Any additional costs are agreed in your proposal.",
   },
   {
     question: "How long does a project usually take?",
     answer:
-      "WordPress quick-start projects are typically the fastest. Custom builds usually take longer due to planning and design depth. Timeline depends on scope and how quickly content and feedback are provided.",
+      "Most new custom websites take 2 to 4 weeks. Redesigns usually take 2 to 5 weeks. Your quote includes a timeline based on scope, content readiness, and review time.",
+  },
+  {
+    question: "What will my written quote cover?",
+    answer:
+      "Before the deposit, we agree on the pages, content responsibilities, revisions, integrations, editing access, ownership and handover, launch support, and any recurring charges. Work outside that scope is quoted separately before it begins.",
+  },
+  {
+    question: "Will I be able to edit or move my website?",
+    answer: projectPolicies.handover,
   },
   {
     question: "Can I switch from Managed Hosting to Website Care later?",
@@ -58,7 +74,7 @@ export const pricingFaqItems: FAQItem[] = [
 export const fullFaqItems: FAQItem[] = [
   {
     question: "How much does a website cost?",
-    answer: `WordPress quick-start websites begin at ${wordpressStartPrice}. Custom websites begin at ${customStartPrice} and scale with scope. I provide a clear scoped quote after learning about your goals.`,
+    answer: `Custom websites start at ${starterPrice} for a focused one-page build. Larger sites and WordPress projects receive a scoped quote after we discuss your goals. Hosting and active care are optional, separate plans.`,
   },
   {
     question: "How long does a project take?",
@@ -77,8 +93,7 @@ export const fullFaqItems: FAQItem[] = [
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer:
-      "Yes. After launch you can choose Managed Hosting at $25/month for hosting essentials, or Website Care at $49/month for ongoing help and updates.",
+    answer: `${projectPolicies.supportShort} Managed Hosting at $25/month covers hosting essentials, while Website Care at $49/month adds ongoing help and updates. Both plans are optional.`,
   },
   {
     question: "Can you work with businesses outside Colorado?",
@@ -104,7 +119,7 @@ export const fullFaqItems: FAQItem[] = [
   {
     question: "What makes a professional website better than a DIY site?",
     answer:
-      "DIY builders can get something online fast, but they often look generic and lack the structure needed to convert visitors into customers. A professionally built site is designed around your business goals, loads faster, ranks better in search, and builds real trust with potential customers.",
+      "A DIY builder can be a useful starting point. Working with me adds planning, tailored design, clearer service information, and a checked inquiry flow. We'll choose an approach around your business goals, budget, and editing needs.",
   },
   {
     question: "What if I already have a website, but it's not getting results?",

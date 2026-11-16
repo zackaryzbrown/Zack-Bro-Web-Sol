@@ -16,6 +16,8 @@ export const servicesDetailed: ServiceItem[] = [
       "Local SEO foundation (titles, schema, sitemap)",
       "Contact form with email delivery",
       "Analytics setup and launch support",
+      "Two consolidated revision rounds within scope",
+      "30-day window to report scoped defects for correction",
     ],
     bestFor:
       "New or established service businesses that want a professional site without WordPress overhead.",
@@ -26,7 +28,11 @@ export const servicesDetailed: ServiceItem[] = [
     process: [
       { label: "Discovery", detail: "Goals, audience, and content audit." },
       { label: "Design + build", detail: "Custom layout, reviewed in stages." },
-      { label: "Launch", detail: "Go-live, analytics, and 30-day support." },
+      {
+        label: "Launch",
+        detail:
+          "After approval and final payment: go-live and agreed handover.",
+      },
     ],
   },
   {
@@ -43,6 +49,8 @@ export const servicesDetailed: ServiceItem[] = [
       "Performance and speed improvements",
       "Updated call-to-action placement",
       "Migration of existing content and images",
+      "Two consolidated revision rounds within scope",
+      "30-day window to report scoped defects for correction",
     ],
     bestFor:
       "Established businesses with a site that no longer reflects their work or generates inquiries.",
@@ -53,7 +61,11 @@ export const servicesDetailed: ServiceItem[] = [
     process: [
       { label: "Audit", detail: "What's working, what's costing you leads." },
       { label: "Rebuild", detail: "New design, copy refinements, dev work." },
-      { label: "Relaunch", detail: "Migration, redirects, and monitoring." },
+      {
+        label: "Relaunch",
+        detail:
+          "After approval and final payment: migration, redirects, and handover.",
+      },
     ],
   },
   {
@@ -85,17 +97,17 @@ export const servicesDetailed: ServiceItem[] = [
   {
     title: "Website Care & Support",
     description:
-      "After launch, keep your site healthy, current, and quietly working in the background. Small content updates, uptime monitoring, and a single point of contact when something needs attention.",
+      "Choose Managed Hosting at $25/month for hosting, SSL, backups, and uptime monitoring. Website Care at $49/month adds a small monthly update, contact form monitoring, and light email support.",
     icon: "○",
     outcome:
       "A site that stays sharp without you ever having to think about it.",
     includes: [
-      "Monthly uptime and security checks",
-      "Small content and image updates",
-      "Contact form monitoring",
-      "Performance reviews each quarter",
-      "Small design and copy edits",
-      "Dedicated support contact",
+      "Managed Hosting: hosting, SSL, backups, and uptime monitoring",
+      "Website Care: everything in Managed Hosting",
+      "Website Care: one small content or image update per month",
+      "Website Care: contact form monitoring",
+      "Website Care: quarterly performance review",
+      "Website Care: light email support",
     ],
     bestFor:
       "Owners who want their site maintained without learning a CMS or managing a developer.",
@@ -149,5 +161,5 @@ export const servicesDetailed: ServiceItem[] = [
 
 export const wordpressNote = {
   heading: "Need WordPress specifically?",
-  body: "I can build on WordPress when it's genuinely the right fit - usually for clients who already have a team trained on it, or who need a specific plugin ecosystem. For most local service businesses, a custom build is faster, cheaper to maintain, and easier to evolve. Happy to talk through which makes sense for you.",
+  body: "WordPress can make sense if you want familiar editing tools or need a particular plugin. A custom build can suit a focused site with specific design or integration needs. We'll compare editing, maintenance, and total cost before choosing a platform. WordPress projects receive a separate scoped quote.",
 };

@@ -1,7 +1,8 @@
 import type { FeatureItem } from "./types";
+import { projectPolicies } from "./project-policies";
 
 export const founderBio = [
-  "I'm a Colorado-based developer who builds modern, conversion-focused websites for local service businesses - the kind of companies where a customer almost always checks the site before they pick up the phone.",
+  "I'm a web developer based in Erie, Colorado. I build and redesign websites for local service businesses in Erie, Lafayette, Louisville, Broomfield, Boulder, and Longmont, with a focus on making your services clear and your business easy to contact.",
   "From the first conversation to launch, you work with me directly. No account managers, no junior handoffs, no template factory. Just a clear scope, a fair price, and a site built to make your business look the part.",
   "My focus is simple: strong first impressions, clear messaging, mobile-first design, and the technical fundamentals that make Google and real humans take you seriously.",
 ] as const;
@@ -9,15 +10,15 @@ export const founderBio = [
 export const proofStats: { value: string; label: string }[] = [
   {
     value: "1-day",
-    label: "Average reply time on new inquiries",
+    label: "Response promise for new inquiries",
   },
   {
     value: "100%",
     label: "Founder-led - you talk to the person building it",
   },
   {
-    value: "8+",
-    label: "Front Range cities served and growing",
+    value: "Erie, CO",
+    label: "Your local point of contact",
   },
 ];
 
@@ -54,23 +55,23 @@ export const process: { step: string; title: string; text: string }[] = [
   {
     step: "03",
     title: "Design & build",
-    text: "I design and develop in tight feedback loops. You see real progress every few days - not a six-week silence followed by a dramatic reveal.",
+    text: "I design and build with regular progress check-ins. You have two consolidated revision rounds within the agreed scope, and corrections of implementation mistakes do not use those rounds.",
   },
   {
     step: "04",
     title: "Launch & support",
-    text: "We launch when it's actually ready. After that, you can hand it back, hire me for ongoing care, or just call when you need a tweak.",
+    text: "After approval and final payment, I launch the site and hand over the agreed files and access. You have 30 calendar days after launch to report defects against the approved scope for correction. Ongoing care is optional.",
   },
 ];
 
 export const commitments: FeatureItem[] = [
   {
     title: "Direct communication",
-    text: "You work with me directly from first message to launch day. One inbox, one phone number, no middle layer.",
+    text: "You work with me directly from first message to launch day. One point of contact for your questions and feedback.",
   },
   {
     title: "Clear pricing & timelines",
-    text: "You'll know the scope, cost, and expected launch date before any work starts. A 50% deposit kicks things off; the rest is due at launch.",
+    text: projectPolicies.paymentShort,
   },
   {
     title: "Professional execution",
@@ -78,6 +79,6 @@ export const commitments: FeatureItem[] = [
   },
   {
     title: "Support after launch",
-    text: "Need hosting, edits, or ongoing peace of mind? Care plans start at $25/mo so you're never left figuring it out alone.",
+    text: `${projectPolicies.supportShort} Optional Managed Hosting starts at $25/mo. Website Care at $49/mo adds a small monthly update, form monitoring, and light email support.`,
   },
 ];
