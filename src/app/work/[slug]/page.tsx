@@ -8,13 +8,9 @@ import { FadeIn } from "@/components/FadeIn";
 import { PageCta } from "@/components/PageCta";
 import { TrackedLink } from "@/components/TrackedLink";
 
-import {
-  projects,
-  projectSlug,
-  getProjectBySlug,
-  projectStatusLabel,
-} from "@/content/work";
+import { projects, projectSlug, getProjectBySlug } from "@/content/work";
 import { createMetadata } from "@/lib/metadata";
+import { projectStatusLabel } from "@/lib/projects";
 import { brand } from "@/content/site";
 
 export function generateStaticParams() {

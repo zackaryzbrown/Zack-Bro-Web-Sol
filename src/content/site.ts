@@ -11,7 +11,7 @@ export const brand = {
   location: "Erie, CO",
   url: "https://zbweb.solutions",
   bookingUrl: "https://calendly.com/zackaryzbrown/30min",
-  googleReviewUrl: "https://g.page/r/CbnLFwqHD5FiEBM/review",
+  googleReviewUrl: "https://g.page/r/CbnLFwqHD5FiEBI/review",
   googleBusinessUrl:
     "https://www.google.com/maps/search/?api=1&query=ZBWebSolutions&query_place_id=ChIJg--xAtmHT4sRucsXCocPkWI",
   responsePromise: "Reply within 1 business day",
